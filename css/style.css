@@ -30,7 +30,7 @@ div.panel_body {
 div.panel_title {
             font-size:120%;
             text-align:left;
-            color: #3B5998;
+            color: #0081CC;
 }
 
 div.panel-heading  {
@@ -207,7 +207,7 @@ h6 {
     letter-spacing: 1px;
 }
 
-h3 {color:#3B5998;    
+h3 {color:#0081CC;    
     margin: 30px 0 10px;}
 h4 {    margin: 30px 0 10px;
         color:#303030;
@@ -240,7 +240,7 @@ p {
 }
 
 a {
-    color:#3B5998;
+    color:#0081CC;
     -webkit-transition: all .1s ease-in-out;
     -moz-transition: all .1s ease-in-out;
     transition: all .1s ease-in-out;
@@ -255,7 +255,7 @@ a.alt {
 
 }
 
-i.color {color:#3B5998;}
+i.color {color:#0081CC;}
 
 a:hover,
 a:focus {
@@ -270,7 +270,7 @@ a:focus {
 .navbar-custom {
     margin-bottom: 0;
     border-bottom: 1px solid rgba(255,255,255,.3);
-    background-color: #3B5998;
+    background-color: #0081CC;
 
 }
 
@@ -295,7 +295,7 @@ a:focus {
 }
 
 .navbar-custom a {
-    color: #3B5998;
+    color: #0081CC;
 }
 
 .navbar-custom .nav li.active {
@@ -325,14 +325,14 @@ a:focus {
         padding: 20px 0;
         border-bottom: 0;
         letter-spacing: 0px;
-        background: #3B5998 ;    /*BACKGROUND COLOR OF HOMEPAGE NAVBAR*/
+        background: #0081CC ;    /*BACKGROUND COLOR OF HOMEPAGE NAVBAR*/
         -webkit-transition: background 1s ease-in-out,padding 1s ease-in-out;
         -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
         transition: background 1s ease-in-out,padding 1s ease-in-out;
     }
     .top-nav-collapse {
         padding: 0;
-        background-color: #3B5998; /* COLOR OF NAVBAR BACKGROUND*/
+        background-color: #0081CC; /* COLOR OF NAVBAR BACKGROUND*/
         opacity: 1; 
         transition: background 1s ease-in-out,padding 1s ease-in-out;
         -webkit-transition: background 1s ease-in-out,padding 1s ease-in-out;
@@ -368,7 +368,7 @@ a:focus {
 
 .intro .intro-body .brand-heading {
     font-size: 32px;
-    color: #3B5998;
+    color: #0081CC;
 
 }
 
@@ -397,7 +397,7 @@ a:focus {
     height: 70px;
     margin-top: 15px;
     padding: 7px 16px;
-    border: 2px solid #3B5998; /* CHANGE COLOR OF DOUBLE ARROWS */
+    border: 2px solid #0081CC; /* CHANGE COLOR OF DOUBLE ARROWS */
     border-radius: 35px;
     font-size: 35px;
     color: #fff;
@@ -536,8 +536,8 @@ i.animated {
 }
 
 .btn-default {
-    border: 1px solid #3B5998;
-    color: #3B5998;
+    border: 1px solid #0081CC;
+    color: #0081CC;
     background-color: transparent; /* CHANGE COLOR OF BUTTONS */
     -webkit-transition: all .1s ease-in-out;
     -moz-transition: all .1s ease-in-out;
@@ -549,7 +549,7 @@ i.animated {
 .title_content {
     display: inline-block;
     font-size: 100%;
-    color: #3B5998;
+    color: #0081CC;
     text-align: left;
     width: 100%;
     margin-bottom:  0px;
@@ -577,7 +577,7 @@ i.animated {
     border: 1px solid #219ab3;
     outline: 0;
     color: #fff;
-    background-color: #3B5998;
+    background-color: #0081CC;
 }
 
 ul.banner-social-buttons {
@@ -606,7 +606,7 @@ ul.banner-social-buttons {
 }
 
 footer {
-    background: #3B5998;
+    background: #0081CC;
     padding: 20px 0 20px;
 }
 
