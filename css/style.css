@@ -300,7 +300,7 @@ a:focus {
 
 .navbar-custom .nav li.active {
     outline: none;
-    background-color: #325d88 ;/* COLOR OF SELCECTED TAB IN NAVBAR */
+    background-color: #00a1ff ;/* COLOR OF SELCECTED TAB IN NAVBAR */
     border-radius: 2px;
 }
 
