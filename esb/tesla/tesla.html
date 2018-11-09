@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+
+<head>
+<meta name="robots" content="noindex">
+<meta name="googlebot" content="noindex">
+
+    <title>ESB</title>
+    <link rel="shortcut icon" href="../../img/columbia.ico">
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../../css/style.css?v=1.1" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../../font/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!--     <link href="octicons/octicons.css" rel="stylesheet" type="text/css">
+ -->
+
+<!-- <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+ -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700" rel="stylesheet">
+
+
+</head>
+
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars" style="color:white"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="https://www.jperego.com">
+                      <span class="light" style="color:white"><i class="fa fa-home color" style="color:white" aria-hidden="true"></i>
+home</span>
+                </a>
+
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+
+<!--                     <li>
+                        <a class="page-scroll" href="#page-top">  contacts</a>
+                    </li> -->
+
+<!--                     <li>
+                        <a class="page-scroll" href="#research" style="color:white; font-size:120%">  research</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#resume" style="color:white; font-size:120%">   cv</a>
+                    </li> -->
+<!--                     <li>
+                        <a class="page-scroll" href="#teaching" style="color:white; font-size:120%"> teaching (offline)</a>
+                    </li>
+ -->                  
+                    <!-- <li>
+                         <a class="page-scroll" href="https://github.com/jperego" target="_blank" style="color:white; font-size:120%; margin-left: 0px"> <i class="fa fa-github fa-1x color" style="color:white; margin-top:0px" aria-hidden="true"></i>  </a>
+                    </li> -->
+                    <!--<li>-->
+                        <!--<a class="page-scroll" href="#about"><i class="fa fa-user fa-lg"></i> Contacts</a>-->
+                    <!--</li>-->
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row" >
+
+
+</div>
+</div>
+</div>
+</header>
+                       
+
+
+
+    <!-- Footer -->
+    <footer style="margin-top:100px">
+        <div  class="container text-center" >
+            <p  style="font-size:80%; ">
+<!--                 I wrote this  using <a href="http://getbootstrap.com/getting-started/" target="_blank">Bootstrap</a>, <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">FontAwesome</a>,
+                Navbar from <a href="http://ironsummitmedia.github.io/startbootstrap-grayscale/" target="_blank">here</a>.
+ -->            </p>
+
+        </div>
+    </footer>
+
+
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/grayscale.js"></script>
+
+
+
+
+    <script>
+$(document).ready(function () {
+    $("body").keydown(function(e) {
+      if(e.which == 37) { // left
+          $(".previous a").trigger("click");
+      }
+      else if(e.which == 39) { // right
+          $(".next a").trigger("click");
+      }
+    });
+    $(".previous a").on("click",function(){
+        // your scripts for previous click here
+        window.location = 'http://www.google.com';
+    });
+    $(".next a").on("click",function(){
+        // your scripts for next click here
+        window.location = 'http://sg.yahoo.com/';
+    });
+});
+    </script>
+
+</body>
+
+</html>
