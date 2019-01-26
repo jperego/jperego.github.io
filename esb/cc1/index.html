@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+
+<head>
+<meta name="robots" content="noindex">
+<meta name="googlebot" content="noindex">
+
+    <title>ESB</title>
+    <link rel="shortcut icon" href="../img/columbia.ico">
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../../css/style.css?v=1.1" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../../font/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!--     <link href="octicons/octicons.css" rel="stylesheet" type="text/css">
+ -->
+
+<!-- <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+ -->
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700" rel="stylesheet">
+
+
+</head>
+
+
+<style>
+#wordbox {
+    /*opacity: 0;*/
+    margin: 30 30px 30px 30;
+    /*display: block;*/
+    /*width: 300px;*/
+    height: 150px;
+    font-size: 500%;
+    text-align: center;
+    background: white;
+    border-color: #0081CC;
+    border-width: thin;
+    color: white;
+    /*transition: 1s linear;*/
+}
+</style>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars" style="color:white"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="https://www.jperego.com">
+                      <span class="light" style="color:white"><i class="fa fa-home color" style="color:white" aria-hidden="true"></i>
+home</span>
+                </a>
+
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav"></ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+<h1 style="color: black; margin-bottom: 200px;"> Section 001 </h1>
+
+
+
+<form name="WordForm">  
+<input style="color:black" type=text name="WordBox" id="wordbox" ><br>
+
+<input style="margin-top: 100px" class ="btn btn-primary" value="Generate" onClick="PickRandomWord(document.WordForm);" id="button">
+</form>
+
+</div>
+</div>
+</header>
+                       
+
+
+
+    <!-- Footer -->
+    <footer style="margin-top:100px">
+        <div  class="container text-center" >
+            <p  style="font-size:80%; ">
+<!--                 I wrote this  using <a href="http://getbootstrap.com/getting-started/" target="_blank">Bootstrap</a>, <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">FontAwesome</a>,
+                Navbar from <a href="http://ironsummitmedia.github.io/startbootstrap-grayscale/" target="_blank">here</a>.
+ -->            </p>
+
+        </div>
+    </footer>
+
+
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+
+    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/grayscale.js"></script>
+
+
+
+
+    <script>
+
+var NumberOfWords = 49
+
+var words = new BuildArray(NumberOfWords)
+
+// Use the following variables to 
+// define your random words:
+
+
+
+words[1] ="Walker Berning"
+words[2] ="Melody Bickersteth"
+words[3] ="Carey Cai"
+words[4] ="Christina Clark"
+words[5] ="Neeti Deoras"
+words[6] ="Agapitos Diakogiannis"  
+words[7] ="Chad Foster"
+words[8] ="Zack Gober"
+words[9] ="Felix Gruender"   
+words[10] ="Alexander Hryhorowych" 
+words[11] ="Danielle Jenks"   
+words[12] ="David Kao"
+words[13] ="Lily Kaplan"  
+words[14] ="Nimra Khan" 
+words[15] ="Brook Kidane"  
+words[16] ="Liza Kind" 
+words[17] ="Puja Kowley"
+words[18] ="Natalie Lam" 
+words[19] ="Alex Lee"
+words[20] ="Morgen Lerner"  
+words[21] ="Hunter Lew"
+words[22] ="Howard Li"
+words[23] ="Scott Linstone"
+words[24] ="Qi Liu"
+words[25] ="Samuel Maxfield"
+words[26] ="Jen Moye"
+words[27] ="Ana Murghuli"    
+words[28] ="Mohit Narula"  
+words[29] ="Eric Niu"
+words[30] ="Paul Peterson" 
+words[31] ="Mark Poon"    
+words[32] ="Parampal Randhawa"    
+words[33] ="Hannah  Reitan"
+words[34] ="Andrew Roberts" 
+words[35] ="Austin Roth"
+words[36] ="Nir Schachter"   
+words[37] ="Rob Schaus"
+words[38] ="Aldo Schenone"
+words[39] ="Dan Smith"
+words[40] ="Josefina Harris"  
+words[41] ="Guglielmo Tosato"  
+words[42] ="Paul Trethaway"   
+words[43] ="Ronit Ventura" 
+words[44] ="Sarah Wagner"  
+words[45] ="Amy Woodruff"    
+words[46] ="David Wu"  
+words[47] ="Thierry Wyder"   
+words[48] ="Chloe Chloe"
+words[49] ="Jing Zhang"
+
+function BuildArray(size){
+this.length = size
+for (var i = 1; i <= size; i++){
+this[i] = null}
+return this
+}
+
+function PickRandomWord(frm) {
+// Generate a random number between 1 and NumberOfWords
+var rnd = Math.ceil(Math.random() * NumberOfWords)
+
+// Display the word inside the text box
+frm.WordBox.value = words[rnd]
+}
+
+
+    </script>
+
+</body>
+
+</html>
