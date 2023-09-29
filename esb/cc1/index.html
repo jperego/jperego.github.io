@@ -87,7 +87,7 @@ home</span>
 <form name="WordForm">  
 <input style="color: #323232; font-size: 450%" class="w3-input" type=text name="WordBox" id="wordbox" ><br>
 
-<input style="margin-top: 100px" class ="btn btn-primary btn-lg" value="Generate" onClick="PickRandomWord(document.WordForm);" id="button">
+<input style="margin-top: 100px" class ="btn btn-primary btn-lg" value="Generate" onClick="PickNextWord(document.WordForm);" id="button">
 </form>
 
 
@@ -130,92 +130,83 @@ home</span>
 
 
     <script>
+        let names = []
 
-        var NumberOfStudents = 61
-        var words = new BuildArray(NumberOfStudents)
+        names.push("Birman, Giovanna")
+        names.push("Blaquier, Felix")
+        names.push("Butterfield, Bridget")
+        names.push("Chen, Haonan")
+        names.push("Chin, Taylor")
+        names.push("Clark, Martin")
+        names.push("Coletta, Alex")
+        names.push("Corroto, Miguel")
+        names.push("Counts, Simone")
+        names.push("Danner, Maggie")
+        names.push("Delgado, Felipe")
+        names.push("Drinot, Lucienne")
+        names.push("Durand-Agache, Lorelei")
+        names.push("Echt, Gregory")
+        names.push("Egidio, Martino")
+        names.push("Gamito Piedade, Beatriz")
+        names.push("Garcia Manzanaro, Lucia")
+        names.push("Giovanelli, Guillermina")
+        names.push("Grant, Inna")
+        names.push("Gupta, Swati")
+        names.push("Hu, Daniel")
+        names.push("Hyland, Laura")
+        names.push("John, George")
+        names.push("Kay, Chandler")
+        names.push("Kriathkungwalkai, Lalit")
+        names.push("Kumar, Abhinav")
+        names.push("Kundu, Kunal")
+        names.push("Lesser, Robert")
+        names.push("Li, Chenkai")
+        names.push("Lighten, Michael")
+        names.push("Lin, Sophia")
+        names.push("Lindstrom, Hannah")
+        names.push("Macalinao, Kyle")
+        names.push("Martinez Lopez, Marina")
+        names.push("McNeilly, Kerry")
+        names.push("Michaelis, Jamie")
+        names.push("Minerva, Jenn")
+        names.push("Pariente, Manuel")
+        names.push("Park, Junsu")
+        names.push("Patricof, Nina")
+        names.push("Pizzulli, Angelina")
+        names.push("Plata Larsen, Manuela")
+        names.push("Pouvaranukoah, Napon")
+        names.push("Prakoonsuksapan, Pollie")
+        names.push("Raines, John")
+        names.push("Rastogi, Anurag")
+        names.push("Rudo, Tori")
+        names.push("Scanzoni, Chris")
+        names.push("Sehgal, Sumer")
+        names.push("Shi, Lei")
+        names.push("Sun, Annie")
+        names.push("Sun, Selina")
+        names.push("Thairungroj, Pear")
+        names.push("Usukumah, Matthew")
+        names.push("Vempala, Justin")
+        names.push("Xia, Amy")
+        names.push("Yang, Zheng")
+        names.push("Yao, Celine")
+        names.push("Zaffos, Zach")
+        names.push("Zhang, Morgan")
+        names.push("Zhu, Yixuan")
 
-words[1]= "Birman, Giovanna"
-words[2]= "Blaquier, Felix"
-words[3]= "Butterfield, Bridget"
-words[4]= "Chen, Haonan"
-words[5]= "Chin, Taylor"
-words[6]= "Clark, Martin"
-words[7]= "Coletta, Alex"
-words[8]= "Corroto, Miguel"
-words[9]= "Counts, Simone"
-words[10]="Danner, Maggie"
-words[11]="Delgado, Felipe"
-words[12]="Drinot, Lucienne"
-words[13]="Durand-Agache, Lorelei"
-words[14]="Echt, Gregory"
-words[15]="Egidio, Martino"
-words[16]="Gamito Piedade, Beatriz"
-words[17]="Garcia Manzanaro, Lucia"
-words[18]="Giovanelli, Guillermina"
-words[19]="Grant, Inna"
-words[20]="Gupta, Swati"
-words[21]="Hu, Daniel"
-words[22]="Hyland, Laura"
-words[23]="John, George"
-words[24]="Kay, Chandler"
-words[25]="Kriathkungwalkai, Lalit"
-words[26]="Kumar, Abhinav"
-words[27]="Kundu, Kunal"
-words[28]="Lesser, Robert"
-words[29]="Li, Chenkai"
-words[30]="Lighten, Michael"
-words[31]="Lin, Sophia"
-words[32]="Lindstrom, Hannah"
-words[33]="Macalinao, Kyle"
-words[34]="Martinez Lopez, Marina"
-words[35]="McNeilly, Kerry"
-words[36]="Michaelis, Jamie"
-words[37]="Minerva, Jenn"
-words[38]="Pariente, Manuel"
-words[39]="Park, Junsu"
-words[40]="Patricof, Nina"
-words[41]="Pizzulli, Angelina"
-words[42]="Plata Larsen, Manuela"
-words[43]="Pouvaranukoah, Napon"
-words[44]="Prakoonsuksapan, Pollie"
-words[45]="Raines, John"
-words[46]="Rastogi, Anurag"
-words[47]="Rudo, Tori"
-words[48]="Scanzoni, Chris"
-words[49]="Sehgal, Sumer"
-words[50]="Shi, Lei"
-words[51]="Sun, Annie"
-words[52]="Sun, Selina"
-words[53]="Thairungroj, Pear"
-words[54]="Usukumah, Matthew"
-words[55]="Vempala, Justin"
-words[56]="Xia, Amy"
-words[57]="Yang, Zheng"
-words[58]="Yao, Celine"
-words[59]="Zaffos, Zach"
-words[60]="Zhang, Morgan"
-words[61]="Zhu, Yixuan"
+        // shuffle order of names array
+        names.sort(function() {
+            return .5 - Math.random();
+        });
 
-
-
-
-
-
-function BuildArray(size){
-this.length = size
-for (var i = 1; i <= size; i++){
-this[i] = null}
-return this
-}
-
-function PickRandomWord(frm) {
-// Generate a random number between 1 and NumberOfStudents
-var rnd = Math.ceil(Math.random() * NumberOfStudents)
-
-// Display the word inside the text box
-frm.WordBox.value = words[rnd]
-}
-
+        function PickNextWord(frm) {
+            const name = names.pop()
+            if (name == null) {
+                frm.WordBox.value = "No more names - Refresh!"
+                return
+            }
+            frm.WordBox.value = name
+        }
 
     </script>
 
