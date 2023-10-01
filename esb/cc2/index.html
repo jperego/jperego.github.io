@@ -85,7 +85,7 @@ home</span>
 <form name="WordForm">  
 <input style="color: #323232; font-size: 450%" class="w3-input" type=text name="WordBox" id="wordbox" ><br>
 
-<input style="margin-top: 100px" class ="btn btn-primary btn-lg" value="Generate" onClick="PickRandomWord(document.WordForm);" id="button">
+<input style="margin-top: 100px" class ="btn btn-primary btn-lg" value="Generate" onClick="PickNextWord(document.WordForm);" id="button">
 </form>
 
 </div>
@@ -127,70 +127,75 @@ home</span>
 
 
     <script>
+        let names = []
 
-var NumberOfWords = 37
+        names.push("Aldonza Barrena, Susana")
+        names.push("Bian, Yuhao")
+        names.push("Chadha, Devika")
+        names.push("Chen, Pinto")
+        names.push("Chen, Yu-Hsiang")
+        names.push("Dubois, Alexander")
+        names.push("Evirgen, Gamze")
+        names.push("Freyre, Michael")
+        names.push("Furlong, Devon")
+        names.push("Gao, Jue")
+        names.push("Garvin, Max")
+        names.push("Guarco-Cogollos, John")
+        names.push("Guo, Peggy")
+        names.push("Gupta, Akshay")
+        names.push("Hook, Samuel")
+        names.push("Jain, Henna")
+        names.push("Jin, Ryan")
+        names.push("Kailath, Ryan")
+        names.push("Kopf, Caroline")
+        names.push("Kubicz, Alex")
+        names.push("Kurian, Samuel")
+        names.push("Lutondo, Shin")
+        names.push("Machicote, Matias")
+        names.push("Mazur, Michael")
+        names.push("Merlau, Daniel")
+        names.push("Meylan, Andrew")
+        names.push("Mihm, Shelley")
+        names.push("Miller-Smith, Samuel")
+        names.push("Morcos, John")
+        names.push("Mutimer, Sebastian")
+        names.push("Osinaiya, Esther")
+        names.push("Parks, Katie")
+        names.push("Pogue, Kristina")
+        names.push("Puppala, Anirudh")
+        names.push("Qin, Yifan")
+        names.push("Raubenheimer, Leon")
+        names.push("Rosado Gomory, Sergio")
+        names.push("Russell, David")
+        names.push("Slattery, Michael")
+        names.push("Tam, Nicholas")
+        names.push("Termsedcharoen, Nas")
+        names.push("Thacker, Bhakti")
+        names.push("Tipnis, Rohit")
+        names.push("Tosi, Federica")
+        names.push("Valdemoros, Facundo")
+        names.push("Vidigal, Arthur")
+        names.push("Wade, Meridith")
+        names.push("Willis, Lauren")
+        names.push("Yang, Peijin")
+        names.push("Yu, Kexuan")
+        names.push("Zhang, Jonathan")
+        names.push("Zoffmann Rodriguez, Ernesto")
+        names.push("Zucker, Bree")
 
-var words = new BuildArray(NumberOfWords)
+        // shuffle order of names array
+        names.sort(function() {
+            return .5 - Math.random();
+        });
 
-// Use the following variables to 
-// define your random words:
-
-
-words[1]= "Emily Bargabos"
-words[2]= "Margo Bodenheimer"
-words[3]= "Victor Cerio"
-words[4]= "John Cristancho"
-words[5]= "Travis Drobbin"
-words[6]= "Gennadiy Goldberg"
-words[7]= "Benjamin Guthmiller"
-words[8]= "Lewis Han"
-words[9]= "Nathan Hong"
-words[10]= "Chandra Shekhar Kanukuntla"
-words[11]= "Shiv Kapur"
-words[12]= "Mitch Kim"
-words[13]= "Joseph Kleeman"
-words[14]= "Hersh Malik"
-words[15]= "Kate Manville"
-words[16]= "Yash Mathur"
-words[17]= "Brendan McIntyre"
-words[18]= "Austin Milan"
-words[19]= "Gregory Moody"
-words[20]= "Lap Nguyen"
-words[21]= "Mahesh Pallavur Raja"
-words[22]= "James Park"
-words[23]= "Delano Paul"
-words[24]= "Dominic Perkovic"
-words[25]= "Jacob Piscal"
-words[26]= "Lalita Salgaokar"
-words[27]= "Derek Sam"
-words[28]= "Anurag Sanyal"
-words[29]= "Shona Sharma"
-words[30]= "Shaun Sukul"
-words[31]= "David Todd"
-words[32]= "Bo Trant"
-words[33]= "Angelica Veras"
-words[34]= "Elizabeth Wellford"
-words[35]= "Bryan Yates"
-words[36]= "Yukari Yoshii"
-words[37]= "Jihui Zhu"
-
-
-
-function BuildArray(size){
-this.length = size
-for (var i = 1; i <= size; i++){
-this[i] = null}
-return this
-}
-
-function PickRandomWord(frm) {
-// Generate a random number between 1 and NumberOfWords
-var rnd = Math.ceil(Math.random() * NumberOfWords)
-
-// Display the word inside the text box
-frm.WordBox.value = words[rnd]
-}
-
+        function PickNextWord(frm) {
+            const name = names.pop()
+            if (name == null) {
+                frm.WordBox.value = "No more names - Refresh!"
+                return
+            }
+            frm.WordBox.value = name
+        }
 
     </script>
 
