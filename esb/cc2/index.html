@@ -4,7 +4,7 @@
 <head>
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="noindex">
-    <title>Student List</title>
+    <title>Student List - Section 2</title>
     <link rel="shortcut icon" href="../../img/columbia.ico">
 
     <!-- Bootstrap Core CSS -->
@@ -37,6 +37,27 @@
 
         .navbar-brand span {
             color: white;
+        }
+
+        /* Progress bar style */
+        .progress-container {
+            width: 50%;
+            margin: 40px auto 0;
+            text-align: center;
+        }
+
+        .progress {
+            margin-top: 10px;
+        }
+
+        .progress-bar {
+            background-color: #0081CC;
+        }
+
+        #progress-label {
+            font-size: 120%;
+            font-weight: bold;
+            color: #333;
         }
     </style>
 </head>
@@ -73,6 +94,24 @@
                         <input class="btn btn-primary btn-lg" value="Next Name" onClick="PickNextWord(document.WordForm);" id="button">
                         <input class="btn btn-primary btn-lg" value="Restart" onClick="Restart();" id="restartButton" style="display:none;">
                     </form>
+
+                    <!-- Section Info -->
+                    <div id="section-info">
+                        Section 2
+                    </div>
+
+                    <!-- Progress Bar and Label -->
+                    <div class="progress-container">
+                        <div id="progress-label">
+                            Percentage of students of Section 2 that has been called
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" id="progress-bar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                0%
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -88,7 +127,10 @@
     </footer>
 
     <script>
-        // List of real student names
+        // Unique prefix for Section 2
+        const sectionPrefix = "section2_";
+
+        // List of real student names for Section 2
         const students = [
           "Abernathy, Jessica", "Alejandrino, Raphael", "Arze, Barbara", "Baek, Hong Gi", "Banbouk, Moustafa",
             "Bhatt, Mahek", "Bonardi Oliveira, Gabriela", "Bustamante, Felipe", "Cai, Hongyu", "Coan Ribeiro, Raissa",
@@ -106,19 +148,19 @@
         ];
 
         // Shuffle the students list once
-        let shuffledStudents = localStorage.getItem('shuffledList');
+        let shuffledStudents = localStorage.getItem(sectionPrefix + 'shuffledList');
         if (!shuffledStudents) {
             shuffledStudents = students
                 .map(name => ({ name, sort: Math.random() }))  // Randomize
                 .sort((a, b) => a.sort - b.sort)               // Sort by randomized value
                 .map(({ name }) => name);                      // Extract name
-            localStorage.setItem('shuffledList', JSON.stringify(shuffledStudents));
+            localStorage.setItem(sectionPrefix + 'shuffledList', JSON.stringify(shuffledStudents));
         } else {
             shuffledStudents = JSON.parse(shuffledStudents);
         }
 
         // Get the last shown index, default to -1 (meaning no name shown yet)
-        let currentIndex = localStorage.getItem('currentIndex');
+        let currentIndex = localStorage.getItem(sectionPrefix + 'currentIndex');
         if (currentIndex === null) {
             currentIndex = -1;
         } else {
@@ -136,29 +178,45 @@
                 document.getElementById('button').style.display = "none";
                 document.getElementById('restartButton').style.display = "inline-block";
             }
+            updateProgressBar();
         }
 
         // Move to the next student and show their name
         function PickNextWord() {
             currentIndex++;
             if (currentIndex < shuffledStudents.length) {
-                localStorage.setItem('currentIndex', currentIndex);
+                localStorage.setItem(sectionPrefix + 'currentIndex', currentIndex);
                 showStudent();
             } else {
-                localStorage.setItem('currentIndex', currentIndex);
+                localStorage.setItem(sectionPrefix + 'currentIndex', currentIndex);
                 showStudent();
             }
         }
 
         // Restart the process
         function Restart() {
-            localStorage.removeItem('shuffledList');  // Clear the shuffled list
-            localStorage.removeItem('currentIndex');  // Clear the index
+            localStorage.removeItem(sectionPrefix + 'shuffledList');  // Clear the shuffled list
+            localStorage.removeItem(sectionPrefix + 'currentIndex');  // Clear the index
             location.reload();  // Reload the page to start over
         }
 
         // Display the last name shown (if applicable) on page load
         showStudent();
+
+        // Calculate and update the progress bar percentage
+        function updateProgressBar() {
+            const totalStudents = shuffledStudents.length;
+            const studentsCalled = currentIndex + 1;
+            const percentageCalled = (studentsCalled / totalStudents) * 100;
+            const progressBar = document.getElementById('progress-bar');
+
+            progressBar.style.width = percentageCalled + '%';
+            progressBar.innerText = percentageCalled.toFixed(1) + '%';
+            progressBar.setAttribute('aria-valuenow', percentageCalled);
+        }
+
+        // Initial progress bar update
+        updateProgressBar();
     </script>
 
 </body>
