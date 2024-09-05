@@ -39,11 +39,13 @@
             color: white;
         }
 
-        /* Add some margin for the section info */
-        #section-info {
+        /* Progress bar style */
+        .progress {
             margin-top: 20px;
-            font-size: 120%;
-            color: #333;
+        }
+
+        .progress-bar {
+            background-color: #0081CC;
         }
     </style>
 </head>
@@ -83,8 +85,14 @@
 
                     <!-- Section Info -->
                     <div id="section-info">
-                        Section 1 <br>
-                        <span id="percentage-called"></span> of the students have been called
+                        Section 1
+                    </div>
+
+                    <!-- Bootstrap progress bar -->
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" id="progress-bar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                            0%
+                        </div>
                     </div>
                 </div>
             </div>
@@ -153,7 +161,7 @@
                 document.getElementById('button').style.display = "none";
                 document.getElementById('restartButton').style.display = "inline-block";
             }
-            updatePercentageCalled();
+            updateProgressBar();
         }
 
         // Move to the next student and show their name
@@ -178,16 +186,20 @@
         // Display the last name shown (if applicable) on page load
         showStudent();
 
-        // Calculate and display the percentage of students called
-        function updatePercentageCalled() {
+        // Calculate and update the progress bar percentage
+        function updateProgressBar() {
             const totalStudents = shuffledStudents.length;
             const studentsCalled = currentIndex + 1;
             const percentageCalled = (studentsCalled / totalStudents) * 100;
-            document.getElementById('percentage-called').innerText = percentageCalled.toFixed(1) + '%';
+            const progressBar = document.getElementById('progress-bar');
+
+            progressBar.style.width = percentageCalled + '%';
+            progressBar.innerText = percentageCalled.toFixed(1) + '%';
+            progressBar.setAttribute('aria-valuenow', percentageCalled);
         }
 
-        // Initial percentage calculation
-        updatePercentageCalled();
+        // Initial progress bar update
+        updateProgressBar();
     </script>
 
 </body>
