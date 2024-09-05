@@ -38,6 +38,13 @@
         .navbar-brand span {
             color: white;
         }
+
+        /* Add some margin for the section info */
+        #section-info {
+            margin-top: 20px;
+            font-size: 120%;
+            color: #333;
+        }
     </style>
 </head>
 
@@ -73,6 +80,12 @@
                         <input class="btn btn-primary btn-lg" value="Next Name" onClick="PickNextWord(document.WordForm);" id="button">
                         <input class="btn btn-primary btn-lg" value="Restart" onClick="Restart();" id="restartButton" style="display:none;">
                     </form>
+
+                    <!-- Section Info -->
+                    <div id="section-info">
+                        Section 1 <br>
+                        <span id="percentage-called"></span> of the students have been called
+                    </div>
                 </div>
             </div>
         </div>
@@ -140,6 +153,7 @@
                 document.getElementById('button').style.display = "none";
                 document.getElementById('restartButton').style.display = "inline-block";
             }
+            updatePercentageCalled();
         }
 
         // Move to the next student and show their name
@@ -163,6 +177,17 @@
 
         // Display the last name shown (if applicable) on page load
         showStudent();
+
+        // Calculate and display the percentage of students called
+        function updatePercentageCalled() {
+            const totalStudents = shuffledStudents.length;
+            const studentsCalled = currentIndex + 1;
+            const percentageCalled = (studentsCalled / totalStudents) * 100;
+            document.getElementById('percentage-called').innerText = percentageCalled.toFixed(1) + '%';
+        }
+
+        // Initial percentage calculation
+        updatePercentageCalled();
     </script>
 
 </body>
