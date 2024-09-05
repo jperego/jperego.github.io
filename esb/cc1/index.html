@@ -40,12 +40,24 @@
         }
 
         /* Progress bar style */
+        .progress-container {
+            width: 50%;
+            margin: 40px auto 0; /* Adds space between button and progress bar */
+            text-align: center;
+        }
+
         .progress {
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .progress-bar {
             background-color: #0081CC;
+        }
+
+        #progress-label {
+            font-size: 120%;
+            font-weight: bold;
+            color: #333;
         }
     </style>
 </head>
@@ -88,12 +100,18 @@
                         Section 1
                     </div>
 
-                    <!-- Bootstrap progress bar -->
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" id="progress-bar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                            0%
+                    <!-- Progress Bar and Label -->
+                    <div class="progress-container">
+                        <div id="progress-label">
+                            Percentage of students of section 1 that has been called
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" id="progress-bar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                0%
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
