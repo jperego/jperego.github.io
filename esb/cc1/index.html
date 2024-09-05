@@ -4,7 +4,7 @@
 <head>
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="noindex">
-    <title>Student List</title>
+    <title>Student List - Section 1</title>
     <link rel="shortcut icon" href="../../img/columbia.ico">
 
     <!-- Bootstrap Core CSS -->
@@ -88,6 +88,9 @@
     </footer>
 
     <script>
+        // Unique prefix for Section 1
+        const sectionPrefix = "section1_";
+
         // List of real student names
         const students = [
             "Asi, Rami", "Bahri, Sahil", "Bannister, Derek", "Brown, Cole", "Choi, Jamie", "Chowdhary, Aakriti",
@@ -107,19 +110,19 @@
         ];
 
         // Shuffle the students list once
-        let shuffledStudents = localStorage.getItem('shuffledList');
+        let shuffledStudents = localStorage.getItem(sectionPrefix + 'shuffledList');
         if (!shuffledStudents) {
             shuffledStudents = students
                 .map(name => ({ name, sort: Math.random() }))  // Randomize
                 .sort((a, b) => a.sort - b.sort)               // Sort by randomized value
                 .map(({ name }) => name);                      // Extract name
-            localStorage.setItem('shuffledList', JSON.stringify(shuffledStudents));
+            localStorage.setItem(sectionPrefix + 'shuffledList', JSON.stringify(shuffledStudents));
         } else {
             shuffledStudents = JSON.parse(shuffledStudents);
         }
 
         // Get the last shown index, default to -1 (meaning no name shown yet)
-        let currentIndex = localStorage.getItem('currentIndex');
+        let currentIndex = localStorage.getItem(sectionPrefix + 'currentIndex');
         if (currentIndex === null) {
             currentIndex = -1;
         } else {
@@ -143,18 +146,18 @@
         function PickNextWord() {
             currentIndex++;
             if (currentIndex < shuffledStudents.length) {
-                localStorage.setItem('currentIndex', currentIndex);
+                localStorage.setItem(sectionPrefix + 'currentIndex', currentIndex);
                 showStudent();
             } else {
-                localStorage.setItem('currentIndex', currentIndex);
+                localStorage.setItem(sectionPrefix + 'currentIndex', currentIndex);
                 showStudent();
             }
         }
 
         // Restart the process
         function Restart() {
-            localStorage.removeItem('shuffledList');  // Clear the shuffled list
-            localStorage.removeItem('currentIndex');  // Clear the index
+            localStorage.removeItem(sectionPrefix + 'shuffledList');  // Clear the shuffled list
+            localStorage.removeItem(sectionPrefix + 'currentIndex');  // Clear the index
             location.reload();  // Reload the page to start over
         }
 
