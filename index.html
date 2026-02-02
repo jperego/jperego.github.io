@@ -1,1002 +1,1350 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <meta name="author" content="Jacopo Perego" />
+    <meta
+      name="keywords"
+      content="economics, jacopo, perego, columbia, yale, nyu, phd, research, academics, teaching, academic, theory, micro, university, ricerca, universita, economia"
+    />
 
-<head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="Jacopo Perego">
-    <meta name="keywords" content="economics, jacopo, perego, columbia, yale, nyu, phd, research, academics, teaching, academic, theory, micro, university, ricerca, universita, economia">
+    <!-- Open Graph -->
     <meta property="og:title" content="Jacopo Perego" />
-    <meta property="og:site_name" content="Jacopo Perego"/>
-    <meta property="og:image" content="https://s.graphiq.com/sites/default/files/2307/media/images/White_430113_i0.png" />
-  <meta property="og:description" content="Academic website"/>
-    <title>Jacopo Perego</title>
-    <link rel="shortcut icon" href="img/columbia.ico">
+    <meta property="og:site_name" content="Jacopo Perego" />
+    <meta
+      property="og:image"
+      content="https://s.graphiq.com/sites/default/files/2307/media/images/White_430113_i0.png"
+    />
+    <meta property="og:description" content="Academic website" />
 
+    <title>Jacopo Perego</title>
+    <link rel="shortcut icon" href="img/columbia.ico" />
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
-    <link href="css/style.css?v=1.1" rel="stylesheet">
+    <link href="css/style.css?v=1.1" rel="stylesheet" />
 
-    <!-- Custom Fonts -->
-    <link href="font/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<!--     <link href="octicons/octicons.css" rel="stylesheet" type="text/css">
- -->
+    <!-- Fonts / Icons -->
+    <link
+      href="font/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-<!-- <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
- -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700" rel="stylesheet">
+    <!-- Previously used fonts (kept for reference)
+    <link href="octicons/octicons.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    -->
 
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700"
+      rel="stylesheet"
+    />
+  </head>
 
-</head>
-
-
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
+  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars" style="color:white"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
-                      <span class="light" style="color:white"><i class="fa fa-home color" style="color:white" aria-hidden="true"></i>
-home</span>
-                </a>
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target=".navbar-main-collapse"
+            aria-label="Toggle navigation"
+          >
+            <i class="fa fa-bars" style="color: white"></i>
+          </button>
 
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-
-<!--                     <li>
-                        <a class="page-scroll" href="#page-top">  contacts</a>
-                    </li> -->
-
-                    <li>
-                        <a class="page-scroll" href="#research" style="color:white; font-size:120%">  research</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#resume" style="color:white; font-size:120%">   cv</a>
-                    </li>
-<!--                     <li>
-                        <a class="page-scroll" href="#teaching" style="color:white; font-size:120%"> teaching (offline)</a>
-                    </li>
- -->                  
-                    <!-- <li>
-                         <a class="page-scroll" href="https://github.com/jperego" target="_blank" style="color:white; font-size:120%; margin-left: 0px"> <i class="fa fa-github fa-1x color" style="color:white; margin-top:0px" aria-hidden="true"></i>  </a>
-                    </li> -->
-                    <!--<li>-->
-                        <!--<a class="page-scroll" href="#about"><i class="fa fa-user fa-lg"></i> Contacts</a>-->
-                    <!--</li>-->
-
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+          <a class="navbar-brand page-scroll" href="#page-top">
+            <span class="light" style="color: white">
+              <i
+                class="fa fa-home color"
+                style="color: white"
+                aria-hidden="true"
+              ></i>
+              home
+            </span>
+          </a>
         </div>
-        <!-- /.container -->
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+          <ul class="nav navbar-nav">
+            <!--
+            <li>
+              <a class="page-scroll" href="#page-top"> contacts</a>
+            </li>
+            -->
+
+            <li>
+              <a
+                class="page-scroll"
+                href="#research"
+                style="color: white; font-size: 120%"
+              >
+                research
+              </a>
+            </li>
+
+            <li>
+              <a
+                class="page-scroll"
+                href="#resume"
+                style="color: white; font-size: 120%"
+              >
+                cv
+              </a>
+            </li>
+
+            <!--
+            <li>
+              <a class="page-scroll" href="#teaching" style="color:white; font-size:120%">
+                teaching (offline)
+              </a>
+            </li>
+            -->
+
+            <!--
+            <li>
+              <a class="page-scroll" href="https://github.com/jperego" target="_blank" style="color:white; font-size:120%; margin-left: 0px">
+                <i class="fa fa-github fa-1x color" style="color:white; margin-top:0px" aria-hidden="true"></i>
+              </a>
+            </li>
+            -->
+          </ul>
+        </div>
+      </div>
     </nav>
 
     <!-- Intro Header -->
     <header class="intro">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row" >
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div
+              class="col-md-8 col-md-offset-2"
+              style="text-align: left; margin-top: 140px"
+            >
+              <h1
+                class="brand-heading"
+                style="
+                  color: #303030;
+                  border-bottom: solid 0px #303030;
+                  margin-bottom: 20px;
+                  padding-top: 0px;
+                  font-size: 28pt;
+                  text-align: center;
+                  letter-spacing: 0px;
+                "
+              >
+                <img
+                  src="img/profile.jpeg"
+                  style="
+                    opacity: 0.9;
+                    border-radius: 500px;
+                    border: 0px solid #3b5998;
+                    width: 25%;
+                    margin-bottom: 0px;
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                  "
+                  alt="Profile photo"
+                />
+                <br />
 
+                <div style="margin-top: 40px">Jacopo Perego</div>
+              </h1>
 
-                       
+              <p
+                style="
+                  margin-bottom: 10px;
+                  font-size: 12.5pt;
+                  text-align: center;
+                "
+              >
+                "<i>Class of 1967</i>" Associate Professor<br />
+                Columbia Business School<br /><br />
+                576 Kravis Hall <br />
+                665 W 130th St<br />
+                New York, NY 10027<br />
+                <span style="font-style: italic">
+                  jacopo.perego@columbia.edu
+                </span>
+                <br />
 
+                <a
+                  href="files/cv/CV.pdf"
+                  style="display: inline-block; margin-top: 20px"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="fa fa-external-link-square fa-fw"></i> Curriculum
+                  Vitae
+                </a>
+                <br />
 
-                    <div class="col-md-8 col-md-offset-2" style="text-align: left; margin-top: 140px;">
+                <!--
+                <a href="files/cv/statement.pdf" style="display: inline-block; margin-top: 10px" target="_blank" rel="noopener noreferrer">
+                  <i class="fa fa-external-link-square fa-fw"></i> Research Statement
+                </a><br>
+                -->
 
+                <a
+                  href="https://scholar.google.com/citations?hl=en&user=xqnghBYAAAAJ&view_op=list_works&gmla=ALUCkoVNkSub0ABOJgRdhPdsrt5y4DpjuD75KA24eyJppl-kLeByG5ZERO6qfkgBuR8WXC2AC1QupmOdNpHvSYdv"
+                  style="display: inline-block; margin-top: 10px"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="fa fa-google fa-fw"></i> Google Scholar's Page
+                </a>
+                <br />
 
+                <a
+                  href="https://business.columbia.edu/faculty/people/jacopo-perego"
+                  style="display: inline-block; margin-top: 10px"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="fa fa-external-link-square fa-fw"></i> Institutional
+                  Webpage
+                </a>
+                <br />
+              </p>
 
-                        <h1 class="brand-heading" style="color:#303030;border-bottom: solid 0px #303030; margin-bottom: 20px; padding-top:0px; font-size: 28pt;text-align: center;  letter-spacing: 0px">
+              <p
+                style="
+                  margin-top: 40px;
+                  margin-bottom: 0px;
+                  text-align: left;
+                  padding: 0 50px 0 50px;
+                  font-size: 12.5pt;
+                "
+              >
+                I am an associate professor (with tenure) in the Economics
+                Division of Columbia Business School. I am also affiliated
+                faculty member of the Department of Economics at Columbia
+                University, and a CEPR research affiliate.
+              </p>
 
+              <p
+                style="
+                  margin-top: 10px;
+                  margin-bottom: 0px;
+                  text-align: left;
+                  padding: 0 50px 0 50px;
+                  font-size: 12.5pt;
+                "
+              >
+                I received my Ph.D. from NYU in 2017. I was a Cowles postdoc at
+                Yale in 2017-18. I have been at Columbia since 2018-19.
+              </p>
 
-                        <img  src="img/profile.jpeg" style="opacity: 0.9;border-radius:500px;border: 0px solid #3B5998; width: 25%; margin-bottom: 0px;margin-top:0px; margin-bottom:0px"><br>
-
-
-                        <div style="margin-top: 40px">Jacopo Perego</div> </h1>
-
-
-
-
-                    <p style="margin-bottom: 10px; font-size: 12.5pt; text-align: center">
-                        "<i>Class of 1967</i>" Associate Professor<br>
-                        Columbia Business School<br><br>
-                        576 Kravis Hall <br>
-                        665 W 130th St<br>
-                        New York, NY 10027<br>   
-                        <span style="font-style: italic"> jacopo.perego@columbia.edu </span> <br>
-                        
-                        <a href="files/cv/CV.pdf" style="display: inline-block; margin-top: 20px;" target="_blank">
-                            <i class="fa fa-external-link-square fa-fw"></i> Curriculum Vitae
-                        </a><br>
-                        
-                        <!-- <a href="files/cv/statement.pdf" style="display: inline-block; margin-top: 10px;" target="_blank">
-                            <i class="fa fa-external-link-square fa-fw"></i> Research Statement
-                        </a><br> -->
-                        
-                        <a href="https://scholar.google.com/citations?hl=en&user=xqnghBYAAAAJ&view_op=list_works&gmla=ALUCkoVNkSub0ABOJgRdhPdsrt5y4DpjuD75KA24eyJppl-kLeByG5ZERO6qfkgBuR8WXC2AC1QupmOdNpHvSYdv" style="display: inline-block; margin-top: 10px;" target="_blank">
-                            <i class="fa fa-google fa-fw"></i> Google Scholar's Page
-                        </a><br>
-
-                            <a href="https://business.columbia.edu/faculty/people/jacopo-perego" style="display: inline-block; margin-top: 10px;" target="_blank">
-                            <i class="fa fa-external-link-square fa-fw"></i> Institutional Webpage
-                        </a><br>
-                    </p>
- 
-
-
-             <p style="margin-top: 40px; margin-bottom: 0px; text-align:left; padding: 0 50px 0 50px; font-size: 12.5pt"> I am an associate professor (with tenure) in the Economics Division of Columbia Business School. I am also affiliated faculty member of the Department of Economics at Columbia University, and a CEPR research affiliate. </p> 
-
-             <p style="margin-top: 10px; margin-bottom: 0px; text-align:left; padding: 0 50px 0 50px;font-size:12.5pt"> I received my Ph.D. from NYU in 2017. I was a Cowles postdoc at Yale in 2017-18. I have been at Columbia since 2018-19.   </p> 
-
-             <p style="margin-top: 10px;margin-bottom: 0px; text-align:left; padding: 0 50px 0 50px; font-size:12.5pt">
-                         
-
-             I work on information economics: I study <i>markets for information</i>, the optimal <i>design of information</i>, and more broadly <i>communication.</i> My work has applications in industrial organization, political economy, and organizational economics. I am primarily a  theorist with a secondary interest in experimental methods.  </p>
-
-
-            
-
-            </center>
-
-
-
-                    </div>
-                </div>
+              <p
+                style="
+                  margin-top: 10px;
+                  margin-bottom: 0px;
+                  text-align: left;
+                  padding: 0 50px 0 50px;
+                  font-size: 12.5pt;
+                "
+              >
+                I work on information economics: I study
+                <i>markets for information</i>, the optimal
+                <i>design of information</i>, and more broadly
+                <i>communication.</i> My work has applications in industrial
+                organization, political economy, and organizational economics. I
+                am primarily a theorist with a secondary interest in experimental
+                methods.
+              </p>
             </div>
+          </div>
         </div>
+      </div>
     </header>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Research Section -->
+    <!-- =========================================================
+         Research: Published and Forthcoming Papers
+         Notes:
+         - IDs are now unique and valid.
+         - Panels remain expanded by default (collapse in), matching your current behavior.
+    ========================================================== -->
     <section id="research" class="container text-left">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                    <h2 style="margin-bottom:30px;margin-top:60px"><span >Published and Forthcoming Papers</span></h2>
-
-
-
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-
-
-
-
-                      <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree" style="background-color:white;">
-                          <h4 class="panel-title">
-                            <a class="collapsed" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseThree">
-                              <div class="panel_title"> <a style="font-weight: 600;" href="files/papers/FFLP/draft.pdf" target="_blank">The Selective Disclosure of Evidence: an Experiment</a> <span style="float: right; color: #c90202; font-size:medium"></span></div> <div style="margin-top: 10px; color:#c90202; font-weight: 600"></div>                            
-                            </a>
-                          </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
-                          <div class="panel-body">
-                            <div class="panel_body">
-<p style=" font-size: 12.5pt"> Joint work with <a href="https://www.agatafarina.com/" target="_blank">A. Farina</a>, <a href="http://cess.nyu.edu/frechette/html/econ.htm" target="_blank">G. Frechette</a>, <a href="https://sites.google.com/site/alessandroispano/" target="_blank">A. Ispano</a>, and <a href="https://sites.google.com/view/lizzeri" target="_blank">A. Lizzeri</a> <span style=" float: right; color: #303030"> </span><br>
-                            <span style=" float: right; color: #303030"> <i><b>Review of Economic Studies</b> (Forthcoming)</i></span>
-                           
-                          </p>
-                     
-                             <p style=" font-size: 12.5pt"> <b>Abstract:</b> 
-                               
-We conduct an experimental analysis of selective disclosure in communication. In our model, an informed sender aims to influence a receiver by disclosing verifiable evidence that is selected from a larger pool of available evidence. Our experimental design leverages the rich comparative statics predictions of this model, enabling a systematic test of the relative importance of evidence selection versus evidence concealment in communication. Our findings confirm the key qualitative predictions of the theory, suggesting that selection, rather than concealment, is often the dominant distortion in communication. We also identify deviations from the theory: A minority of senders overcommunicate relative to predictions, while some receivers partially neglect the selective nature of the evidence they observe.
-
-
-                            </p>
-                            <p style="margin-bottom:0px; font-size: 12.5pt"> <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px"></i> Download: <a href="files/papers/FFLP/draft.pdf" target="_blank"><b>PDF</b></a>. </p>
-
-                            </div>
-                          </div>
-                        </div><br><br>
-
-
-
-
-
-
-
-  <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree" style="background-color:white;">
-                          <h4 class="panel-title">
-                            <a class="collapsed" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseThree">
-                              <div class="panel_title"><a href="files/papers/GP/draft.pdf" target="_blank"><span style="font-weight: 600;">Games with Information Constraints: Seeds and Spillovers</span></a> </div>                            
-                            </a>
-                          </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
-                          <div class="panel-body">
-                            <div class="panel_body">
-                            <p style=" font-size: 12.5pt"> Joint work with <a href="https://sites.google.com/site/simonegalperti/" target="_blank">Simone Galperti</a>.<span style="float: right; color: #303030"><i><b>Theoretical Economics</b>, 2025, 20, 667–711</i></span>
-                                <!-- <span style="float: right; color: #c90202; font-size:medium">[Resubmitted -- June 2024]</span> -->
-
-                             <p style=" font-size: 12.5pt"><b>Abstract:</b>
-                                We study equilibrium behavior in incomplete-information games under two information constraints: seeds and spillovers.  The former restricts which agents can initially receive information.  The latter specifies how this information spills over to other agents. Our main result characterizes the equilibrium outcomes under these constraints,  without making additional assumptions about the agents' initial information. This involves deriving a “revelation-principle” result for settings in which a mediator cannot communicate directly or privately with the agents.  Our model identifies which spillovers are more restrictive and which seeds are more impactful.  Moreover, it generates predictions that hold robustly under a general class of spillover processes, which includes strategic communication. We apply our results to a problem of optimal organization design. 
-
-                             </p>
- 
-                            <p style="margin-bottom:0px; font-size: 12.5pt"> <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px"></i> Download: <a href="files/papers/GP/draft.pdf" target="_blank"><b>PDF</b></a>. </p>
-
-
-                            </div>
-                          </div>
-                        </div>
-                        <br><br>
-
-
-
-
-
-
-
-<div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree" style="background-color:white;">
-                          <h4 class="panel-title">
-                            <a class="collapsed" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseThree">
-                              <div class="panel_title"><a href="files/papers/GLP_price/draft.pdf" target="_blank" onclick="ga('send','event','PDF Downloads', 'Click', 'FLP')"><span style="font-weight: 600;">The Value of Data Records</span></a>
-                                <!-- <span style="float: right; color: #c90202; font-size:medium">[Revised Draft!]</span> -->
-                            </div>                            
-                            </a>
-                          </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
-                          <div class="panel-body">
-                            <div class="panel_body">
-                            <p style=" font-size: 12.5pt"> Joint work with <a href="https://sites.google.com/site/simonegalperti/" target="_blank">S. Galperti</a> and A. Levkun.
-                            <span style="float: right; color: #303030"><i><b>Review of Economic Studies</b>, 2024, Vol 91-2</i></span><br>
-                              <p style=" font-size: 12.5pt"><b>Abstract:</b> 
-                                Many e-commerce platforms use buyers' personal data to intermediate their transactions with sellers. How much value do such intermediaries derive from the data record of each single individual? We characterize this value and find that one of its key components  is a novel externality between records, which arises when the intermediary pools some records to withhold the information they contain. Ignoring this can significantly bias the evaluations of data records. Our analysis has  several implications about compensating individuals for the use of their data, guiding companies' investments in  data acquisition, and more broadly studying the demand side of data markets.  Our method combines modern information design with classic duality theory and applies to a large class of principal-agent problems.
-
-
-                             </p>
- 
-                            <p style="margin-bottom:0px; font-size: 12.5pt"> <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px"></i>Download: <a href="files/papers/GLP_price/draft.pdf" target="_blank" onclick="ga('send','event','PDF Downloads', 'Click', 'FLP')"><b>PDF</b></a>. <br>
-
-                              <i class="fa fa-cloud-download color" style="color:white;margin-right:5px"></i>
-                            
-                            <!-- This replaces and expands the paper  "<i>A Dual Perspective on Information Design in Games</i>"</p> -->
-
-                            </div>
-                          </div>
-                        </div>
-
-
-
-
-<div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree" style="background-color:white;">
-                          <h4 class="panel-title">
-                            <a class="collapsed" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseThree">
-                              <div class="panel_title"><a href="files/papers/GP_pp/draft.pdf" target="_blank" onclick="ga('send','event','PDF Downloads', 'Click', 'FLP')"><span style="font-weight: 600;">Privacy and the Value of Data</span></a>
-                                <!-- <span style="float: right; color: #c90202; font-size:medium">[Revised Draft!]</span> -->
-                            </div>                            
-                            </a>
-                          </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
-                          <div class="panel-body">
-                            <div class="panel_body">
-                            <p style=" font-size: 12.5pt"> Joint work with <a href="https://sites.google.com/site/simonegalperti/" target="_blank">S. Galperti</a>.
-                            <span style="float: right; color: #303030"> <i><b>American Economic Association P&P</b>, 2023, Vol 113</i></span><br>
-                              <p style=" font-size: 12.5pt"><b>Abstract:</b> 
-How does protecting the privacy of consumers affect the value of their personal data? We model an intermediary that uses consumers' data to influence the price set by a seller. When privacy is protected, consumers choose whether to disclose their data to the intermediary. When privacy is not protected, the intermediary can access consumers' data without their consent. We illustrate that protecting consumers' privacy has complex effects. It can increase the value of some consumers' data while decreasing that of others. Additionally, it can have redistributive effects, by benefiting some consumers at the expense of others. Furthermore, it can increase average prices and reduce trade.
-
-                             </p>
- 
-                            <p style="margin-bottom:0px; font-size: 12.5pt"> <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px"></i>Download: <a href="files/papers/GP_pp/draft.pdf" target="_blank" onclick="ga('send','event','PDF Downloads', 'Click', 'FLP')"><b>PDF</b></a>. <br>
-
-                              <i class="fa fa-cloud-download color" style="color:white;margin-right:5px"></i>
-                            
-                            <!-- This replaces and expands the paper  "<i>A Dual Perspective on Information Design in Games</i>"</p> -->
-
-                            </div>
-                          </div>
-                        </div>
-
-
-
-
-
-
-
-
-
-
-                      <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree" style="background-color:white;">
-                          <h4 class="panel-title">
-                            <a class="collapsed" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseThree">
-                              <div class="panel_title"><a href="files/papers/FLP/draft.pdf" target="_blank" onclick="ga('send','event','PDF Downloads', 'Click', 'FLP')"><span style="font-weight: 600;"> Rules and Commitment in Communication: An Experimental Analysis</span></a>  </div> <div style="margin-top: 10px; color:#c90202; font-weight: 600"></div>                            
-                            </a>
-                          </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
-                          <div class="panel-body">
-                            <div class="panel_body">
-                            <p style=" font-size: 12.5pt"> Joint work with <a href="http://cess.nyu.edu/frechette/html/econ.htm" target="_blank">G. Frechette </a> and <a href="https://sites.google.com/view/lizzeri" target="_blank">A. Lizzeri</a>.
-                            <span style="float: right; color: #303030"><i><b>Econometrica</b>, 2022, Vol 90-5</i></span><br>
-
-                          </p>
-                             <p style=" font-size: 12.5pt"><b>Abstract:</b> 
-                              We study the role of commitment in communication and its interactions with rules, which determine whether information is verifiable. Our framework nests models of cheap talk, information disclosure, and Bayesian persuasion. It predicts that commitment  has opposite effects on information transmission under the two alternative rules. We leverage these contrasting forces to experimentally establish that subjects react to commitment in line with the main qualitative implications of the theory. Quantitatively, not all subjects behave as predicted. We show that a form of commitment blindness leads some senders to over communicate when information is verifiable and under communicate when it is not. This generates an unpredicted gap in information transmission across the two rules, suggesting a novel role for verifiable information in practice.
-
-
-
-                             </p>
- 
-                            <p style="margin-bottom:0px; font-size: 12.5pt"> <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px"></i> Download: <a href="files/papers/FLP/draft.pdf" target="_blank" onclick="ga('send','event','PDF Downloads', 'Click', 'FLP')"><b>PDF</b></a>.</p>
-
-
-                            </div>
-                          </div>
-                        </div><br>
-
-                        <hr>
-
-
-
-                      <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingTwo" style="background-color:white;">
-                          <h4 class="panel-title">
-                            <a class="collapsed" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseTwo">
-                              <div class="panel_title"><span style="font-weight: 600;color:rgba(39,62,84,0.82)"><a href="files/papers/py_media/draft.pdf" target="_blank" onclick="ga('send','event','PDF Downloads', 'Click', 'Media')"><span style="font-weight: 600"> Media Competition and  Social Disagreement</span></a></span></div>
-                                                          </a>
-                          </h4>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
-                          <div class="panel-body">
-                            <div class="panel_body">
-                            <p style=" font-size: 12.5pt"> Joint work with <a href="http://www.econ.ucsb.edu/~sevgi/" target="_blank">Sevgi Yuksel</a>. 
-                              <span style=" float: right; color: #303030">  <i><b>Econometrica</b></i>, 2022, Vol 90-1</span><br>
-
-                            <p style=" font-size: 12.5pt"><b>Abstract:</b>  We study the competitive provision and endogenous acquisition of political information. Our main result identifies a natural equilibrium channel through which a more competitive market decreases the efficiency of policy outcomes.  A critical insight we put forward is that competition among information providers leads to informational specialization: firms provide relatively less information on issues that are of common interest and relatively more information on issues on which agents' preferences are  heterogeneous.  This enables agents to acquire information about different aspects of the policy, specifically, those that are particularly important to them. This leads to an increase in social disagreement, which has negative welfare implications.  We establish that, in large enough societies, competition makes every agent worse off by decreasing the utility that she derives from the policy outcome. Furthermore, we show that this decline cannot be compensated by the decrease in prices resulting from competition. </p>
-
-
-                            <p style="margin-bottom:0px; font-size: 12.5pt"> <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px" ></i> Download:  <a href="files/papers/py_media/draft.pdf" target="_blank" onclick="ga('send','event','PDF Downloads', 'Click', 'Media')"><b>PDF</b></a>.<span style="float:right; font-weight: 500"> <i></i></span></p></p>
-
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-
-
-
-
-
-                      <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id
-                        ="headingOne" style="background-color:white;">
-                          <h4 class="panel-title">
-                            <a data-toggle="collapse"   aria-expanded="true">
-                              <div class="panel_title"><span style="font-weight: 600;color:rgba(39,62,84,0.82)"><a href="http://jperego.com/files/papers/mpt/draft.pdf" target="_blank" onclick="ga('send','event','PDF Downloads', 'Click', 'Design')"><span style="font-weight: 600"> On Information Design in Games</span></a></span></div>
-                            </div>
-                            </a>
-                          </h4>
-                        </div>
-
-                        <div  class="panel-collapse collapse in" role="tabpanel" >
-                          <div class="panel-body">
-                            <div class="panel_body">
-                              <div style="font-size: 12.5pt; margin: 15px 0 20px 0; text-align: left; color: #303030">Joint work with <a href="http://laurentmathevet.com/" target="_blank">L. Mathevet</a> and <a href="https://sites.google.com/site/itaneva13/home" target="_blank">I. Taneva.</a>
-                              <span style="font-size: 12.5pt; float: right; color: #303030">  <span style="font-style: italic;"><b>Journal of Political Economy</b></span>, 2020, Vol. 128-4.</span>
-                              </div>
-                              <p style=" font-size: 12.5pt"><b>Abstract:</b> 
-                              Information provision in games influences behavior by affecting agents' beliefs about the state, as well as their higher-order beliefs. We first characterize the extent to which a designer can manipulate agents' beliefs by disclosing information. We then describe the structure of optimal belief distributions, including a concave-envelope representation that subsumes the single-agent result of Kamenica and Gentzkow (2011). This result holds under various solution concepts and outcome selection rules. Finally, we use our approach to compute an optimal information structure in an investment game under adversarial equilibrium selection.
-
-
-                              </p>
-                              <p style="margin-bottom:0px; font-size: 12.5pt"> <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px"></i> Download:   <a href="http://jperego.com/files/papers/mpt/draft.pdf" target="_blank" onclick="ga('send','event','PDF Downloads', 'Click', 'Design')"><b>PDF</b></a></p>
-
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h2 style="margin-bottom: 30px; margin-top: 60px">
+            <span>Published and Forthcoming Papers</span>
+          </h2>
+
+          <div class="panel-group" id="accordion-published" role="tablist" aria-multiselectable="true">
+            <!-- Paper 1 -->
+            <div class="panel panel-default">
+              <div
+                class="panel-heading"
+                role="tab"
+                id="heading-fflp"
+                style="background-color: white; cursor: pointer"
+                data-toggle="collapse"
+                data-target="#collapse-fflp"
+                aria-controls="collapse-fflp"
+                aria-expanded="true"
+              >
+                <h4 class="panel-title">
+                  <div class="panel_title">
+                    <a
+                      style="font-weight: 600"
+                      href="files/papers/FFLP/draft.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >The Selective Disclosure of Evidence: an Experiment</a
+                    >
+                    <span style="float: right; color: #c90202; font-size: medium"></span>
+                  </div>
+                  <div style="margin-top: 10px; color: #c90202; font-weight: 600"></div>
+                </h4>
+              </div>
+
+              <div
+                id="collapse-fflp"
+                class="panel-collapse collapse in"
+                role="tabpanel"
+                aria-labelledby="heading-fflp"
+              >
+                <div class="panel-body">
+                  <div class="panel_body">
+                    <p style="font-size: 12.5pt">
+                      Joint work with
+                      <a href="https://www.agatafarina.com/" target="_blank" rel="noopener noreferrer">A. Farina</a>,
+                      <a href="http://cess.nyu.edu/frechette/html/econ.htm" target="_blank" rel="noopener noreferrer">G. Frechette</a>,
+                      <a href="https://sites.google.com/site/alessandroispano/" target="_blank" rel="noopener noreferrer">A. Ispano</a>,
+                      and
+                      <a href="https://sites.google.com/view/lizzeri" target="_blank" rel="noopener noreferrer">A. Lizzeri</a>
+                      <span style="float: right; color: #303030"></span><br />
+                      <span style="float: right; color: #303030"
+                        ><i><b>Review of Economic Studies</b> (Forthcoming)</i></span
+                      >
+                    </p>
+
+                    <p style="font-size: 12.5pt">
+                      <b>Abstract:</b>
+
+                      We conduct an experimental analysis of selective disclosure
+                      in communication. In our model, an informed sender aims to
+                      influence a receiver by disclosing verifiable evidence
+                      that is selected from a larger pool of available evidence.
+                      Our experimental design leverages the rich comparative
+                      statics predictions of this model, enabling a systematic
+                      test of the relative importance of evidence selection
+                      versus evidence concealment in communication. Our findings
+                      confirm the key qualitative predictions of the theory,
+                      suggesting that selection, rather than concealment, is
+                      often the dominant distortion in communication. We also
+                      identify deviations from the theory: A minority of senders
+                      overcommunicate relative to predictions, while some
+                      receivers partially neglect the selective nature of the
+                      evidence they observe.
+                    </p>
+
+                    <p style="margin-bottom: 0px; font-size: 12.5pt">
+                      <i
+                        class="fa fa-cloud-download color"
+                        style="color: #303030; margin-right: 5px"
+                      ></i>
+                      Download:
+                      <a href="files/papers/FFLP/draft.pdf" target="_blank" rel="noopener noreferrer"
+                        ><b>PDF</b></a
+                      >.
+                    </p>
                   </div>
                 </div>
-              </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <section id="research" class="container text-left">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                    <h2 style="margin-bottom:30px;margin-top:200px"><span >Working Papers</span></h2>
-
-
-
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                      <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree" style="background-color:white;">
-                          <h4 class="panel-title">
-                            <a class="collapsed" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseThree">
-                              <div class="panel_title"><a href="files/papers/GP_markets/draft.pdf" target="_blank"><span style="font-weight: 600;">Competitive Markets for Personal Data</span></a><span style="float: right; color: #c90202; font-size:medium">[April 2024]</span></div>                           
-                          </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
-                          <div class="panel-body">
-                            <div class="panel_body">
-                            <p style=" font-size: 12.5pt"> Joint work with <a href="https://sites.google.com/site/simonegalperti/" target="_blank">Simone Galperti </a> and <a href="https://sites.google.com/view/tianhaoliuecon" target="_blank">Tianhao Liu</a><span style=" float: right; color: #303030"> <i>Extended abstract in</i></span><br>
-                            <span style=" float: right; color: #303030"> <i><b>Proceedings of ACM EC</b>, 2024</i></span><br>
-                            </p>
-
-
- 
-                            
-
-                     <p style=" font-size: 12.5pt"> <b>Abstract:</b> 
-We study competitive data markets in which consumers own their personal data and can trade it with intermediaries, such as e-commerce platforms. Intermediaries use this data to provide services to the consumers, such as targeted offers from third-party merchants. Our main results identify a novel inefficiency, resulting in equilibrium  data allocations that fail to maximize welfare. This inefficiency hinges on the role  that intermediaries play as information gatekeepers, a hallmark of the digital economy. We provide three solutions to this market failure: establishing data unions, which manage consumers' data on their behalf; taxing the trade of data; and letting the price of data depend on its intended use. 
-<p style="margin-bottom:0px; font-size: 12.5pt"> <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px"></i> Download: <a href="files/papers/GP_markets/draft.pdf" target="_blank"><b>PDF</b></a>. </p>
-
-
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-
-
-<br>
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
-
-
-
-
-
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id
-                        ="headingOne" style="background-color:white;">
-                          <h4 class="panel-title">
-                            <a class="collapsed"  aria-expanded="false">
-                              <div class="panel_title"><span style="font-weight: 600;color:rgba(39,62,84,0.82)"><span style="font-weight: 600"><a style="font-weight: 600;" href="files/papers/py_search/draft.pdf" target="_blank">Searching For Information and the Diffusion of Knowledge</a></span></span></div>
-                            </a>
-                          </h4>
-                        </div>
-                        <div  class="panel-collapse collapse in" role="tabpanel" >
-                          <div class="panel-body">
-                            <div class="panel_body">
-                            <p style=" font-size: 12.5pt"> Joint work with <a href="http://www.econ.ucsb.edu/~sevgi/" target="_blank">Sevgi Yuksel</a>.</p>
-                             <p style=" font-size: 12.5pt"> <b>Abstract:</b> 
-
-                              We study a dynamic learning model in which  heterogeneously connected Bayesian players choose  between two  activities: learning from one's own experience (<i>work</i>) or learning from the experience of others (<i>search</i>). Players who work produce an inflow of information which is local and dispersed around the society. 
-                              Players who search, instead, aggregate the information produced by others and facilitate its diffusion, thereby transforming what inherently is a private good into information that everyone can  access more easily. The structure of social connections affects the interaction between equilibrium information production and its social diffusion in ways that are complex and subtle. 
-                              We show that increasing the connectivity of the society can lead to a strict decrease in the quality of social information. 
-                              We link these inefficiencies to frictions in peer-to-peer communications. 
-                              Moreover, we find that the socially optimal allocation of learning activities can differ dramatically from the equilibrium one.  
-                              Under certain conditions, the planner would flip the equilibrium allocation, forcing highly connected players to work, and moderately connected ones to search. We conclude with an application that studies how resilient a society is to external manipulation of public opinion through changes in the meeting technology.
-
-
-
-
-
-
-
-
-                              </p>
-
-                            <p style="margin-bottom:-10px; font-size: 12.5pt"> <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px" ></i> Download: 
-                                <a style="font-weight: 600;" href="files/papers/py_search/draft.pdf" target="_blank">
-                                <b>Old Draft</b></a> </p>
-
-
-                                                         </div>
-                          </div>
-                        </div>
-                      </div>
-
-                            </div>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
+              </div>
             </div>
-        </div>
+            <br />
+            <br />
 
+            <!-- Paper 2 -->
+            <div class="panel panel-default">
+              <div
+                class="panel-heading"
+                role="tab"
+                id="heading-gp-seeds"
+                style="background-color: white; cursor: pointer"
+                data-toggle="collapse"
+                data-target="#collapse-gp-seeds"
+                aria-controls="collapse-gp-seeds"
+                aria-expanded="true"
+              >
+                <h4 class="panel-title">
+                  <div class="panel_title">
+                    <a href="files/papers/GP/draft.pdf" target="_blank" rel="noopener noreferrer">
+                      <span style="font-weight: 600">Games with Information Constraints: Seeds and Spillovers</span>
+                    </a>
+                  </div>
+                </h4>
+              </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Research Section -->
-    <section id="research" class="container text-left">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                    <h2 style="margin-bottom:30px;margin-top:200px"><span >Work in Progress</span></h2>
-
-
-
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-
-
-
-
-                      <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree" style="background-color:white;">
-                          <h4 class="panel-title">
-                            <a class="collapsed" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseThree">
-                              <div style="font-weight: 600;" class="panel_title"> Facts and Opinions: Communicating with Hard and Soft Information</div>      
-                            </a>
-                          </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
-                          <div class="panel-body">
-                            <div class="panel_body">
-<p style=" font-size: 12.5pt"> Joint work with <a href="https://sites.google.com/view/lizzeri" target="_blank">A. Lizzeri</a> and <a href="https://sites.google.com/view/yichuanlou/home?authuser=0" target="_blank"> Yichuan Lou</a>.
-                           </p>
-
-
-                             <p style=" font-size: 12.5pt"> <b>Abstract:</b> 
-                        We study a sender-receiver communication game with quadratic preferences and an additive sender bias. When the sender can communicate only through verifiable but noisy information and her bias is small, we show that complete information unraveling is not an equilibrium and that more informative equilibria exist. In these equilibria, the sender uses silence not to hide information from the receiver but to communicate that the information she has, while verifiabile, is misleading. Thus, mandating disclosure hurts the receiver in these cases. 
-                        We then enrich our baseline model by allowing the sender to also communicate by using unverifiable information. We illustrate how verifiable and unverifiable information can complement each other and that this complementarity is maximal for moderately biased senders. 
-
-
-
+              <div
+                id="collapse-gp-seeds"
+                class="panel-collapse collapse in"
+                role="tabpanel"
+                aria-labelledby="heading-gp-seeds"
+              >
+                <div class="panel-body">
+                  <div class="panel_body">
+                    <p style="font-size: 12.5pt">
+                      Joint work with
+                      <a href="https://sites.google.com/site/simonegalperti/" target="_blank" rel="noopener noreferrer">Simone Galperti</a>.
+                      <span style="float: right; color: #303030"
+                        ><i><b>Theoretical Economics</b>, 2025, 20, 667–711</i></span
+                      >
                     </p>
 
-                     
-                            <!-- <p style="margin-bottom:0px; font-size: 12.5pt"> <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px"></i> Download: <a href="files/papers/FFLP/slides.pdf" target="_blank"><b>Slides</b></a>. </p> -->
-
-                            </div>
-                          </div>
-                        </div>
-
-
-
-
-                </div>
-            </div>
-
-</div>
-
-
-
-    <!-- Research Section -->
-    <section id="research" class="container text-left">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                    <h2 style="margin-bottom:30px;margin-top:200px"><span >Notes</span></h2>
-
-
-
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-
-
-
-
-
-                      <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingThree" style="background-color:white;">
-                          <h4 class="panel-title">
-                            <a class="collapsed" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseThree">
-       
-
-                              <div class="panel_title"> <a style="font-weight: 600;" href="files/papers/GP_lp/draft.pdf" target="_blank">A Dual Perspective on Information Design</a> <span style="float: right; color: #c90202; font-size:medium"></span></div> </a>      
-
-
-                          </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
-                          <div class="panel-body">
-                            <div class="panel_body">
-                            <p style=" font-size: 12.5pt"> Joint work with <a href="https://sites.google.com/site/simonegalperti/" target="_blank">Simone Galperti</a>.
-                           </p>
-
-
-                             <p style=" font-size: 12.5pt"> <b>Abstract:</b> 
-                        The problem of optimally designing information for multiple agents who in- teract in a game can be formulated as a linear program. We explore its dual representation and show that it provides a novel perspective and new economic insights into the information-design problem. Through the lens of the dual, we identify general properties that hold for all information-design problems. Duality also offers a portable, general, method for computing solutions. We illustrate this approach in the context of simple investment games.
-
+                    <p style="font-size: 12.5pt">
+                      <b>Abstract:</b>
+                      We study equilibrium behavior in incomplete-information
+                      games under two information constraints: seeds and
+                      spillovers. The former restricts which agents can
+                      initially receive information. The latter specifies how
+                      this information spills over to other agents. Our main
+                      result characterizes the equilibrium outcomes under these
+                      constraints, without making additional assumptions about
+                      the agents' initial information. This involves deriving a
+                      “revelation-principle” result for settings in which a
+                      mediator cannot communicate directly or privately with the
+                      agents. Our model identifies which spillovers are more
+                      restrictive and which seeds are more impactful. Moreover,
+                      it generates predictions that hold robustly under a
+                      general class of spillover processes, which includes
+                      strategic communication. We apply our results to a problem
+                      of optimal organization design.
                     </p>
 
-
-
-                        <p style="margin-bottom:-10px; font-size: 12.5pt"> 
-                            <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px"></i> 
-                            Download: 
-                            <a style="font-weight: 600;" href="files/papers/GP_lp/draft.pdf" target="_blank">
-                                <b>PDF</b>
-                            </a>  
-                            <span style="float:right;">(Some of these ideas have been incorporated in 
-                                <a style="font-weight: 600;" href="files/papers/GLP_price/draft.pdf" target="_blank">
-                                    <b>here</b>
-                                </a>)
-                            </span>
-                        </p>
-
-
-                            <!-- <p style="margin-bottom:0px; font-size: 12.5pt"> <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px"></i> Download: <a href="files/papers/FFLP/slides.pdf" target="_blank"><b>Slides</b></a>. </p> -->
-
-                            </div>
-                          </div>
-                        </div><br><br>
-
-
-
-
+                    <p style="margin-bottom: 0px; font-size: 12.5pt">
+                      <i
+                        class="fa fa-cloud-download color"
+                        style="color: #303030; margin-right: 5px"
+                      ></i>
+                      Download:
+                      <a href="files/papers/GP/draft.pdf" target="_blank" rel="noopener noreferrer"
+                        ><b>PDF</b></a
+                      >.
+                    </p>
+                  </div>
                 </div>
+              </div>
+            </div>
+            <br />
+            <br />
+
+            <!-- Paper 3 -->
+            <div class="panel panel-default">
+              <div
+                class="panel-heading"
+                role="tab"
+                id="heading-glp-records"
+                style="background-color: white; cursor: pointer"
+                data-toggle="collapse"
+                data-target="#collapse-glp-records"
+                aria-controls="collapse-glp-records"
+                aria-expanded="true"
+              >
+                <h4 class="panel-title">
+                  <div class="panel_title">
+                    <a
+                      href="files/papers/GLP_price/draft.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onclick="ga('send','event','PDF Downloads', 'Click', 'FLP')"
+                    >
+                      <span style="font-weight: 600">The Value of Data Records</span>
+                    </a>
+                  </div>
+                </h4>
+              </div>
+
+              <div
+                id="collapse-glp-records"
+                class="panel-collapse collapse in"
+                role="tabpanel"
+                aria-labelledby="heading-glp-records"
+              >
+                <div class="panel-body">
+                  <div class="panel_body">
+                    <p style="font-size: 12.5pt">
+                      Joint work with
+                      <a href="https://sites.google.com/site/simonegalperti/" target="_blank" rel="noopener noreferrer">S. Galperti</a>
+                      and A. Levkun.
+                      <span style="float: right; color: #303030"
+                        ><i><b>Review of Economic Studies</b>, 2024, Vol 91-2</i></span
+                      ><br />
+                    </p>
+
+                    <p style="font-size: 12.5pt">
+                      <b>Abstract:</b>
+                      Many e-commerce platforms use buyers' personal data to
+                      intermediate their transactions with sellers. How much
+                      value do such intermediaries derive from the data record
+                      of each single individual? We characterize this value and
+                      find that one of its key components is a novel externality
+                      between records, which arises when the intermediary pools
+                      some records to withhold the information they contain.
+                      Ignoring this can significantly bias the evaluations of
+                      data records. Our analysis has several implications about
+                      compensating individuals for the use of their data,
+                      guiding companies' investments in data acquisition, and
+                      more broadly studying the demand side of data markets. Our
+                      method combines modern information design with classic
+                      duality theory and applies to a large class of
+                      principal-agent problems.
+                    </p>
+
+                    <p style="margin-bottom: 0px; font-size: 12.5pt">
+                      <i
+                        class="fa fa-cloud-download color"
+                        style="color: #303030; margin-right: 5px"
+                      ></i>
+                      Download:
+                      <a
+                        href="files/papers/GLP_price/draft.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onclick="ga('send','event','PDF Downloads', 'Click', 'FLP')"
+                        ><b>PDF</b></a
+                      >.
+                      <br />
+                      <i
+                        class="fa fa-cloud-download color"
+                        style="color: white; margin-right: 5px"
+                      ></i>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <br />
+
+            <!-- Paper 4 -->
+            <div class="panel panel-default">
+              <div
+                class="panel-heading"
+                role="tab"
+                id="heading-gp-privacy"
+                style="background-color: white; cursor: pointer"
+                data-toggle="collapse"
+                data-target="#collapse-gp-privacy"
+                aria-controls="collapse-gp-privacy"
+                aria-expanded="true"
+              >
+                <h4 class="panel-title">
+                  <div class="panel_title">
+                    <a
+                      href="files/papers/GP_pp/draft.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onclick="ga('send','event','PDF Downloads', 'Click', 'FLP')"
+                    >
+                      <span style="font-weight: 600">Privacy and the Value of Data</span>
+                    </a>
+                  </div>
+                </h4>
+              </div>
+
+              <div
+                id="collapse-gp-privacy"
+                class="panel-collapse collapse in"
+                role="tabpanel"
+                aria-labelledby="heading-gp-privacy"
+              >
+                <div class="panel-body">
+                  <div class="panel_body">
+                    <p style="font-size: 12.5pt">
+                      Joint work with
+                      <a href="https://sites.google.com/site/simonegalperti/" target="_blank" rel="noopener noreferrer">S. Galperti</a>.
+                      <span style="float: right; color: #303030">
+                        <i><b>American Economic Association P&P</b>, 2023, Vol 113</i>
+                      </span>
+                      <br />
+                    </p>
+
+                    <p style="font-size: 12.5pt">
+                      <b>Abstract:</b>
+                      How does protecting the privacy of consumers affect the
+                      value of their personal data? We model an intermediary
+                      that uses consumers' data to influence the price set by a
+                      seller. When privacy is protected, consumers choose
+                      whether to disclose their data to the intermediary. When
+                      privacy is not protected, the intermediary can access
+                      consumers' data without their consent. We illustrate that
+                      protecting consumers' privacy has complex effects. It can
+                      increase the value of some consumers' data while
+                      decreasing that of others. Additionally, it can have
+                      redistributive effects, by benefiting some consumers at
+                      the expense of others. Furthermore, it can increase
+                      average prices and reduce trade.
+                    </p>
+
+                    <p style="margin-bottom: 0px; font-size: 12.5pt">
+                      <i
+                        class="fa fa-cloud-download color"
+                        style="color: #303030; margin-right: 5px"
+                      ></i>
+                      Download:
+                      <a
+                        href="files/papers/GP_pp/draft.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onclick="ga('send','event','PDF Downloads', 'Click', 'FLP')"
+                        ><b>PDF</b></a
+                      >.
+                      <i
+                        class="fa fa-cloud-download color"
+                        style="color: white; margin-right: 5px"
+                      ></i>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br />
+            <br />
+
+            <!-- Paper 5 -->
+            <div class="panel panel-default">
+              <div
+                class="panel-heading"
+                role="tab"
+                id="heading-flp-rules"
+                style="background-color: white; cursor: pointer"
+                data-toggle="collapse"
+                data-target="#collapse-flp-rules"
+                aria-controls="collapse-flp-rules"
+                aria-expanded="true"
+              >
+                <h4 class="panel-title">
+                  <div class="panel_title">
+                    <a
+                      href="files/papers/FLP/draft.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onclick="ga('send','event','PDF Downloads', 'Click', 'FLP')"
+                    >
+                      <span style="font-weight: 600">
+                        Rules and Commitment in Communication: An Experimental Analysis
+                      </span>
+                    </a>
+                  </div>
+                  <div style="margin-top: 10px; color: #c90202; font-weight: 600"></div>
+                </h4>
+              </div>
+
+              <div
+                id="collapse-flp-rules"
+                class="panel-collapse collapse in"
+                role="tabpanel"
+                aria-labelledby="heading-flp-rules"
+              >
+                <div class="panel-body">
+                  <div class="panel_body">
+                    <p style="font-size: 12.5pt">
+                      Joint work with
+                      <a href="http://cess.nyu.edu/frechette/html/econ.htm" target="_blank" rel="noopener noreferrer">G. Frechette</a>
+                      and
+                      <a href="https://sites.google.com/view/lizzeri" target="_blank" rel="noopener noreferrer">A. Lizzeri</a>.
+                      <span style="float: right; color: #303030"
+                        ><i><b>Econometrica</b>, 2022, Vol 90-5</i></span
+                      ><br />
+                    </p>
+
+                    <p style="font-size: 12.5pt">
+                      <b>Abstract:</b>
+                      We study the role of commitment in communication and its
+                      interactions with rules, which determine whether
+                      information is verifiable. Our framework nests models of
+                      cheap talk, information disclosure, and Bayesian
+                      persuasion. It predicts that commitment has opposite
+                      effects on information transmission under the two
+                      alternative rules. We leverage these contrasting forces to
+                      experimentally establish that subjects react to commitment
+                      in line with the main qualitative implications of the
+                      theory. Quantitatively, not all subjects behave as
+                      predicted. We show that a form of commitment blindness
+                      leads some senders to over communicate when information is
+                      verifiable and under communicate when it is not. This
+                      generates an unpredicted gap in information transmission
+                      across the two rules, suggesting a novel role for
+                      verifiable information in practice.
+                    </p>
+
+                    <p style="margin-bottom: 0px; font-size: 12.5pt">
+                      <i
+                        class="fa fa-cloud-download color"
+                        style="color: #303030; margin-right: 5px"
+                      ></i>
+                      Download:
+                      <a
+                        href="files/papers/FLP/draft.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onclick="ga('send','event','PDF Downloads', 'Click', 'FLP')"
+                        ><b>PDF</b></a
+                      >.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
+            <br />
+            <br />
 
+            <!-- Paper 6 -->
+            <div class="panel panel-default">
+              <div
+                class="panel-heading"
+                role="tab"
+                id="heading-media"
+                style="background-color: white; cursor: pointer"
+                data-toggle="collapse"
+                data-target="#collapse-media"
+                aria-controls="collapse-media"
+                aria-expanded="true"
+              >
+                <h4 class="panel-title">
+                  <div class="panel_title">
+                    <a
+                      href="files/papers/py_media/draft.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onclick="ga('send','event','PDF Downloads', 'Click', 'Media')"
+                    >
+                      <span style="font-weight: 600">Media Competition and Social Disagreement</span>
+                    </a>
+                  </div>
+                </h4>
+              </div>
 
+              <div
+                id="collapse-media"
+                class="panel-collapse collapse in"
+                role="tabpanel"
+                aria-labelledby="heading-media"
+              >
+                <div class="panel-body">
+                  <div class="panel_body">
+                    <p style="font-size: 12.5pt">
+                      Joint work with
+                      <a href="http://www.econ.ucsb.edu/~sevgi/" target="_blank" rel="noopener noreferrer">Sevgi Yuksel</a>.
+                      <span style="float: right; color: #303030">
+                        <i><b>Econometrica</b></i>, 2022, Vol 90-1
+                      </span>
+                      <br />
+                    </p>
 
+                    <p style="font-size: 12.5pt">
+                      <b>Abstract:</b> We study the competitive provision and
+                      endogenous acquisition of political information. Our main
+                      result identifies a natural equilibrium channel through
+                      which a more competitive market decreases the efficiency
+                      of policy outcomes. A critical insight we put forward is
+                      that competition among information providers leads to
+                      informational specialization: firms provide relatively less
+                      information on issues that are of common interest and
+                      relatively more information on issues on which agents'
+                      preferences are heterogeneous. This enables agents to
+                      acquire information about different aspects of the policy,
+                      specifically, those that are particularly important to
+                      them. This leads to an increase in social disagreement,
+                      which has negative welfare implications. We establish that,
+                      in large enough societies, competition makes every agent
+                      worse off by decreasing the utility that she derives from
+                      the policy outcome. Furthermore, we show that this decline
+                      cannot be compensated by the decrease in prices resulting
+                      from competition.
+                    </p>
 
-
-
-
-
-
-
-
-
-    </section>
-
-    <!-- RESUME Section -->
-    <section id="resume" class="container  text-left">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2 style="margin-bottom:0px;margin-top:200px"><span >Resume</span></h2>
-
-                <p style="text-align:left;margin-top:40px"><a href="files/cv/CV.pdf" class="" target="_blank"><i class="fa fa-cloud-download fa-fw" ></i> Download PDF</a></p>
-
-
-
-
-
-
+                    <p style="margin-bottom: 0px; font-size: 12.5pt">
+                      <i
+                        class="fa fa-cloud-download color"
+                        style="color: #303030; margin-right: 5px"
+                      ></i>
+                      Download:
+                      <a
+                        href="files/papers/py_media/draft.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onclick="ga('send','event','PDF Downloads', 'Click', 'Media')"
+                        ><b>PDF</b></a
+                      >.<span style="float: right; font-weight: 500"><i></i></span>
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
+            <br />
+            <br />
+
+
+
+            <!-- Paper 7 -->
+            <div class="panel panel-default">
+              <div
+                class="panel-heading"
+                role="tab"
+                id="heading-mpt"
+                style="background-color: white; cursor: pointer"
+                data-toggle="collapse"
+                data-target="#collapse-mpt"
+                aria-controls="collapse-mpt"
+                aria-expanded="true"
+              >
+                <h4 class="panel-title">
+                  <div class="panel_title">
+                    <a
+                      href="http://jperego.com/files/papers/mpt/draft.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onclick="ga('send','event','PDF Downloads', 'Click', 'Design')"
+                    >
+                      <span style="font-weight: 600">On Information Design in Games</span>
+                    </a>
+                  </div>
+                </h4>
+              </div>
+
+              <div
+                id="collapse-mpt"
+                class="panel-collapse collapse in"
+                role="tabpanel"
+                aria-labelledby="heading-mpt"
+              >
+                <div class="panel-body">
+                  <div class="panel_body">
+                    <div
+                      style="
+                        font-size: 12.5pt;
+                        margin: 15px 0 20px 0;
+                        text-align: left;
+                        color: #303030;
+                      "
+                    >
+                      Joint work with
+                      <a href="http://laurentmathevet.com/" target="_blank" rel="noopener noreferrer">L. Mathevet</a>
+                      and
+                      <a href="https://sites.google.com/site/itaneva13/home" target="_blank" rel="noopener noreferrer">I. Taneva.</a>
+                      <span style="font-size: 12.5pt; float: right; color: #303030">
+                        <span style="font-style: italic"><b>Journal of Political Economy</b></span>, 2020, Vol. 128-4.
+                      </span>
+                    </div>
+
+                    <p style="font-size: 12.5pt">
+                      <b>Abstract:</b> Information provision in games influences
+                      behavior by affecting agents' beliefs about the state, as
+                      well as their higher-order beliefs. We first characterize
+                      the extent to which a designer can manipulate agents'
+                      beliefs by disclosing information. We then describe the
+                      structure of optimal belief distributions, including a
+                      concave-envelope representation that subsumes the
+                      single-agent result of Kamenica and Gentzkow (2011). This
+                      result holds under various solution concepts and outcome
+                      selection rules. Finally, we use our approach to compute
+                      an optimal information structure in an investment game
+                      under adversarial equilibrium selection.
+                    </p>
+
+                    <p style="margin-bottom: 0px; font-size: 12.5pt">
+                      <i
+                        class="fa fa-cloud-download color"
+                        style="color: #303030; margin-right: 5px"
+                      ></i>
+                      Download:
+                      <a
+                        href="http://jperego.com/files/papers/mpt/draft.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onclick="ga('send','event','PDF Downloads', 'Click', 'Design')"
+                        ><b>PDF</b></a
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /panel-group -->
         </div>
-
-
-<center>
-                                <img  src="img/IMG_0189.jpeg" style="opacity: 0.9;border-radius:20px;border: 0px solid #3B5998; width: 60%; margin-bottom: 0px;margin-top:100px; margin-bottom:0px"><br>
-</center>
-
+      </div>
     </section>
 
+    <!-- =========================================================
+         Working Papers
+    ========================================================== -->
+    <section id="working-papers" class="container text-left">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h2 style="margin-bottom: 30px; margin-top: 200px">
+            <span>Working Papers</span>
+          </h2>
 
-    <!--&lt;!&ndash; Contact Section &ndash;&gt;-->
-    <!--<section id="teaching" class="container text-left">-->
-        <!--<div class="row">-->
-            <!--<div class="col-lg-8 col-lg-offset-2">-->
-                <!--<h2 style="margin-top:70px">Teaching Materials</h2>-->
+          <div class="panel-group" id="accordion-working" role="tablist" aria-multiselectable="true">
+            <!-- WP 1 -->
+            <div class="panel panel-default">
+              <div
+                class="panel-heading"
+                role="tab"
+                id="heading-gp-markets"
+                style="background-color: white; cursor: pointer"
+                data-toggle="collapse"
+                data-target="#collapse-gp-markets"
+                aria-controls="collapse-gp-markets"
+                aria-expanded="true"
+              >
+                <h4 class="panel-title">
+                  <div class="panel_title">
+                    <a href="files/papers/GP_markets/draft.pdf" target="_blank" rel="noopener noreferrer">
+                      <span style="font-weight: 600">Competitive Markets for Personal Data</span>
+                    </a>
+                    <span style="float: right; color: #c90202; font-size: medium">[April 2024]</span>
+                  </div>
+                </h4>
+              </div>
 
-                <!--<div class="title_content">-->
-                     <!--<h3><i class="fa fa-pencil"></i>   &nbsp;  Graduate</h3>-->
-               <!--</div>-->
+              <div
+                id="collapse-gp-markets"
+                class="panel-collapse collapse in"
+                role="tabpanel"
+                aria-labelledby="heading-gp-markets"
+              >
+                <div class="panel-body">
+                  <div class="panel_body">
+                    <p style="font-size: 12.5pt">
+                      Joint work with
+                      <a href="https://sites.google.com/site/simonegalperti/" target="_blank" rel="noopener noreferrer">Simone Galperti </a>
+                      and
+                      <a href="https://sites.google.com/view/tianhaoliuecon" target="_blank" rel="noopener noreferrer">Tianhao Liu</a>
+                      <span style="float: right; color: #303030"> <i>Extended abstract in</i></span><br />
+                      <span style="float: right; color: #303030">
+                        <i><b>Proceedings of ACM EC</b>, 2024</i>
+                      </span><br />
+                    </p>
 
+                    <p style="font-size: 12.5pt">
+                      <b>Abstract:</b>
+                      We study competitive data markets in which consumers own their personal data and can trade it with intermediaries, such as e-commerce platforms. Intermediaries use this data to provide services to the consumers, such as targeted offers from third-party merchants. Our main results identify a novel inefficiency, resulting in equilibrium  data allocations that fail to maximize welfare. This inefficiency hinges on the role  that intermediaries play as information gatekeepers, a hallmark of the digital economy. We provide three solutions to this market failure: establishing data unions, which manage consumers' data on their behalf; taxing the trade of data; and letting the price of data depend on its intended use.
+                    </p>
 
-               <!--<h4>Real Analysis (Fall 2013)</h4>-->
-                <!--<table cellspacing='0' style="width:55%;text-align:center;background:#f7f8fa">-->
-                <!--<tr class=""><td class="">-->
-                    <!--<a class="" href="files/teaching/math/PS1RA2013.pdf" target="_blank"> Problem Set 1</a>-->
-                <!--</td>-->
-                <!--<td class="">-->
-                    <!--<a  class="" href="files/teaching/math/PS1RA2013_solutions.pdf" target="_blank">Solutions</a>-->
-                <!--</td></tr>-->
-                <!--<tr class=""><td class="">-->
-                    <!--<a  class=""  href="files/teaching/math/PS2RA2013.pdf" target="_blank"> Problem Set 2</a>-->
-                <!--</td>-->
-                <!--<td class="">-->
-                    <!--<a  class=""  href="files/teaching/math/PS2RA2013_solutions.pdf" target="_blank">Solutions</a>-->
-                <!--</td></tr>-->
-                <!--<tr class=""><td class="">-->
-                    <!--<a  class=""  href="files/teaching/math/RA2013PS3.pdf" target="_blank"> Problem Set 3</a>-->
-                <!--</td>-->
-                <!--<td class="">-->
-                    <!--<a  class=""  href="files/teaching/math/RA2013PS3_solutions.pdf" target="_blank">Solutions</a>-->
-                <!--</td></tr>-->
-                <!--<tr class=""><td class="">-->
-                    <!--<a  class=""  href="files/teaching/math/RA2013PS4.pdf" target="_blank"> Problem Set 4</a>-->
-                <!--</td>-->
-                <!--<td class="">-->
-                    <!--<a  class=""  href="files/teaching/math/RA2013PS4_solutions.pdf" target="_blank">Solutions</a>-->
-                <!--</td></tr>-->
-                <!--<tr class=""><td class="">-->
-                    <!--<a  class=""  href="files/teaching/math/RA2013PS5.pdf" target="_blank"> Problem Set 5</a>-->
-                <!--</td>-->
-                <!--<td class="">-->
-                    <!--<a  class=""  href="files/teaching/math/RA2013PS5_solutions.pdf" target="_blank">Solutions</a>-->
-                <!--</td></tr>-->
-                <!--<tr class=""><td class="">-->
-                    <!--Midterm-->
-                <!--</td>-->
-                <!--<td class="">-->
-                    <!--<a  class=""  href="files/teaching/math/Midterm 2013 Solutions.pdf" target="_blank">Solutions</a>-->
-                <!--</td></tr>-->
-                <!--<tr class=""><td class="">-->
-                    <!--<a  class=""  href="files/teaching/math/Class 10.pdf" target="_blank">Extra</a>-->
-                <!--</td>-->
-                <!--<td class="">-->
-                <!--</td></tr>-->
-                <!--</table>-->
+                    <p style="margin-bottom: 0px; font-size: 12.5pt">
+                      <i
+                        class="fa fa-cloud-download color"
+                        style="color: #303030; margin-right: 5px"
+                      ></i>
+                      Download:
+                      <a href="files/papers/GP_markets/draft.pdf" target="_blank" rel="noopener noreferrer"
+                        ><b>PDF</b></a
+                      >.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
 
+            <br /><br />
 
+            <!-- WP 2 -->
+            <div class="panel panel-default">
+              <div
+                class="panel-heading"
+                role="tab"
+                id="heading-py-search"
+                style="background-color: white; cursor: pointer"
+                data-toggle="collapse"
+                data-target="#collapse-py-search"
+                aria-controls="collapse-py-search"
+                aria-expanded="true"
+              >
+                <h4 class="panel-title">
+                  <div class="panel_title">
+                    <a
+                      style="font-weight: 600"
+                      href="files/papers/py_search/draft.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Searching For Information and the Diffusion of Knowledge
+                    </a>
+                  </div>
+                </h4>
+              </div>
 
-               <!--<h4>Game Theory (Spring 2013)</h4>-->
+              <div
+                id="collapse-py-search"
+                class="panel-collapse collapse in"
+                role="tabpanel"
+                aria-labelledby="heading-py-search"
+              >
+                <div class="panel-body">
+                  <div class="panel_body">
+                    <p style="font-size: 12.5pt">
+                      Joint work with
+                      <a href="http://www.econ.ucsb.edu/~sevgi/" target="_blank" rel="noopener noreferrer">Sevgi Yuksel</a>.
+                    </p>
 
-                <!--<table cellspacing='0' style="width:55%;background:#f7f8fa">-->
-                <!--<tr class=""><td class="">-->
-                    <!--<a  class=""  href="files/teaching/game/PS1GT2013.pdf" target="_blank"> Problem Set 1</a>-->
-                <!--</td>-->
-                <!--<td class="">-->
-                    <!--<a  class=""  href="files/teaching/game/PS1GT2013_Solution.pdf" target="_blank">Solutions</a>-->
-                <!--</td></tr>-->
-                <!--<tr class=""><td class="">-->
-                    <!--<a  class=""  href="files/teaching/game/PS2GT2013.pdf" target="_blank">  Problem Set 2</a>-->
-                <!--</td>-->
-                <!--<td class="">-->
-                    <!--<a   class=""  class="" href="files/teaching/game/PS2GT2013_Solution.pdf" target="_blank">Solutions</a>-->
-                <!--</td></tr>-->
-                <!--<tr class=""><td class="">-->
-                    <!--<a  class=""  href="files/teaching/game/PS3GT2013.pdf" target="_blank"> Problem Set 3</a>-->
-                <!--</td>-->
-                <!--<td class="">-->
-                    <!--<a  class=""  href="files/teaching/game/PS3GT2013_solution.pdf" target="_blank">Solutions</a>-->
-                <!--</td></tr>-->
-                <!--<tr class=""><td class="">-->
-                    <!--<a  class=""  href="files/teaching/game/PS4GT2013.pdf" target="_blank">  Problem Set 4</a>-->
-                <!--</td>-->
-                <!--<td class="">-->
-                    <!--<a  class=""  href="files/teaching/game/PS4GT2013_solution.pdf" target="_blank">Solutions</a>-->
-                <!--</td></tr>-->
-                <!--<tr class=""><td class="">-->
-                    <!--<a  class=""  href="files/teaching/game/PS5GT2013.pdf" target="_blank">  Problem Set 5</a>-->
-                <!--</td>-->
-                <!--<td class="">-->
-                    <!--<a  class=""  href="files/teaching/game/PS5GT2013_solution.pdf" target="_blank">Solutions</a>-->
-                <!--</td></tr>-->
+                    <p style="font-size: 12.5pt">
+                      <b>Abstract:</b>
 
-                 <!--<tr class=""><td class="">-->
-                    <!--<a class=""   href="files/teaching/math/RA2013PS5.pdf" target="_blank"> Problem Set 5</a>-->
-                <!--</td>-->
-                <!--<td class="">-->
-                    <!--<a class=""   href="files/teaching/math/RA2013PS5_solutions.pdf" target="_blank">Solutions</a>-->
-                <!--</td></tr>-->
-                <!--<tr class=""><td class="">-->
-                    <!--<a  class=""  href="files/teaching/game/Repeated G.pdf" target="_blank"> Extra</a>-->
-                <!--</td>-->
-                <!--<td class="">-->
-                <!--</td></tr>-->
-                <!--</table>-->
+                      We study a dynamic learning model in which heterogeneously
+                      connected Bayesian players choose between two activities:
+                      learning from one's own experience (<i>work</i>) or learning
+                      from the experience of others (<i>search</i>). Players who
+                      work produce an inflow of information which is local and
+                      dispersed around the society. Players who search, instead,
+                      aggregate the information produced by others and facilitate
+                      its diffusion, thereby transforming what inherently is a
+                      private good into information that everyone can access more
+                      easily. The structure of social connections affects the
+                      interaction between equilibrium information production and
+                      its social diffusion in ways that are complex and subtle. We
+                      show that increasing the connectivity of the society can
+                      lead to a strict decrease in the quality of social
+                      information. We link these inefficiencies to frictions in
+                      peer-to-peer communications. Moreover, we find that the
+                      socially optimal allocation of learning activities can
+                      differ dramatically from the equilibrium one. Under certain
+                      conditions, the planner would flip the equilibrium
+                      allocation, forcing highly connected players to work, and
+                      moderately connected ones to search. We conclude with an
+                      application that studies how resilient a society is to
+                      external manipulation of public opinion through changes in
+                      the meeting technology.
+                    </p>
 
-                <!--<div class="title_content">-->
-                     <!--<h3><i class="fa fa-pencil"></i>   &nbsp;  Undergraduate</h3>-->
-               <!--</div>-->
+                    <p style="margin-bottom: -10px; font-size: 12.5pt">
+                      <i
+                        class="fa fa-cloud-download color"
+                        style="color: #303030; margin-right: 5px"
+                      ></i>
+                      Download:
+                      <a style="font-weight: 600" href="files/papers/py_search/draft.pdf" target="_blank" rel="noopener noreferrer">
+                        <b>Old Draft</b>
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /panel-group -->
+        </div>
+      </div>
+    </section>
 
-               <!--<h4>Experimental Economics (Fall 2014)</h4>-->
-                <!--<table cellspacing='0' style="width:55%;background:#f7f8fa">-->
-                <!--<tr class=""><td class="">-->
-                    <!--<a class="" href="temp" target="_blank"> Survey Paper FAQ</a>-->
-                <!--</td>-->
+    <!-- =========================================================
+         Work in Progress
+    ========================================================== -->
+    <section id="work-in-progress" class="container text-left">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h2 style="margin-bottom: 30px; margin-top: 200px">
+            <span>Work in Progress</span>
+          </h2>
 
-                <!--</table>-->
-                <!--<br>-->
-                <!--<br>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</section>-->
+          <div class="panel-group" id="accordion-wip" role="tablist" aria-multiselectable="true">
+            <!-- WIP 1 -->
+            <div class="panel panel-default">
+              <div
+                class="panel-heading"
+                role="tab"
+                id="heading-facts-opinions"
+                style="background-color: white; cursor: pointer"
+                data-toggle="collapse"
+                data-target="#collapse-facts-opinions"
+                aria-controls="collapse-facts-opinions"
+                aria-expanded="true"
+              >
+                <h4 class="panel-title">
+                  <div style="font-weight: 600" class="panel_title">
+                    Facts and Opinions: Communicating with Hard and Soft Information
+                  </div>
+                </h4>
+              </div>
 
-    <!--&lt;!&ndash; About Section &ndash;&gt;-->
-    <!--<section id="about" class="container about-section text-left">-->
-        <!--<div class="row" style="margin:100px 0 100px">-->
-            <!--<div class="col-lg-8 col-lg-offset-2">-->
-                    <!--<h2><span >Contacts</span></h2>-->
+              <div
+                id="collapse-facts-opinions"
+                class="panel-collapse collapse in"
+                role="tabpanel"
+                aria-labelledby="heading-facts-opinions"
+              >
+                <div class="panel-body">
+                  <div class="panel_body">
+                    <p style="font-size: 12.5pt">
+                      Joint work with
+                      <a href="https://sites.google.com/view/lizzeri" target="_blank" rel="noopener noreferrer">Alessandro Lizzeri</a>
+                      and
+                      <a href="https://sites.google.com/view/yichuanlou/home?authuser=0" target="_blank" rel="noopener noreferrer"> Yichuan Lou</a>.
+                    </p>
 
-                    <!--<center>-->
-                    <!--<table cellspacing='0' style="width:40%"> &lt;!&ndash; cellspacing='0' is important, must stay &ndash;&gt;-->
-                    <!--<tr><td style="padding-left: 20px; "><i class="fa fa-map-marker fa-lg" style="margin-right:4px;color:#606060"> </i>-->
-                         <!--</td>-->
+                    <p style="font-size: 12.5pt">
+                      <b>Abstract:</b>
+                      We study a sender-receiver communication game with quadratic preferences and an additive sender bias. When the sender can communicate only through verifiable but noisy information and her bias is small, we show that complete information unraveling is not an equilibrium and that more informative equilibria exist. In these equilibria, the sender uses silence not to hide information from the receiver but to communicate that the information she has, while verifiabile, is misleading. Thus, mandating disclosure hurts the receiver in these cases.
+                      We then enrich our baseline model by allowing the sender to also communicate by using unverifiable information. We illustrate how verifiable and unverifiable information can complement each other and that this complementarity is maximal for moderately biased senders.
+                    </p>
 
-                        <!--<td style="text-align: center;">-->
-                             <!--19 W. 4th Street  <br>-->
-                             <!--New York, NY 10012   <br>-->
-                             <!--<a href="http://econ.as.nyu.edu/page/home" target="_blank"> Dept  of Economics </a><br>-->
-                             <!--<a href="http://www.nyu.edu/" target="_blank"> New York University  </a>-->
-                        <!--</td> &lt;!&ndash; Table Row &ndash;&gt;-->
+                    <!--
+                    <p style="margin-bottom:0px; font-size: 12.5pt">
+                      <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px"></i>
+                      Download: <a href="files/papers/FFLP/slides.pdf" target="_blank" rel="noopener noreferrer"><b>Slides</b></a>.
+                    </p>
+                    -->
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                    <!--<tr class='even'>-->
-                        <!--<td style="padding-left: 20px; "><i class="fa fa-inbox fa-lg" style="margin-right:2px;color:#606060"></i>  </td>-->
+            <!-- WIP 2 -->
+            <div class="panel panel-default">
+              <div
+                class="panel-heading"
+                role="tab"
+                id="heading-price-privacy"
+                style="background-color: white; cursor: pointer"
+                data-toggle="collapse"
+                data-target="#collapse-price-privacy"
+                aria-controls="collapse-price-privacy"
+                aria-expanded="true"
+              >
+                <h4 class="panel-title">
+                  <div style="font-weight: 600" class="panel_title">The Price of Privacy</div>
+                </h4>
+              </div>
 
-                            <!--<td style="text-align: center;"><div class="click">-->
-                                <!--<a href="mailto:jacopo.perego@nyu.edu" target="_top">jacopo.perego@nyu.edu</a>-->
-                                <!--</div></td></tr>&lt;!&ndash; Darker Table Row &ndash;&gt;-->
+              <div
+                id="collapse-price-privacy"
+                class="panel-collapse collapse in"
+                role="tabpanel"
+                aria-labelledby="heading-price-privacy"
+              >
+                <div class="panel-body">
+                  <div class="panel_body">
+                    <p style="font-size: 12.5pt">
+                      Joint work with
+                      <a href="https://sites.northwestern.edu/dworczak/" target="_blank" rel="noopener noreferrer">Piotr Dworczak</a>
+                      and
+                      <a href="https://business.columbia.edu/lveldkamp/research" target="_blank" rel="noopener noreferrer">Laura Veldkamp</a>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /panel-group -->
+        </div>
+      </div>
+    </section>
 
-                    <!--<tr style="text-align: center;"><td style="padding-left: 20px; "><i class="fa fa-phone fa-lg" style="margin-right:2px;color:#606060"> </i></td>-->
-                        <!--<td>+1 (212) 992 88038</td></tr>-->
+    <!-- =========================================================
+         Notes
+    ========================================================== -->
+    <section id="notes" class="container text-left">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h2 style="margin-bottom: 30px; margin-top: 200px">
+            <span>Notes</span>
+          </h2>
 
-                    <!--</table>-->
+          <div class="panel-group" id="accordion-notes" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div
+                class="panel-heading"
+                role="tab"
+                id="heading-gp-lp"
+                style="background-color: white; cursor: pointer"
+                data-toggle="collapse"
+                data-target="#collapse-gp-lp"
+                aria-controls="collapse-gp-lp"
+                aria-expanded="true"
+              >
+                <h4 class="panel-title">
+                  <div class="panel_title">
+                    <a style="font-weight: 600" href="files/papers/GP_lp/draft.pdf" target="_blank" rel="noopener noreferrer">
+                      A Dual Perspective on Information Design
+                    </a>
+                    <span style="float: right; color: #c90202; font-size: medium"></span>
+                  </div>
+                </h4>
+              </div>
 
-                    <!--<br>-->
-                    <!--<a style="display: none" href="#research" class="btn btn-circle page-scroll">-->
-                    <!--<i style="font-size:35px" class="fa fa-angle-double-down animated color"></i>-->
-                    <!--</a>-->
+              <div
+                id="collapse-gp-lp"
+                class="panel-collapse collapse in"
+                role="tabpanel"
+                aria-labelledby="heading-gp-lp"
+              >
+                <div class="panel-body">
+                  <div class="panel_body">
+                    <p style="font-size: 12.5pt">
+                      Joint work with
+                      <a href="https://sites.google.com/site/simonegalperti/" target="_blank" rel="noopener noreferrer">Simone Galperti</a>.
+                    </p>
 
+                    <p style="font-size: 12.5pt">
+                      <b>Abstract:</b>
+                      The problem of optimally designing information for multiple agents who in- teract in a game can be formulated as a linear program. We explore its dual representation and show that it provides a novel perspective and new economic insights into the information-design problem. Through the lens of the dual, we identify general properties that hold for all information-design problems. Duality also offers a portable, general, method for computing solutions. We illustrate this approach in the context of simple investment games.
+                    </p>
 
-                    <!--</center>-->
+                    <p style="margin-bottom: -10px; font-size: 12.5pt">
+                      <i
+                        class="fa fa-cloud-download color"
+                        style="color: #303030; margin-right: 5px"
+                      ></i>
+                      Download:
+                      <a style="font-weight: 600" href="files/papers/GP_lp/draft.pdf" target="_blank" rel="noopener noreferrer">
+                        <b>PDF</b>
+                      </a>
+                      <span style="float: right">
+                        (Some of these ideas have been incorporated in
+                        <a style="font-weight: 600" href="files/papers/GLP_price/draft.pdf" target="_blank" rel="noopener noreferrer">
+                          <b>here</b>
+                        </a>)
+                      </span>
+                    </p>
 
-                    <!--<div style="margin-bottom:0px"></div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</section>-->
+                    <!--
+                    <p style="margin-bottom:0px; font-size: 12.5pt">
+                      <i class="fa fa-cloud-download color" style="color:#303030;margin-right:5px"></i>
+                      Download: <a href="files/papers/FFLP/slides.pdf" target="_blank" rel="noopener noreferrer"><b>Slides</b></a>.
+                    </p>
+                    -->
+                  </div>
+                </div>
+              </div>
+            </div>
 
+            <br /><br />
+          </div>
+          <!-- /panel-group -->
+        </div>
+      </div>
+    </section>
 
+    <!-- =========================================================
+         Resume
+    ========================================================== -->
+    <section id="resume" class="container text-left">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+          <h2 style="margin-bottom: 0px; margin-top: 200px">
+            <span>Resume</span>
+          </h2>
 
+          <p style="text-align: left; margin-top: 40px">
+            <a href="files/cv/CV.pdf" target="_blank" rel="noopener noreferrer">
+              <i class="fa fa-cloud-download fa-fw"></i> Download PDF
+            </a>
+          </p>
+        </div>
+      </div>
 
+      <div style="text-align: center">
+        <img
+          src="img/IMG_0189.jpeg"
+          style="
+            opacity: 0.9;
+            border-radius: 20px;
+            border: 0px solid #3b5998;
+            width: 60%;
+            margin-bottom: 0px;
+            margin-top: 100px;
+            margin-bottom: 0px;
+          "
+          alt="Resume image"
+        />
+        <br />
+      </div>
+    </section>
 
+    <!-- =========================================================
+         Teaching / Contacts (currently disabled)
+         Keeping your original commented-out block intact would be fine,
+         but it’s very long; you can paste it here if you still want it in-file.
+    ========================================================== -->
 
     <!-- Footer -->
-    <footer style="margin-top:100px">
-        <div  class="container text-center" >
-            <p  style="font-size:80%; ">
-<!--                 I wrote this  using <a href="http://getbootstrap.com/getting-started/" target="_blank">Bootstrap</a>, <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">FontAwesome</a>,
-                Navbar from <a href="http://ironsummitmedia.github.io/startbootstrap-grayscale/" target="_blank">here</a>.
- -->            </p>
-
-        </div>
+    <footer style="margin-top: 100px">
+      <div class="container text-center">
+        <p style="font-size: 80%">
+          <!--
+          I wrote this using Bootstrap, FontAwesome,
+          Navbar from startbootstrap-grayscale.
+          -->
+        </p>
+      </div>
     </footer>
 
-
-
-    <!-- jQuery -->
+    <!-- Scripts -->
     <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
     <script src="js/jquery.easing.min.js"></script>
 
-    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+    <!-- NOTE: This includes an API key directly in the page. Best practice is to restrict it (HTTP referrers) and/or load it via config. -->
+    <script
+      type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"
+    ></script>
 
-    <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
 
-
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-77142531-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-
-
+    <!-- Google Analytics (Universal Analytics / analytics.js) -->
     <script>
-$(document).ready(function () {
-    $("body").keydown(function(e) {
-      if(e.which == 37) { // left
-          $(".previous a").trigger("click");
-      }
-      else if(e.which == 39) { // right
-          $(".next a").trigger("click");
-      }
-    });
-    $(".previous a").on("click",function(){
-        // your scripts for previous click here
-        window.location = 'http://www.google.com';
-    });
-    $(".next a").on("click",function(){
-        // your scripts for next click here
-        window.location = 'http://sg.yahoo.com/';
-    });
-});
+      (function (i, s, o, g, r, a, m) {
+        i["GoogleAnalyticsObject"] = r;
+        i[r] =
+          i[r] ||
+          function () {
+            (i[r].q = i[r].q || []).push(arguments);
+          };
+        i[r].l = 1 * new Date();
+        a = s.createElement(o);
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+      })(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
+
+      ga("create", "UA-77142531-1", "auto");
+      ga("send", "pageview");
     </script>
 
-</body>
+    <!-- Keyboard navigation (currently redirects to external sites; leaving as-is, just formatted) -->
+    <script>
+      $(document).ready(function () {
+        $("body").keydown(function (e) {
+          if (e.which == 37) {
+            // left
+            $(".previous a").trigger("click");
+          } else if (e.which == 39) {
+            // right
+            $(".next a").trigger("click");
+          }
+        });
 
+        $(".previous a").on("click", function () {
+          // your scripts for previous click here
+          window.location = "http://www.google.com";
+        });
+
+        $(".next a").on("click", function () {
+          // your scripts for next click here
+          window.location = "http://sg.yahoo.com/";
+        });
+      });
+    </script>
+  </body>
 </html>
