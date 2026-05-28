@@ -476,11 +476,14 @@
     </div>
     <div id="varianceBadges" class="variance-badges"></div>
     <p class="variance-explain">
-      This decomposes the cross-firm variance of the selected metric into two pieces.
-      I first use one average value per firm and drop firms assigned to <strong>Residual / other</strong>.
-      The <strong>between-industry share</strong> compares each industry's mean profitability with the overall mean, weighted by the number of firms in that industry.
-      The <strong>within-industry share</strong> captures the remaining dispersion of firms around their own industry mean.
-      These two shares sum to 100%; the between-industry share is equivalent to the R-squared from a regression of the selected metric on industry fixed effects.
+      How much of the cross-firm heterogeneity in profitability is explained by the industry in which firms operate?
+      The <strong>between-industry</strong> share captures the part of this heterogeneity that can be explained by industry membership.
+      The <strong>within-industry</strong> share captures the remaining variation: differences among firms operating in the same industry.
+      These two shares add up to 100%.
+      Technically, the between-industry share is the R-squared from a regression of firm profitability on industry fixed effects.
+      A small between-industry share means that industry explains only a limited part of profitability.
+      Most of the variation is within industries, among direct peers.
+      That is the part strategy tries to explain.
     </p>
   </section>
 
