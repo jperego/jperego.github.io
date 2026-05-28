@@ -21,10 +21,17 @@
     padding: 16px 22px 14px;
   }
   h1 {
-    margin: 0 0 8px;
+    margin: 0 0 4px;
     font-size: 22px;
     font-weight: 750;
     letter-spacing: 0;
+  }
+  .subtitle {
+    margin: 0 0 8px;
+    color: #3b4449;
+    font-size: 15px;
+    font-weight: 650;
+    line-height: 1.35;
   }
   .course-note {
     margin: 0;
@@ -332,33 +339,40 @@
 </head>
 <body>
 <header>
-  <h1>The Heterogeneity of Profitability Among U.S. Listed Firms, 2015-2025</h1>
-  <p class="course-note">Developed for the MBA course <strong>Economics of Strategic Behavior</strong> at Columbia Business School.</p>
+  <h1>Pre-Read for Class 1</h1>
+  <p class="subtitle">The Heterogeneity of Profitability Among U.S. Listed Firms, 2015-2025</p>
+  <p class="course-note">Developed by Jacopo Perego for the MBA course <strong>Economics of Strategic Behavior</strong> at Columbia Business School.</p>
 </header>
 <main>
     <section class="intro">
-      <h2>Why Do Some Firms Win So Much More Than Others?</h2>
+      <h2>Introduction</h2>
       <p>
-        <strong>Which firms are persistently more economically successful than others?</strong>
-        The heterogeneity is large.
-        But only a small fraction of this dispersion is explained by the industry in which a firm competes: industry membership explains about 18.1% of Operating ROA variation and about 4.3% of Operating Margin variation.
-        Rather than where to compete, the key question we should ask is thus how to compete.
+        Why are some firms persistently more successful than others?
       </p>
       <p>
-        The <strong>All Firms</strong> tab shows the unconditional distribution of profitability across firms, using each firm's average value across available fiscal years.
-        The <strong>By Industry</strong> tab breaks the same firm averages into industry groups, reports each industry's median, and shows how much of the total variance is explained by differences across industries rather than differences among firms inside the same industry.
+        This is one of the central questions in strategy and industrial organization. Some companies generate high profits year after year, while others struggle, even when they appear to operate in similar markets and face similar customers, suppliers, technologies, and competitors.
       </p>
-    <p>
-      There are two important caveats. First, profitability is hard to measure perfectly from public data at this scale.
-      Ideally we would measure economic profit, such as <strong>ROIC minus cost of capital</strong>, but that is difficult to compute cleanly for hundreds of firms from raw public filings.
-      I therefore use two practical, imperfect measures: <strong>Operating ROA</strong>, which asks how much operating profit a firm generates per dollar of assets, and <strong>Operating Margin</strong>, which asks how much operating profit the firm keeps from each dollar of sales.
-      ROA is useful because it adjusts for asset intensity; margin is useful because it is intuitive and easy to interpret.
-    </p>
-    <p>
-      Second, industry definitions are imperfect. Here, firms are classified into a fixed set of broad industries using the company descriptions we collected, primarily Wikipedia extracts, with manual rules and residual assignment when a firm does not fit cleanly.
-      This is still a simplification, but it is more granular and economically meaningful than relying only on stock-market sector labels.
-      The striking result is that even this industry classification explains only a small share of profitability differences.
-    </p>
+      <p>
+        The data in this page show that profitability varies enormously across U.S. listed companies. But surprisingly, only a modest share of this variation is explained by the industry in which a firm competes. In this sample, industry membership explains about 18.1% of the variation in Operating ROA and only about 4.3% of the variation in Operating Margin.
+      </p>
+      <p>
+        This creates an important puzzle. If firms in the same industry face broadly similar economic conditions, why do they often perform so differently? Why are some firms able to earn much higher returns than their peers? One of the key goals of this course is to understand that puzzle.
+      </p>
+      <p>
+        This page documents this empirical fact and allows you to explore it directly, hands-on. The <strong>All Firms</strong> tab shows the overall distribution of profitability across companies, using each firm's average profitability across the fiscal years available in the data. The <strong>By Industry</strong> tab breaks these same firm-level averages into selected industry groups. It reports each industry's median profitability and shows how much of the total variation comes from differences across industries versus differences among firms within the same industry.
+      </p>
+      <p>
+        There are two important caveats to keep in mind.
+      </p>
+      <p>
+        First, profitability is difficult to measure perfectly using public data at this scale. Ideally, we would like to measure economic profit: for example, whether a firm earns returns above its cost of capital. But that is difficult to compute cleanly for hundreds of companies using raw public filings. We therefore use two practical, imperfect measures. <strong>Operating ROA</strong> asks how much operating profit a firm generates per dollar of assets. <strong>Operating Margin</strong> asks how much operating profit the firm keeps from each dollar of sales. ROA is useful because it accounts for how asset-intensive a business is. Margin is useful because it is intuitive and easy to interpret.
+      </p>
+      <p>
+        Second, industry definitions are imperfect. Here, firms are classified with LLM into a fixed set of broad industries using detailed company descriptions extracted from Wikipedia. Firms that do not fit cleanly into one of the predefined categories are assigned to a residual category. This classification is still a simplification, but it is more granular and economically meaningful than relying only on broad stock-market sector labels.
+      </p>
+      <p>
+        The striking result is that even this more detailed industry classification explains only a limited share of profitability differences. A great deal of the action is not simply across industries, but within them. That is where strategy becomes especially important: understanding why some firms, facing similar broad industry conditions, build stronger positions, make better choices, and achieve persistently superior performance.
+      </p>
   </section>
 
   <div class="controls">
