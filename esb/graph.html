@@ -347,28 +347,37 @@
   @media (max-width: 760px) {
     header {
       position: static;
-      padding: 14px;
+      padding: 16px;
     }
     h1 {
-      font-size: 20px;
+      font-size: 24px;
       line-height: 1.15;
     }
     .subtitle {
-      font-size: 14px;
+      font-size: 17px;
+      line-height: 1.35;
     }
-    main { padding: 14px; }
+    .course-note,
+    .sub {
+      font-size: 15px;
+      line-height: 1.45;
+    }
+    main { padding: 16px; }
     .intro {
-      margin-bottom: 14px;
-      padding-bottom: 14px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+    }
+    .intro h2 {
+      font-size: 22px;
     }
     .intro p {
-      font-size: 13px;
-      line-height: 1.52;
+      font-size: 17px;
+      line-height: 1.55;
     }
     .controls {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 9px;
+      gap: 11px;
     }
     .tabs, .segmented {
       width: 100%;
@@ -376,20 +385,30 @@
       grid-template-columns: 1fr 1fr;
     }
     button {
-      min-height: 44px;
-      padding: 10px 8px;
+      min-height: 48px;
+      padding: 12px 10px;
+      font-size: 16px;
     }
     label {
       width: 100%;
       align-items: stretch;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
+      font-size: 16px;
     }
     input[type="search"],
     input[type="number"] {
       width: 100%;
-      min-height: 44px;
+      min-height: 48px;
       font-size: 16px;
+    }
+    .metric-help,
+    .note,
+    .variance-meta,
+    .variance-explain,
+    .panel-meta {
+      font-size: 15px;
+      line-height: 1.48;
     }
     .note { flex-basis: 100%; margin-left: 0; }
     .variance-badges { grid-template-columns: 1fr; }
@@ -398,18 +417,40 @@
       justify-items: center;
       text-align: center;
     }
+    .variance-head h2,
+    .panel-title {
+      font-size: 20px;
+    }
+    .variance-title {
+      font-size: 16px;
+    }
+    .variance-ring span {
+      font-size: 18px;
+    }
     .panel {
-      padding-top: 14px;
+      padding-top: 16px;
       margin-bottom: 22px;
     }
-    .panel-meta {
-      line-height: 1.45;
+    .chart-scroll svg {
+      min-width: 820px;
+    }
+    .chart-scroll.industry-chart svg {
+      min-width: 1120px;
+    }
+    .axis text,
+    .row-label,
+    .median-label {
+      font-size: 14px;
     }
     #tooltip {
       max-width: calc(100vw - 20px);
       left: 10px !important;
       right: 10px;
-      font-size: 12px;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+    #tooltip .name {
+      font-size: 16px;
     }
   }
 </style>
