@@ -1,227 +1,1527 @@
 <!DOCTYPE html>
-<html lang="en" prefix="og: http://ogp.me/ns#">
+<html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
     <meta name="googlebot" content="noindex">
-    <title>Student List - Section 1</title>
+    <meta name="theme-color" content="#17324d">
+    <title>Cold Caller — Section 1</title>
     <link rel="shortcut icon" href="../../img/columbia.ico">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="../../css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../../css/style.css?v=1.1" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="../../font/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
     <style>
-        #wordbox {
-            margin: 30px;
-            height: 150px;
-            font-size: 450%;
+        :root {
+            --navy: #17324d;
+            --navy-deep: #10283e;
+            --ice: #eaf7ff;
+            --ice-strong: #d3efff;
+            --blue: #168bc2;
+            --blue-dark: #0e6f9e;
+            --gold: #ffb703;
+            --ink: #17324d;
+            --muted: #64788a;
+            --white: #ffffff;
+            --line: #dceaf2;
+            --shadow: 0 24px 70px rgba(16, 40, 62, 0.18);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.75) 0 3px, transparent 4px),
+                radial-gradient(circle at 88% 24%, rgba(255, 255, 255, 0.55) 0 4px, transparent 5px),
+                linear-gradient(145deg, #f7fcff 0%, var(--ice) 40%, var(--ice-strong) 100%);
+            font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before,
+        body::after {
+            position: fixed;
+            z-index: -1;
+            border-radius: 50%;
+            content: "";
+            pointer-events: none;
+            filter: blur(2px);
+        }
+
+        body::before {
+            top: 18%;
+            left: -120px;
+            width: 300px;
+            height: 300px;
+            border: 56px solid rgba(22, 139, 194, 0.07);
+        }
+
+        body::after {
+            right: -90px;
+            bottom: -110px;
+            width: 360px;
+            height: 360px;
+            background: rgba(255, 183, 3, 0.08);
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 4px solid rgba(255, 183, 3, 0.7);
+            outline-offset: 3px;
+        }
+
+        .skip-link {
+            position: fixed;
+            z-index: 100;
+            top: 12px;
+            left: 12px;
+            padding: 10px 16px;
+            color: var(--white);
+            background: var(--navy);
+            border-radius: 10px;
+            transform: translateY(-160%);
+            transition: transform 160ms ease;
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .topbar {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 24px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-width: 0;
+        }
+
+        .home-link {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            flex: 0 0 auto;
+            place-items: center;
+            color: var(--navy);
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 13px;
+            box-shadow: 0 8px 22px rgba(16, 40, 62, 0.08);
+            transition: transform 160ms ease, background 160ms ease;
+        }
+
+        .home-link:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 50px;
+            height: 50px;
+            flex: 0 0 auto;
+            place-items: center;
+            overflow: hidden;
+            background: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.92);
+            border-radius: 16px;
+            box-shadow: 0 10px 26px rgba(16, 40, 62, 0.12);
+        }
+
+        .brand-mark img {
+            display: block;
+            width: 45px;
+            height: 45px;
+            object-fit: cover;
+        }
+
+        .brand-copy {
+            min-width: 0;
+        }
+
+        .brand-copy strong,
+        .brand-copy span {
+            display: block;
+        }
+
+        .brand-copy strong {
+            font-size: 1.15rem;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-copy span {
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 0.82rem;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-switch {
+            display: flex;
+            padding: 4px;
+            background: rgba(255, 255, 255, 0.76);
+            border: 1px solid rgba(255, 255, 255, 0.94);
+            border-radius: 999px;
+            box-shadow: 0 7px 18px rgba(16, 40, 62, 0.07);
+        }
+
+        .section-option {
+            min-height: 34px;
+            padding: 7px 13px;
+            color: var(--muted);
+            background: transparent;
+            border: 0;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 850;
+            white-space: nowrap;
+            transition: color 160ms ease, background 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+        }
+
+        .section-option:hover:not([aria-pressed="true"]):not(:disabled) {
+            color: var(--navy);
+            background: rgba(255, 255, 255, 0.72);
+        }
+
+        .section-option[aria-pressed="true"] {
+            color: var(--white);
+            background: var(--navy);
+            box-shadow: 0 5px 12px rgba(16, 40, 62, 0.2);
+        }
+
+        .section-option:disabled {
+            cursor: wait;
+        }
+
+        .icon-button {
+            display: inline-flex;
+            min-height: 42px;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 9px 12px;
+            color: var(--navy);
+            background: transparent;
+            border: 1px solid rgba(23, 50, 77, 0.14);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 750;
+            transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+        }
+
+        .icon-button:hover {
+            background: rgba(255, 255, 255, 0.65);
+            border-color: rgba(23, 50, 77, 0.25);
+            transform: translateY(-1px);
+        }
+
+        .caller-shell {
+            width: min(900px, calc(100% - 40px));
+            margin: 20px auto 0;
+            padding-bottom: 44px;
+        }
+
+        .caller-panel {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(28px, 5vw, 54px);
+            background: rgba(255, 255, 255, 0.93);
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            border-radius: 32px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(14px);
+        }
+
+        .caller-panel::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 7px;
+            background: linear-gradient(90deg, var(--blue), #58c8e8 58%, var(--gold));
+            content: "";
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 0 18px;
+            color: var(--blue-dark);
+            font-size: 0.82rem;
+            font-weight: 900;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before,
+        .eyebrow::after {
+            width: 30px;
+            height: 1px;
+            background: var(--ice-strong);
+            content: "";
+        }
+
+        .name-card {
+            position: relative;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 36px clamp(20px, 5vw, 50px);
             text-align: center;
-            background: white;
-            border-color: #0081CC;
-            border-width: thin;
-            color: #323232;
+            background:
+                radial-gradient(circle at 16% 20%, rgba(255, 255, 255, 0.52) 0 3px, transparent 4px),
+                radial-gradient(circle at 88% 76%, rgba(255, 255, 255, 0.42) 0 4px, transparent 5px),
+                linear-gradient(145deg, #dff5ff, #edf9ff 52%, #d9f0fb);
+            border: 1px solid #cae7f5;
+            border-radius: 24px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
         }
 
-        #button {
-            margin-top: 100px;
-            font-size: large;
+        .name-card::before,
+        .name-card::after {
+            position: absolute;
+            color: rgba(22, 139, 194, 0.11);
+            content: "❄";
+            font-size: 7rem;
+            line-height: 1;
+            pointer-events: none;
         }
 
-        .navbar-brand span {
-            color: white;
+        .name-card::before {
+            top: -18px;
+            left: -10px;
+            transform: rotate(-14deg);
         }
 
-        /* Progress bar style */
-        .progress-container {
-            width: 50%;
-            margin: 40px auto 0; /* Adds space between button and progress bar */
-            text-align: center;
+        .name-card::after {
+            right: -5px;
+            bottom: -28px;
+            transform: rotate(18deg);
         }
 
-        .progress {
-            margin-top: 10px;
+        .name-status {
+            position: relative;
+            z-index: 1;
+            margin: 0 0 12px;
+            color: var(--blue-dark);
+            font-size: 0.78rem;
+            font-weight: 850;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+        }
+
+        .student-name {
+            position: relative;
+            z-index: 1;
+            max-width: 100%;
+            margin: 0;
+            color: var(--navy-deep);
+            font-size: clamp(2.35rem, 7vw, 5.15rem);
+            font-weight: 850;
+            line-height: 1.03;
+            letter-spacing: -0.055em;
+            overflow-wrap: anywhere;
+        }
+
+        .student-name.is-placeholder {
+            max-width: 600px;
+            color: #42647d;
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            letter-spacing: -0.04em;
+        }
+
+        .name-helper {
+            position: relative;
+            z-index: 1;
+            margin: 16px 0 0;
+            color: var(--muted);
+            font-size: 0.94rem;
+        }
+
+        .name-helper:empty {
+            display: none;
+        }
+
+        .name-card.is-selecting .student-name {
+            color: var(--blue-dark);
+            filter: blur(0.35px);
+            transform: scale(0.98);
+        }
+
+        .student-name.is-revealed {
+            animation: reveal-name 520ms cubic-bezier(0.2, 0.9, 0.28, 1.25);
+        }
+
+        @keyframes reveal-name {
+            0% {
+                opacity: 0;
+                transform: translateY(15px) scale(0.94);
+            }
+            65% {
+                opacity: 1;
+                transform: translateY(-3px) scale(1.025);
+            }
+            100% {
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .primary-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .primary-button,
+        .undo-button {
+            min-height: 54px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 850;
+            transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+        }
+
+        .primary-button {
+            min-width: 240px;
+            padding: 14px 24px;
+            color: var(--white);
+            background: linear-gradient(135deg, var(--blue), #087bad);
+            border: 0;
+            box-shadow: 0 12px 28px rgba(22, 139, 194, 0.28);
+            font-size: 1.02rem;
+        }
+
+        .primary-button:hover:not(:disabled) {
+            box-shadow: 0 15px 32px rgba(22, 139, 194, 0.36);
+            transform: translateY(-2px);
+        }
+
+        .primary-button:active:not(:disabled),
+        .undo-button:active:not(:disabled) {
+            transform: translateY(1px);
+        }
+
+        .primary-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.62;
+            box-shadow: none;
+        }
+
+        .undo-button {
+            padding: 13px 18px;
+            color: var(--navy);
+            background: var(--white);
+            border: 1px solid var(--line);
+            box-shadow: 0 8px 18px rgba(16, 40, 62, 0.07);
+        }
+
+        .undo-button:hover:not(:disabled) {
+            background: #f8fcff;
+            box-shadow: 0 10px 22px rgba(16, 40, 62, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .undo-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.42;
+            box-shadow: none;
+        }
+
+        .progress-area {
+            margin-top: 34px;
+            padding-top: 26px;
+            border-top: 1px solid var(--line);
+        }
+
+        .progress-copy {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 11px;
+        }
+
+        .progress-summary {
+            font-size: 0.96rem;
+            font-weight: 800;
+        }
+
+        .progress-percentage {
+            color: var(--blue-dark);
+            font-size: 0.9rem;
+            font-variant-numeric: tabular-nums;
+            font-weight: 900;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 14px;
+            overflow: hidden;
+            background: #e7f0f5;
+            border-radius: 999px;
+            box-shadow: inset 0 1px 3px rgba(16, 40, 62, 0.08);
         }
 
         .progress-bar {
-            background-color: #0081CC;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--blue), #42b8dc 74%, var(--gold));
+            border-radius: inherit;
+            box-shadow: 0 0 14px rgba(22, 139, 194, 0.2);
+            transition: width 450ms cubic-bezier(0.2, 0.85, 0.3, 1);
         }
 
-        #progress-label {
-            font-size: 120%;
-            font-weight: bold;
-            color: #333;
+        .recent-section {
+            min-height: 78px;
+            margin-top: 25px;
+        }
+
+        .recent-label {
+            margin: 0 0 10px;
+            color: var(--muted);
+            font-size: 0.74rem;
+            font-weight: 850;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+
+        .recent-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .recent-list li {
+            padding: 8px 11px;
+            color: #526b7e;
+            background: #f2f8fb;
+            border: 1px solid #e2edf3;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .recent-list li:first-child:not(.empty-history) {
+            color: var(--blue-dark);
+            background: #e8f7fe;
+            border-color: #cbe9f6;
+        }
+
+        .recent-list .empty-history {
+            padding-left: 0;
+            color: #8495a3;
+            background: transparent;
+            border-color: transparent;
+            font-weight: 600;
+        }
+
+        .keyboard-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 18px 0 0;
+            color: #5c7182;
+            font-size: 0.78rem;
+        }
+
+        kbd {
+            min-width: 52px;
+            padding: 4px 8px;
+            text-align: center;
+            color: var(--navy);
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(23, 50, 77, 0.15);
+            border-bottom-width: 2px;
+            border-radius: 7px;
+            font: 700 0.7rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+        }
+
+        .confirmation-dialog {
+            width: min(430px, calc(100% - 34px));
+            padding: 0;
+            color: var(--ink);
+            background: var(--white);
+            border: 0;
+            border-radius: 22px;
+            box-shadow: 0 30px 100px rgba(8, 26, 41, 0.34);
+        }
+
+        .confirmation-dialog::backdrop {
+            background: rgba(12, 35, 52, 0.52);
+            backdrop-filter: blur(4px);
+        }
+
+        .dialog-content {
+            padding: 30px;
+        }
+
+        .dialog-icon {
+            display: grid;
+            width: 46px;
+            height: 46px;
+            place-items: center;
+            color: var(--blue-dark);
+            background: var(--ice);
+            border-radius: 14px;
+            font-size: 1.45rem;
+        }
+
+        .dialog-content h2 {
+            margin: 18px 0 8px;
+            font-size: 1.4rem;
+            letter-spacing: -0.025em;
+        }
+
+        .dialog-content p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.55;
+        }
+
+        .dialog-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .dialog-button {
+            min-height: 44px;
+            padding: 10px 17px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        .dialog-button.cancel {
+            color: var(--navy);
+            background: #f4f8fa;
+            border: 1px solid var(--line);
+        }
+
+        .dialog-button.confirm {
+            color: var(--white);
+            background: var(--navy);
+            border: 1px solid var(--navy);
+        }
+
+        .confetti-layer {
+            position: fixed;
+            z-index: 50;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10vh;
+            left: var(--left);
+            color: var(--color);
+            font-size: var(--size);
+            opacity: 0;
+            animation: snowfall var(--duration) var(--delay) cubic-bezier(0.15, 0.62, 0.35, 1) forwards;
+        }
+
+        @keyframes snowfall {
+            0% {
+                opacity: 0;
+                transform: translate3d(0, -8vh, 0) rotate(0deg);
+            }
+            12% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate3d(var(--drift), 112vh, 0) rotate(620deg);
+            }
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+        }
+
+        @media (max-width: 680px) {
+            .topbar {
+                width: min(100% - 28px, 1120px);
+                align-items: flex-start;
+                padding: 16px 0;
+            }
+
+            .brand {
+                gap: 9px;
+            }
+
+            .home-link {
+                width: 38px;
+                height: 38px;
+            }
+
+            .brand-mark {
+                width: 42px;
+                height: 42px;
+                border-radius: 13px;
+            }
+
+            .brand-mark img {
+                width: 38px;
+                height: 38px;
+            }
+
+            .brand-copy span {
+                display: none;
+            }
+
+            .top-actions {
+                gap: 7px;
+            }
+
+            .section-switch {
+                padding: 3px;
+            }
+
+            .section-option {
+                min-height: 33px;
+                padding: 7px 10px;
+                font-size: 0.72rem;
+            }
+
+            .icon-button {
+                width: 39px;
+                min-height: 39px;
+                padding: 8px;
+            }
+
+            .icon-button .button-label {
+                display: none;
+            }
+
+            .caller-shell {
+                width: min(100% - 24px, 900px);
+                margin-top: 8px;
+            }
+
+            .caller-panel {
+                border-radius: 24px;
+            }
+
+            .name-card {
+                min-height: 230px;
+                border-radius: 19px;
+            }
+
+            .primary-actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .primary-button,
+            .undo-button {
+                width: 100%;
+            }
+
+            .progress-copy {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .recent-section {
+                min-height: 94px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .brand-copy {
+                display: none;
+            }
+
+            .topbar {
+                gap: 10px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<body>
+    <a class="skip-link" href="#main-content">Skip to cold caller</a>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars" style="color:white"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="https://www.jperego.com">
-                    <span class="light"><i class="fa fa-home color" aria-hidden="true"></i> home</span>
-                </a>
+    <header class="topbar" aria-label="Page header">
+        <div class="brand">
+            <a class="home-link" href="https://www.jperego.com" aria-label="Go to home page" title="Home">
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 11.5 12 4l9 7.5"></path>
+                    <path d="M5.5 10.5V20h13v-9.5"></path>
+                    <path d="M9.5 20v-6h5v6"></path>
+                </svg>
+            </a>
+            <div class="brand-mark" aria-hidden="true">
+                <img src="cold.png" alt="">
             </div>
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav"></ul>
+            <div class="brand-copy">
+                <strong>Cold Caller</strong>
+                <span>A fair turn for everyone</span>
             </div>
         </div>
-    </nav>
 
-    <!-- Intro Header -->
-    <header class="intro">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <img style="width: 10%; height: auto; margin-bottom: 75pt" src="cold.png">
-
-                    <form name="WordForm">
-                        <input class="w3-input" type="text" name="WordBox" id="wordbox" readonly>
-                        <input class="btn btn-primary btn-lg" value="Next Name" onClick="PickNextWord(document.WordForm);" id="button">
-                        <input class="btn btn-primary btn-lg" value="Restart" onClick="Restart();" id="restartButton" style="display:none;">
-                    </form>
-
-                    <!-- Section Info -->
-                    <div id="section-info">
-                        Section 1
-                    </div>
-
-                    <!-- Progress Bar and Label -->
-                    <div class="progress-container">
-                        <div id="progress-label">
-                            Percentage of students of section 1 that has been called
-                        </div>
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" id="progress-bar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                0%
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+        <div class="top-actions">
+            <div class="section-switch" role="group" aria-label="Choose a section">
+                <button class="section-option" type="button" data-section="1" aria-pressed="true">Section 1</button>
+                <button class="section-option" type="button" data-section="2" aria-pressed="false">Section 2</button>
             </div>
+            <button class="icon-button" id="sound-button" type="button" aria-pressed="false" title="Turn sound on">
+                <svg id="sound-icon" aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 5 6 9H2v6h4l5 4V5Z"></path>
+                    <path id="sound-wave-one" d="M15.5 8.5a5 5 0 0 1 0 7"></path>
+                    <path id="sound-wave-two" d="M18.5 5.5a9 9 0 0 1 0 13"></path>
+                    <path id="sound-slash" d="m16 9 5 5" style="display:none"></path>
+                </svg>
+                <span class="button-label" id="sound-label">Sound off</span>
+            </button>
+            <button class="icon-button" id="restart-button" type="button" title="Restart with a new order">
+                <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 11a8 8 0 1 0-2.35 5.65"></path>
+                    <path d="M20 4v7h-7"></path>
+                </svg>
+                <span class="button-label">Restart</span>
+            </button>
         </div>
     </header>
 
-    <!-- Footer -->
-    <footer style="margin-top:100px">
-        <div class="container text-center">
-            <p style="font-size:80%;">
-                <!-- Footer content if needed -->
-            </p>
+    <main class="caller-shell" id="main-content">
+        <section class="caller-panel" aria-labelledby="caller-heading">
+            <h1 class="eyebrow" id="caller-heading">Who’s next?</h1>
+
+            <div class="name-card" id="name-card">
+                <p class="name-status" id="name-status">Ready to begin</p>
+                <p class="student-name is-placeholder" id="student-name">Ready when you are</p>
+                <p class="name-helper" id="name-helper">Pick a student to start the session.</p>
+            </div>
+
+            <div class="primary-actions">
+                <button class="primary-button" id="next-button" type="button">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="4"></rect>
+                        <circle cx="8" cy="8" r="1" fill="currentColor" stroke="none"></circle>
+                        <circle cx="16" cy="8" r="1" fill="currentColor" stroke="none"></circle>
+                        <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"></circle>
+                        <circle cx="8" cy="16" r="1" fill="currentColor" stroke="none"></circle>
+                        <circle cx="16" cy="16" r="1" fill="currentColor" stroke="none"></circle>
+                    </svg>
+                    <span id="next-button-label">Pick Next Student</span>
+                </button>
+                <button class="undo-button" id="undo-button" type="button" disabled>
+                    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 14-4-4 4-4"></path>
+                        <path d="M5 10h8a6 6 0 0 1 6 6v1"></path>
+                    </svg>
+                    Undo
+                </button>
+            </div>
+
+            <div class="progress-area">
+                <div class="progress-copy">
+                    <span class="progress-summary" id="progress-summary">0 students called • 75 students remaining</span>
+                    <span class="progress-percentage" id="progress-percentage">0%</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-bar" id="progress-bar" role="progressbar" aria-label="Students called" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
+
+            <div class="recent-section">
+                <p class="recent-label">Recently called</p>
+                <ul class="recent-list" id="recent-list">
+                    <li class="empty-history">No one yet — the first pick is waiting.</li>
+                </ul>
+            </div>
+        </section>
+
+        <p class="keyboard-hint"><kbd>Space</kbd> picks the next student</p>
+    </main>
+
+    <dialog class="confirmation-dialog" id="restart-dialog" aria-labelledby="restart-title" aria-describedby="restart-description">
+        <div class="dialog-content">
+            <div class="dialog-icon" aria-hidden="true">❄</div>
+            <h2 id="restart-title">Start a new round?</h2>
+            <p id="restart-description">This clears the current section’s progress and creates a fresh randomized order.</p>
+            <div class="dialog-actions">
+                <button class="dialog-button cancel" id="cancel-restart" type="button">Keep going</button>
+                <button class="dialog-button confirm" id="confirm-restart" type="button">Restart round</button>
+            </div>
         </div>
-    </footer>
+    </dialog>
+
+    <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
+    <p class="visually-hidden" id="live-announcer" aria-live="polite" aria-atomic="true"></p>
 
     <script>
-        // Unique prefix for Section 1
-        const sectionPrefix = "section1_";
+        (() => {
+            "use strict";
 
-        // List of real student names
-const students = [
-  "Abella, Mateo", "Agrawal, Har", "Allepuz Cone", "Barderas, Isa",
-  "Bellary, Teja", "Blattner, Ro", "Chbihi, M. El",
-  "Chen, Sissi", "Chen, Steve", "Cho, Andy", "Choi, Brian",
-  "Cory, Emily", "Dahl, Nora Li", "Depa, Ramya",
-  "Dewantari, D", "Godo, Carlos", "Gonzales Ce", "Groth, Philip",
-  "Han, Xiaome", "Hawley, Ash", "Hirade, Sara", "Hiramoto, Hi",
-  "Jeon, Serena", "Ju, Lenny", "Juneja, Vaibh", "Kaushik, Krat",
-  "Kim, Christo", "Kologlu, Bart", "Kong, Ziran", "Liu, Chang",
-  "Liu, Wenya", "Lu, Alex", "Moe, Aung", "Montange, El",
-  "Mullan, Aoife", "Nicastro, El", "Padilla, Dani", "Picoto, Bruna",
-  "Poli, Sophie", "Primo, Valent", "Pueyo Poves", "Roy Choudhr",
-  "Sadek, Omar", "Sahuseyino", "Sarikaya, Did", "Siame, Chito",
-  "Singh, Aishwa", "Suetholz, Cla", "Tulyaanukij", "Turnier, Celin",
-  "Wang, Kylie", "Wang, Shiyu", "Wang, Siman", "Wang, Sirui",
-  "Wu, Sky", "Yang, Hao", "Yang, Lilly", "Yulisettiani, E",
-  "Zhang, Hanru", "Zhao, Yinyu"
-];
+            const activeSectionStorageKey = "coldCaller_activeSection";
+            const soundStorageKey = "coldCaller_soundEnabled";
 
+            const studentsBySection = {
+                "1": [
+                    "Ahn, Kristie",
+                    "Alvarez Ortiz, Nicolas",
+                    "Balley, Austrella",
+                    "Banks, Mr",
+                    "Barzelay, Noa",
+                    "Belden, Hernan",
+                    "Bishop, Tom",
+                    "Boonchaiwattana, Bon",
+                    "Bradford, Travis",
+                    "Bulkeley, Christina",
+                    "Calderon Aguirre, Ashley",
+                    "Chen, Chih-Yu",
+                    "Chen, Daniel",
+                    "Chiu, Kevin",
+                    "Chwedczuk, Aleksy",
+                    "Conner, Calley",
+                    "Coran, Jacob",
+                    "Crighton, Connie",
+                    "de Havenon, Maxine",
+                    "Dev, Aditya",
+                    "Formicola, Stefano",
+                    "Gaur, Meghan",
+                    "Guegan, Guillaume",
+                    "Jain, Sajal",
+                    "Jaramillo Giraldo, Eduardo",
+                    "Kelly, Loren",
+                    "Kim, Hugh",
+                    "Kuelbs, Michaela",
+                    "Kus, Mithat",
+                    "Lee, Bennett",
+                    "Lee, Ian",
+                    "Li, Aaron",
+                    "Li, Alexander",
+                    "Loh, Rachel",
+                    "Lozac'hmeur, Oscar",
+                    "Mayur, Akash",
+                    "Miro, Esteban",
+                    "Mizrakci, Tolga",
+                    "Morgan, Victoria",
+                    "Murphy, Will",
+                    "Niu, Kaichen",
+                    "Noye, Leslie",
+                    "Nwakalor, Michael",
+                    "Palacio, Jaime",
+                    "Patel, Jill",
+                    "Quarterman, Emma",
+                    "Robinson, Roark",
+                    "Rubinger, Scott",
+                    "Sakarda, Anmol",
+                    "Sanohkan, Nate",
+                    "Seelig, Julia",
+                    "Selvaraj, Kishore",
+                    "Shin, Sang",
+                    "Silva, Icaro",
+                    "Slusser, Nicolette",
+                    "Stein, Sarah",
+                    "Tharamart, Mike",
+                    "Thome, Otavio",
+                    "Tolani, Akshay",
+                    "Tovar Fuentes, Carolina",
+                    "Townsend, Zach",
+                    "Valdivieso Sanchez, Agustina",
+                    "Valenti, Paola",
+                    "Valenzuela, Jose",
+                    "Vought, Annelise",
+                    "Waltz-Chesnaye, Charlie",
+                    "Wang, Sylvia",
+                    "Wang, Xun",
+                    "Wang, Zuyi",
+                    "Wong, Trent",
+                    "Xiao, Ruixin",
+                    "Yan, Dani",
+                    "Yin, Beini",
+                    "Yin, Hajar",
+                    "Zhang, Hanwen"
+                ],
+                "2": [
+                    "An, Ji Hoon",
+                    "Anello, Frank",
+                    "Borsotti, Camilla",
+                    "Bulic, Stefan",
+                    "Castello Mateluna, Javier",
+                    "Chadha, Gurameen",
+                    "Chang, Natalie",
+                    "Chen, Alex",
+                    "Chen, Che",
+                    "Chen, Yuzi",
+                    "Co, Monique",
+                    "Didcock, Lillian",
+                    "Doshi, Dhruv",
+                    "Dreher, Tom",
+                    "Duan, Xianyang",
+                    "Dutt, Aakash",
+                    "Fiume, Alessandro",
+                    "Garg, Pratima",
+                    "Garg, Saachi",
+                    "Goodman, Jacob",
+                    "Greenman Pimentel, Marina",
+                    "Gupta, Dhruv",
+                    "Gushue, Patrick",
+                    "Haasbeek, Justin",
+                    "Hong, Xing",
+                    "Hu, Richard",
+                    "Huang, Wei Cheng",
+                    "Huang, Yvonne",
+                    "Koprowski Lulia Jacob, Victor",
+                    "Li, Linchun",
+                    "Lopes Zoza Guiro Pacheco, Paula",
+                    "Lurum, Lawino",
+                    "Michalski, James",
+                    "Mohan, Srivats",
+                    "Ndongo, Lionel",
+                    "Oro de Lirio, Heloisa",
+                    "Padmawar, Parth",
+                    "Panjabi, Khushi Pankaj",
+                    "Park, Lilly",
+                    "Pinheiro, Andrew",
+                    "Porwal, Apeksh",
+                    "Ram, Aashna",
+                    "Rengarajan, Keerthika",
+                    "Riess, Nicolas",
+                    "Sali, Rhea",
+                    "San Francisco, Pablo",
+                    "Sanders, William",
+                    "Santos, Daniel",
+                    "Suffern, Oliver",
+                    "Tandon, Vanya",
+                    "Tavares Girsas, Igor",
+                    "Tirri, Francesco",
+                    "Torres Sanchez, Rafael Fernando",
+                    "Unger, Christie",
+                    "van Dam, Evert",
+                    "Wang, Minghui",
+                    "Yu, Cathy",
+                    "Zhao, Wenying",
+                    "Zhou, Matthew"
+                ]
+            };
 
+            const elements = {
+                sectionButtons: Array.from(document.querySelectorAll(".section-option")),
+                nameCard: document.getElementById("name-card"),
+                nameStatus: document.getElementById("name-status"),
+                studentName: document.getElementById("student-name"),
+                nameHelper: document.getElementById("name-helper"),
+                nextButton: document.getElementById("next-button"),
+                nextButtonLabel: document.getElementById("next-button-label"),
+                undoButton: document.getElementById("undo-button"),
+                restartButton: document.getElementById("restart-button"),
+                restartDialog: document.getElementById("restart-dialog"),
+                restartDescription: document.getElementById("restart-description"),
+                cancelRestart: document.getElementById("cancel-restart"),
+                confirmRestart: document.getElementById("confirm-restart"),
+                soundButton: document.getElementById("sound-button"),
+                soundLabel: document.getElementById("sound-label"),
+                soundWaveOne: document.getElementById("sound-wave-one"),
+                soundWaveTwo: document.getElementById("sound-wave-two"),
+                soundSlash: document.getElementById("sound-slash"),
+                progressSummary: document.getElementById("progress-summary"),
+                progressPercentage: document.getElementById("progress-percentage"),
+                progressBar: document.getElementById("progress-bar"),
+                recentList: document.getElementById("recent-list"),
+                confettiLayer: document.getElementById("confetti-layer"),
+                liveAnnouncer: document.getElementById("live-announcer")
+            };
 
-        // Shuffle the students list once
-        let shuffledStudents = localStorage.getItem(sectionPrefix + 'shuffledList');
-        if (!shuffledStudents) {
-            shuffledStudents = students
-                .map(name => ({ name, sort: Math.random() }))  // Randomize
-                .sort((a, b) => a.sort - b.sort)               // Sort by randomized value
-                .map(({ name }) => name);                      // Extract name
-            localStorage.setItem(sectionPrefix + 'shuffledList', JSON.stringify(shuffledStudents));
-        } else {
-            shuffledStudents = JSON.parse(shuffledStudents);
-        }
+            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+            let isSelecting = false;
+            let audioContext = null;
 
-        // Get the last shown index, default to -1 (meaning no name shown yet)
-        let currentIndex = localStorage.getItem(sectionPrefix + 'currentIndex');
-        if (currentIndex === null) {
-            currentIndex = -1;
-        } else {
-            currentIndex = parseInt(currentIndex, 10);
-        }
-
-        // Show the current student's name (if any have been shown)
-        function showStudent() {
-            if (currentIndex >= 0 && currentIndex < shuffledStudents.length) {
-                document.getElementById('wordbox').value = shuffledStudents[currentIndex];
-                document.getElementById('button').style.display = "inline-block";
-                document.getElementById('restartButton').style.display = "none";
-            } else if (currentIndex >= shuffledStudents.length) {
-                document.getElementById('wordbox').value = "No more names!";
-                document.getElementById('button').style.display = "none";
-                document.getElementById('restartButton').style.display = "inline-block";
+            function readStorage(key) {
+                try {
+                    return localStorage.getItem(key);
+                } catch (error) {
+                    return null;
+                }
             }
-            updateProgressBar();
-        }
 
-        // Move to the next student and show their name
-        function PickNextWord() {
-            currentIndex++;
-            if (currentIndex < shuffledStudents.length) {
-                localStorage.setItem(sectionPrefix + 'currentIndex', currentIndex);
-                showStudent();
-            } else {
-                localStorage.setItem(sectionPrefix + 'currentIndex', currentIndex);
-                showStudent();
+            function writeStorage(key, value) {
+                try {
+                    localStorage.setItem(key, value);
+                } catch (error) {
+                    // The page still works if storage is unavailable.
+                }
             }
-        }
 
-        // Restart the process
-        function Restart() {
-            localStorage.removeItem(sectionPrefix + 'shuffledList');  // Clear the shuffled list
-            localStorage.removeItem(sectionPrefix + 'currentIndex');  // Clear the index
-            location.reload();  // Reload the page to start over
-        }
+            function removeStorage(key) {
+                try {
+                    localStorage.removeItem(key);
+                } catch (error) {
+                    // The page still works if storage is unavailable.
+                }
+            }
 
-        // Display the last name shown (if applicable) on page load
-        showStudent();
+            let activeSection = readStorage(activeSectionStorageKey);
+            if (!studentsBySection[activeSection]) {
+                activeSection = "1";
+            }
+            let students = studentsBySection[activeSection];
 
-        // Calculate and update the progress bar percentage
-        function updateProgressBar() {
-            const totalStudents = shuffledStudents.length;
-            const studentsCalled = currentIndex + 1;
-            const percentageCalled = (studentsCalled / totalStudents) * 100;
-            const progressBar = document.getElementById('progress-bar');
+            function sectionPrefix() {
+                return `section${activeSection}_`;
+            }
 
-            progressBar.style.width = percentageCalled + '%';
-            progressBar.innerText = percentageCalled.toFixed(1) + '%';
-            progressBar.setAttribute('aria-valuenow', percentageCalled);
-        }
+            function shuffledCopy(list) {
+                const copy = [...list];
+                for (let index = copy.length - 1; index > 0; index--) {
+                    const randomIndex = Math.floor(Math.random() * (index + 1));
+                    [copy[index], copy[randomIndex]] = [copy[randomIndex], copy[index]];
+                }
+                return copy;
+            }
 
-        // Initial progress bar update
-        updateProgressBar();
+            function loadShuffledStudents() {
+                const saved = readStorage(sectionPrefix() + "shuffledList");
+                if (saved) {
+                    try {
+                        const parsed = JSON.parse(saved);
+                        const roster = new Set(students);
+                        const isCurrentRoster = Array.isArray(parsed)
+                            && parsed.length === students.length
+                            && new Set(parsed).size === students.length
+                            && parsed.every(name => roster.has(name));
+                        if (isCurrentRoster) {
+                            return parsed;
+                        }
+                    } catch (error) {
+                        // Create a fresh order if stored data cannot be parsed.
+                    }
+                }
+
+                const newOrder = shuffledCopy(students);
+                removeStorage(sectionPrefix() + "currentIndex");
+                writeStorage(sectionPrefix() + "shuffledList", JSON.stringify(newOrder));
+                return newOrder;
+            }
+
+            function loadCurrentIndex(maximumIndex) {
+                const saved = Number.parseInt(readStorage(sectionPrefix() + "currentIndex"), 10);
+                if (!Number.isFinite(saved)) {
+                    return -1;
+                }
+                return Math.min(Math.max(saved, -1), maximumIndex);
+            }
+
+            let shuffledStudents = loadShuffledStudents();
+            let currentIndex = loadCurrentIndex(shuffledStudents.length - 1);
+            const savedSoundPreference = readStorage(soundStorageKey);
+            let soundEnabled = savedSoundPreference === "true"
+                || (savedSoundPreference === null && readStorage("section1_soundEnabled") === "true");
+
+            function calledCount() {
+                return Math.min(Math.max(currentIndex + 1, 0), shuffledStudents.length);
+            }
+
+            function displayName(name) {
+                const commaIndex = name.indexOf(",");
+                if (commaIndex === -1) {
+                    return name.trim();
+                }
+
+                const lastName = name.slice(0, commaIndex).trim();
+                const firstName = name.slice(commaIndex + 1).trim();
+                return `${firstName} ${lastName}`.trim();
+            }
+
+            function updateSectionControl() {
+                elements.sectionButtons.forEach(button => {
+                    const isActive = button.dataset.section === activeSection;
+                    button.setAttribute("aria-pressed", String(isActive));
+                    button.disabled = isSelecting;
+                });
+                elements.restartDescription.textContent = `This clears Section ${activeSection}’s progress and creates a fresh randomized order.`;
+                document.title = `Cold Caller — Section ${activeSection}`;
+            }
+
+            function switchSection(nextSection) {
+                if (!studentsBySection[nextSection] || nextSection === activeSection || isSelecting) {
+                    return;
+                }
+
+                activeSection = nextSection;
+                students = studentsBySection[activeSection];
+                writeStorage(activeSectionStorageKey, activeSection);
+                shuffledStudents = loadShuffledStudents();
+                currentIndex = loadCurrentIndex(shuffledStudents.length - 1);
+                elements.confettiLayer.replaceChildren();
+                render();
+                announce(`Section ${activeSection} selected. ${calledCount()} of ${students.length} students have been called.`);
+            }
+
+            function announce(message) {
+                elements.liveAnnouncer.textContent = "";
+                window.setTimeout(() => {
+                    elements.liveAnnouncer.textContent = message;
+                }, 40);
+            }
+
+            function updateProgress() {
+                const called = calledCount();
+                const remaining = shuffledStudents.length - called;
+                const percentage = shuffledStudents.length ? (called / shuffledStudents.length) * 100 : 0;
+                const calledNoun = called === 1 ? "student" : "students";
+                const remainingNoun = remaining === 1 ? "student" : "students";
+
+                elements.progressSummary.textContent = `${called} ${calledNoun} called • ${remaining} ${remainingNoun} remaining`;
+                elements.progressPercentage.textContent = `${Math.round(percentage)}%`;
+                elements.progressBar.style.width = `${percentage}%`;
+                elements.progressBar.setAttribute("aria-valuenow", percentage.toFixed(1));
+                elements.progressBar.setAttribute("aria-valuetext", `${called} of ${shuffledStudents.length} students called`);
+            }
+
+            function updateHistory() {
+                elements.recentList.replaceChildren();
+
+                if (currentIndex < 0) {
+                    const emptyItem = document.createElement("li");
+                    emptyItem.className = "empty-history";
+                    emptyItem.textContent = "No one yet — the first pick is waiting.";
+                    elements.recentList.appendChild(emptyItem);
+                    return;
+                }
+
+                shuffledStudents
+                    .slice(Math.max(0, currentIndex - 2), currentIndex + 1)
+                    .reverse()
+                    .forEach(name => {
+                        const item = document.createElement("li");
+                        item.textContent = displayName(name);
+                        elements.recentList.appendChild(item);
+                    });
+            }
+
+            function render(options = {}) {
+                const called = calledCount();
+                const isComplete = called === shuffledStudents.length;
+                const hasSelection = currentIndex >= 0;
+
+                updateSectionControl();
+
+                elements.studentName.classList.toggle("is-placeholder", !hasSelection);
+
+                if (!hasSelection) {
+                    elements.nameStatus.textContent = "Ready to begin";
+                    elements.studentName.textContent = "Ready when you are";
+                    elements.nameHelper.textContent = "Pick a student to start the session.";
+                } else {
+                    elements.nameStatus.textContent = isComplete ? "Final student" : `Pick ${called} of ${shuffledStudents.length}`;
+                    elements.studentName.textContent = displayName(shuffledStudents[currentIndex]);
+                    elements.nameHelper.textContent = isComplete
+                        ? "Everyone has now had a turn. Nice work!"
+                        : "";
+                }
+
+                elements.nextButton.disabled = isComplete || isSelecting;
+                elements.nextButtonLabel.textContent = isComplete ? "Everyone Has Been Called" : "Pick Next Student";
+                elements.undoButton.disabled = !hasSelection || isSelecting;
+
+                updateProgress();
+                updateHistory();
+
+                if (options.reveal && !reducedMotion.matches) {
+                    elements.studentName.classList.remove("is-revealed");
+                    void elements.studentName.offsetWidth;
+                    elements.studentName.classList.add("is-revealed");
+                }
+            }
+
+            function wait(milliseconds) {
+                return new Promise(resolve => window.setTimeout(resolve, milliseconds));
+            }
+
+            function shufflePreviewNames(nextIndex) {
+                const remainingNames = shuffledStudents.slice(nextIndex);
+                if (!remainingNames.length) {
+                    return [];
+                }
+
+                const previews = [];
+                for (let index = 0; index < 12; index++) {
+                    previews.push(remainingNames[Math.floor(Math.random() * remainingNames.length)]);
+                }
+                return previews;
+            }
+
+            function getAudioContext() {
+                if (!audioContext) {
+                    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                    if (AudioContextClass) {
+                        audioContext = new AudioContextClass();
+                    }
+                }
+                return audioContext;
+            }
+
+            function playTone(frequency, delay, duration, volume = 0.04) {
+                if (!soundEnabled) {
+                    return;
+                }
+
+                const context = getAudioContext();
+                if (!context) {
+                    return;
+                }
+
+                const start = context.currentTime + delay;
+                const oscillator = context.createOscillator();
+                const gain = context.createGain();
+                oscillator.type = "sine";
+                oscillator.frequency.setValueAtTime(frequency, start);
+                gain.gain.setValueAtTime(0.0001, start);
+                gain.gain.exponentialRampToValueAtTime(volume, start + 0.015);
+                gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+                oscillator.connect(gain);
+                gain.connect(context.destination);
+                oscillator.start(start);
+                oscillator.stop(start + duration + 0.02);
+            }
+
+            function playRevealSound(isComplete = false) {
+                playTone(523.25, 0, 0.16);
+                playTone(isComplete ? 783.99 : 659.25, 0.11, 0.22);
+                if (isComplete) {
+                    playTone(1046.5, 0.24, 0.32);
+                }
+            }
+
+            function celebrate() {
+                if (reducedMotion.matches) {
+                    return;
+                }
+
+                const symbols = ["❄", "✦", "●"];
+                const colors = ["#168bc2", "#54c2e0", "#ffb703", "#ffffff"];
+                elements.confettiLayer.replaceChildren();
+
+                for (let index = 0; index < 34; index++) {
+                    const flake = document.createElement("span");
+                    flake.className = "snowflake";
+                    flake.textContent = symbols[index % symbols.length];
+                    flake.style.setProperty("--left", `${Math.random() * 100}%`);
+                    flake.style.setProperty("--size", `${12 + Math.random() * 20}px`);
+                    flake.style.setProperty("--color", colors[index % colors.length]);
+                    flake.style.setProperty("--duration", `${2.1 + Math.random() * 1.6}s`);
+                    flake.style.setProperty("--delay", `${Math.random() * 0.8}s`);
+                    flake.style.setProperty("--drift", `${-80 + Math.random() * 160}px`);
+                    elements.confettiLayer.appendChild(flake);
+                }
+
+                window.setTimeout(() => elements.confettiLayer.replaceChildren(), 4600);
+            }
+
+            async function pickNextStudent() {
+                if (isSelecting || calledCount() >= shuffledStudents.length) {
+                    return;
+                }
+
+                isSelecting = true;
+                elements.nextButton.disabled = true;
+                elements.undoButton.disabled = true;
+                updateSectionControl();
+                elements.nameCard.classList.add("is-selecting");
+                elements.nameStatus.textContent = "Shuffling the class…";
+                elements.nameHelper.textContent = "Every remaining student has a fair chance.";
+
+                const nextIndex = currentIndex + 1;
+                const previews = shufflePreviewNames(nextIndex);
+
+                if (reducedMotion.matches) {
+                    await wait(80);
+                } else {
+                    for (const [previewIndex, previewName] of previews.entries()) {
+                        elements.studentName.classList.remove("is-placeholder", "is-revealed");
+                        elements.studentName.textContent = displayName(previewName);
+                        await wait(65 + previewIndex * 5);
+                    }
+                }
+
+                currentIndex = nextIndex;
+                writeStorage(sectionPrefix() + "currentIndex", String(currentIndex));
+                isSelecting = false;
+                elements.nameCard.classList.remove("is-selecting");
+
+                const isComplete = calledCount() === shuffledStudents.length;
+                render({ reveal: true });
+                playRevealSound(isComplete);
+                announce(`${displayName(shuffledStudents[currentIndex])} selected. ${shuffledStudents.length - calledCount()} students remaining.`);
+
+                if (isComplete) {
+                    celebrate();
+                }
+            }
+
+            function undoSelection() {
+                if (isSelecting || currentIndex < 0) {
+                    return;
+                }
+
+                const removedName = shuffledStudents[currentIndex];
+                currentIndex -= 1;
+
+                if (currentIndex < 0) {
+                    removeStorage(sectionPrefix() + "currentIndex");
+                } else {
+                    writeStorage(sectionPrefix() + "currentIndex", String(currentIndex));
+                }
+
+                render({ reveal: currentIndex >= 0 });
+                announce(`${displayName(removedName)} returned to the remaining students.`);
+            }
+
+            function openRestartDialog() {
+                if (typeof elements.restartDialog.showModal === "function") {
+                    elements.restartDialog.showModal();
+                } else if (window.confirm(`Start a new Section ${activeSection} round? This clears that section’s progress and creates a fresh randomized order.`)) {
+                    restartRound();
+                }
+            }
+
+            function restartRound() {
+                removeStorage(sectionPrefix() + "shuffledList");
+                removeStorage(sectionPrefix() + "currentIndex");
+                shuffledStudents = shuffledCopy(students);
+                currentIndex = -1;
+                writeStorage(sectionPrefix() + "shuffledList", JSON.stringify(shuffledStudents));
+                elements.confettiLayer.replaceChildren();
+                if (elements.restartDialog.open) {
+                    elements.restartDialog.close();
+                }
+                render();
+                announce(`A new randomized Section ${activeSection} round is ready.`);
+                elements.nextButton.focus();
+            }
+
+            function updateSoundControl() {
+                elements.soundButton.setAttribute("aria-pressed", String(soundEnabled));
+                elements.soundButton.title = soundEnabled ? "Turn sound off" : "Turn sound on";
+                elements.soundLabel.textContent = soundEnabled ? "Sound on" : "Sound off";
+                elements.soundWaveOne.style.display = soundEnabled ? "block" : "none";
+                elements.soundWaveTwo.style.display = soundEnabled ? "block" : "none";
+                elements.soundSlash.style.display = soundEnabled ? "none" : "block";
+            }
+
+            function toggleSound() {
+                soundEnabled = !soundEnabled;
+                writeStorage(soundStorageKey, String(soundEnabled));
+                updateSoundControl();
+
+                if (soundEnabled) {
+                    const context = getAudioContext();
+                    if (context && context.state === "suspended") {
+                        context.resume();
+                    }
+                    playTone(659.25, 0, 0.16, 0.025);
+                }
+
+                announce(`Sound ${soundEnabled ? "on" : "off"}.`);
+            }
+
+            elements.nextButton.addEventListener("click", pickNextStudent);
+            elements.undoButton.addEventListener("click", undoSelection);
+            elements.sectionButtons.forEach(button => {
+                button.addEventListener("click", () => switchSection(button.dataset.section));
+            });
+            elements.restartButton.addEventListener("click", openRestartDialog);
+            elements.cancelRestart.addEventListener("click", () => elements.restartDialog.close());
+            elements.confirmRestart.addEventListener("click", restartRound);
+            elements.soundButton.addEventListener("click", toggleSound);
+
+            elements.restartDialog.addEventListener("click", event => {
+                if (event.target === elements.restartDialog) {
+                    elements.restartDialog.close();
+                }
+            });
+
+            document.addEventListener("keydown", event => {
+                const activeElement = document.activeElement;
+                const isInteractive = activeElement && activeElement.matches("button, a, input, select, textarea");
+                const dialogIsOpen = elements.restartDialog.open;
+
+                if (event.code === "Space" && !isInteractive && !dialogIsOpen) {
+                    event.preventDefault();
+                    pickNextStudent();
+                }
+            });
+
+            updateSoundControl();
+            render();
+        })();
     </script>
-
 </body>
+
 </html>
