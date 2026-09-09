@@ -947,7 +947,6 @@
                     "Chen, Daniel",
                     "Chiu, Kevin",
                     "Chwedczuk, Aleksy",
-                    "Conner, Calley",
                     "Coran, Jacob",
                     "Crighton, Connie",
                     "de Havenon, Maxine",
@@ -965,16 +964,17 @@
                     "Lee, Ian",
                     "Li, Aaron",
                     "Li, Alexander",
+                    "Liang, Michelle",
                     "Loh, Rachel",
                     "Lozac'hmeur, Oscar",
                     "Mayur, Akash",
+                    "McKown, Julia",
                     "Miro, Esteban",
                     "Mizrakci, Tolga",
                     "Morgan, Victoria",
                     "Murphy, Will",
                     "Niu, Kaichen",
                     "Noye, Leslie",
-                    "Nwakalor, Michael",
                     "Palacio, Jaime",
                     "Patel, Jill",
                     "Quarterman, Emma",
@@ -984,6 +984,7 @@
                     "Sanohkan, Nate",
                     "Seelig, Julia",
                     "Selvaraj, Kishore",
+                    "Shelton, Honor",
                     "Shin, Sang",
                     "Silva, Icaro",
                     "Slusser, Nicolette",
@@ -1005,13 +1006,13 @@
                     "Xiao, Ruixin",
                     "Yan, Dani",
                     "Yin, Beini",
-                    "Yin, Hajar",
                     "Zhang, Hanwen"
                 ],
                 "2": [
                     "An, Ji Hoon",
                     "Anello, Frank",
                     "Borsotti, Camilla",
+                    "Bu, Cici",
                     "Bulic, Stefan",
                     "Castello Mateluna, Javier",
                     "Chadha, Gurameen",
@@ -1021,7 +1022,6 @@
                     "Chen, Yuzi",
                     "Co, Monique",
                     "Didcock, Lillian",
-                    "Doshi, Dhruv",
                     "Dreher, Tom",
                     "Duan, Xianyang",
                     "Dutt, Aakash",
@@ -1033,7 +1033,6 @@
                     "Gupta, Dhruv",
                     "Gushue, Patrick",
                     "Haasbeek, Justin",
-                    "Hong, Xing",
                     "Hu, Richard",
                     "Huang, Wei Cheng",
                     "Huang, Yvonne",
@@ -1050,7 +1049,6 @@
                     "Park, Lilly",
                     "Pinheiro, Andrew",
                     "Porwal, Apeksh",
-                    "Ram, Aashna",
                     "Rengarajan, Keerthika",
                     "Riess, Nicolas",
                     "Sali, Rhea",
@@ -1064,6 +1062,7 @@
                     "Torres Sanchez, Rafael Fernando",
                     "Unger, Christie",
                     "van Dam, Evert",
+                    "Villarrubia Gonzalez, Alejandro",
                     "Wang, Minghui",
                     "Yu, Cathy",
                     "Zhao, Wenying",
@@ -1157,6 +1156,44 @@
                             && parsed.every(name => roster.has(name));
                         if (isCurrentRoster) {
                             return parsed;
+                        }
+
+                        if (Array.isArray(parsed) && parsed.every(name => typeof name === "string")) {
+                            const savedIndex = Number.parseInt(readStorage(sectionPrefix() + "currentIndex"), 10);
+                            const calledLimit = Number.isFinite(savedIndex)
+                                ? Math.min(Math.max(savedIndex + 1, 0), parsed.length)
+                                : 0;
+                            const retainedNames = new Set();
+                            const calledStudents = parsed.slice(0, calledLimit).filter(name => {
+                                if (!roster.has(name) || retainedNames.has(name)) {
+                                    return false;
+                                }
+                                retainedNames.add(name);
+                                return true;
+                            });
+                            const remainingStudents = parsed.slice(calledLimit).filter(name => {
+                                if (!roster.has(name) || retainedNames.has(name)) {
+                                    return false;
+                                }
+                                retainedNames.add(name);
+                                return true;
+                            });
+                            const addedStudents = shuffledCopy(students.filter(name => !retainedNames.has(name)));
+
+                            addedStudents.forEach(name => {
+                                const insertionIndex = Math.floor(Math.random() * (remainingStudents.length + 1));
+                                remainingStudents.splice(insertionIndex, 0, name);
+                            });
+
+                            const migratedOrder = [...calledStudents, ...remainingStudents];
+                            const migratedIndex = calledStudents.length - 1;
+                            if (migratedIndex < 0) {
+                                removeStorage(sectionPrefix() + "currentIndex");
+                            } else {
+                                writeStorage(sectionPrefix() + "currentIndex", String(migratedIndex));
+                            }
+                            writeStorage(sectionPrefix() + "shuffledList", JSON.stringify(migratedOrder));
+                            return migratedOrder;
                         }
                     } catch (error) {
                         // Create a fresh order if stored data cannot be parsed.
