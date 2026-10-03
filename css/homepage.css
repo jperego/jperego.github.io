@@ -36,6 +36,7 @@ b, strong { font-weight: 700; }
 
 @media (min-width: 1200px) {
   .container { max-width: 1170px; }
+  .paper-column { width: 75%; margin-inline: auto; }
 }
 
 .navbar-custom {
