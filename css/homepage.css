@@ -124,6 +124,15 @@ b, strong { font-weight: 700; }
 .paper-body { padding: 15px; border-top: 1px solid #ddd; }
 .paper-text { font-size: 90%; text-align: justify; }
 .paper-metadata, .paper-download { display: flow-root; }
+.paper-status {
+  display: inline-block;
+  margin-left: .75em;
+  color: #c90202;
+  font-size: medium;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.paper-status:hover { color: #c90202; }
 .paper-list { margin-bottom: 20px; }
 .paper-abstract-line { margin: 8px 0 0; font-size: 12.5pt; }
 
@@ -143,6 +152,7 @@ b, strong { font-weight: 700; }
 .abstract-toggle:hover { text-decoration: underline; }
 
 .abstract-toggle:focus-visible,
+.paper-status:focus-visible,
 .navbar-custom a:focus-visible,
 .navbar-custom .navbar-toggler:focus-visible {
   outline: 2px solid currentColor;
