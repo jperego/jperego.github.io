@@ -178,8 +178,11 @@ b, strong { font-weight: 700; }
   font: inherit;
   font-weight: 700;
   text-align: left;
+  white-space: nowrap;
   transition: color .1s ease-in-out;
 }
+
+.abstract-toggle[hidden] { display: none; }
 
 .abstract-toggle:hover,
 .abstract-toggle:focus-visible {

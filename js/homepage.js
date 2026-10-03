@@ -21,34 +21,113 @@
     scrollSpy.dispose();
     scrollSpy = new bootstrap.ScrollSpy(document.body);
   };
-  document.querySelectorAll('.paper-abstract').forEach(abstract => {
+  const abstractControllers = Array.from(document.querySelectorAll('.paper-abstract'), abstract => {
     const card = abstract.closest('.paper-card');
     const toggle = card.querySelector('.abstract-toggle');
     const line = abstract.closest('.paper-abstract-line');
     const title = card.querySelector('.paper-heading').textContent.trim().replace(/\s+/g, ' ');
-    let expanded = !abstract.hidden;
+    const source = abstract.cloneNode(true);
+    const fullHTML = abstract.innerHTML;
+    const fullText = source.textContent;
+    const walker = document.createTreeWalker(source, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    let expanded = false;
+    let hasOverflow = false;
+    let previewEnd = 0;
+    let previewFragment = null;
+    let previewHeight = 0;
+    let measuredWidth = 0;
+    let measuredLineHeight = 0;
+    let remainder = null;
     let heightAnimation = null;
     let fadeAnimation = null;
-    const updateToggle = () => {
-      const label = expanded ? 'Hide Abstract:' : 'See Abstract';
-      toggle.textContent = label;
-      toggle.setAttribute('aria-expanded', String(expanded));
-      toggle.setAttribute('aria-label', `${expanded ? 'Hide Abstract' : 'See Abstract'}: ${title}`);
+
+    const positionAt = index => {
+      for (const node of textNodes) {
+        if (index <= node.length) return [node, index];
+        index -= node.length;
+      }
+      const last = textNodes[textNodes.length - 1];
+      return [last, last.length];
     };
-    const finishTransition = () => {
-      abstract.hidden = !expanded;
+    const slice = (start, end) => {
+      const range = document.createRange();
+      range.selectNodeContents(source);
+      range.setStart(...positionAt(start));
+      range.setEnd(...positionAt(end));
+      return range.cloneContents();
+    };
+    const updateToggle = () => {
+      toggle.hidden = !hasOverflow;
+      toggle.textContent = expanded ? 'See less' : 'See more';
+      toggle.setAttribute('aria-expanded', String(expanded || !hasOverflow));
+      toggle.setAttribute('aria-label', `${expanded ? 'See less of' : 'See more of'} abstract: ${title}`);
+    };
+    const renderPreview = () => {
+      abstract.replaceChildren(previewFragment.cloneNode(true), document.createTextNode('...'));
+    };
+    const renderState = () => {
+      if (expanded || !hasOverflow) abstract.innerHTML = fullHTML;
+      else renderPreview();
+      remainder = null;
+      updateToggle();
+    };
+    const finishTransition = (refresh = true) => {
       heightAnimation?.cancel();
       fadeAnimation?.cancel();
       heightAnimation = null;
       fadeAnimation = null;
+      renderState();
       line.classList.remove('is-animating');
-      refreshScrollSpy();
+      if (refresh) refreshScrollSpy();
     };
-    updateToggle();
+    const reflow = (force = false) => {
+      const width = line.getBoundingClientRect().width;
+      const lineHeight = Number.parseFloat(getComputedStyle(line).lineHeight);
+      const wasAnimating = Boolean(heightAnimation);
+      if (wasAnimating) finishTransition(false);
+      if (!force && Math.abs(width - measuredWidth) < .5 && lineHeight === measuredLineHeight) {
+        return wasAnimating;
+      }
+      measuredWidth = width;
+      measuredLineHeight = lineHeight;
+      const limit = lineHeight * 3;
+      abstract.innerHTML = fullHTML;
+      toggle.hidden = true;
+      hasOverflow = line.getBoundingClientRect().height > limit + 1;
+      if (hasOverflow) {
+        // Measure actual wrapping, including the label, ellipsis, and inline button.
+        toggle.hidden = false;
+        toggle.textContent = 'See more';
+        let low = 0;
+        let high = fullText.length;
+        while (low < high) {
+          const middle = Math.ceil((low + high) / 2);
+          abstract.replaceChildren(slice(0, middle), document.createTextNode('...'));
+          if (line.getBoundingClientRect().height <= limit + 1) low = middle;
+          else high = middle - 1;
+        }
+        previewEnd = low;
+        // Prefer a whole word rather than leaving half a word before the ellipsis.
+        if (/\S/.test(fullText[previewEnd] || '') && /\S/.test(fullText[previewEnd - 1] || '')) {
+          while (previewEnd > 0 && /\S/.test(fullText[previewEnd - 1])) previewEnd--;
+        }
+        while (previewEnd > 0 && /[\s,;:.]/.test(fullText[previewEnd - 1])) previewEnd--;
+        previewFragment = slice(0, previewEnd);
+        renderPreview();
+        previewHeight = line.getBoundingClientRect().height;
+      }
+      renderState();
+      return true;
+    };
+
+    reflow(true);
     toggle.addEventListener('click', () => {
+      if (!hasOverflow) return;
       // Start from the current frame so repeated clicks reverse without a jump.
       const startHeight = line.getBoundingClientRect().height;
-      const startOpacity = abstract.hidden ? 0 : Number.parseFloat(getComputedStyle(abstract).opacity);
+      const startOpacity = remainder ? Number.parseFloat(getComputedStyle(remainder).opacity) : (expanded ? 1 : 0);
       heightAnimation?.cancel();
       fadeAnimation?.cancel();
       expanded = !expanded;
@@ -58,19 +137,20 @@
         return;
       }
 
-      // Animate the paragraph so the control and prose keep their inline layout.
-      abstract.hidden = true;
-      const collapsedHeight = line.getBoundingClientRect().height;
-      abstract.hidden = false;
+      // Keep the preview text readable while only the newly revealed prose fades.
+      remainder = document.createElement('span');
+      remainder.className = 'abstract-remainder';
+      remainder.append(slice(previewEnd, fullText.length));
+      abstract.replaceChildren(slice(0, previewEnd), remainder);
       const expandedHeight = line.getBoundingClientRect().height;
       const duration = expanded ? 260 : 220;
       line.classList.add('is-animating');
       const animation = line.animate([
         { height: `${startHeight}px` },
-        { height: `${expanded ? expandedHeight : collapsedHeight}px` }
+        { height: `${expanded ? expandedHeight : previewHeight}px` }
       ], { duration, easing: 'cubic-bezier(.25, .1, .25, 1)', fill: 'both' });
       heightAnimation = animation;
-      fadeAnimation = abstract.animate([
+      fadeAnimation = remainder.animate([
         { opacity: startOpacity },
         { opacity: expanded ? 1 : 0 }
       ], { duration, easing: 'ease-out', fill: 'both' });
@@ -78,16 +158,23 @@
         if (heightAnimation === animation) finishTransition();
       }).catch(() => { /* Cancellation is expected when reversing the animation. */ });
     });
-    const finishIfAnimating = () => {
-      if (heightAnimation) finishTransition();
-    };
-    window.addEventListener('resize', finishIfAnimating);
-    reduceMotion.addEventListener('change', () => {
-      if (reduceMotion.matches) finishIfAnimating();
-    });
+    return { reflow, finishIfAnimating: () => { if (heightAnimation) finishTransition(); } };
   });
-  window.addEventListener('load', refreshScrollSpy);
-  if (document.fonts) document.fonts.ready.then(refreshScrollSpy);
+  const reflowAbstracts = (force = false) => {
+    let changed = false;
+    abstractControllers.forEach(controller => { changed = controller.reflow(force) || changed; });
+    if (changed) refreshScrollSpy();
+  };
+  let resizeFrame;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => reflowAbstracts());
+  });
+  reduceMotion.addEventListener('change', () => {
+    if (reduceMotion.matches) abstractControllers.forEach(controller => controller.finishIfAnimating());
+  });
+  window.addEventListener('load', () => reflowAbstracts(true));
+  if (document.fonts) document.fonts.ready.then(() => reflowAbstracts(true));
 
   // Upward navigation from a gap between sections can leave ScrollSpy inactive.
   // Rebuild it once the requested scroll settles, using the final layout.
