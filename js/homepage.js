@@ -25,16 +25,19 @@
     const card = abstract.closest('.paper-card');
     const toggle = card.querySelector('.abstract-toggle');
     const title = card.querySelector('.paper-heading').textContent.trim().replace(/\s+/g, ' ');
-    const updateToggleLabel = expanded => {
-      const label = expanded ? 'Click to hide abstract' : 'Click to see abstract';
+    const updateAbstract = expanded => {
+      const label = expanded ? 'Hide Abstract:' : 'See Abstract';
+      abstract.hidden = !expanded;
       toggle.textContent = label;
-      toggle.setAttribute('aria-label', `${label}: ${title}`);
+      toggle.setAttribute('aria-expanded', String(expanded));
+      toggle.setAttribute('aria-label', `${expanded ? 'Hide Abstract' : 'See Abstract'}: ${title}`);
     };
-    updateToggleLabel(abstract.classList.contains('show'));
-    abstract.addEventListener('show.bs.collapse', () => updateToggleLabel(true));
-    abstract.addEventListener('hide.bs.collapse', () => updateToggleLabel(false));
-    abstract.addEventListener('shown.bs.collapse', refreshScrollSpy);
-    abstract.addEventListener('hidden.bs.collapse', refreshScrollSpy);
+    // Native visibility keeps the control and revealed prose in the same paragraph.
+    updateAbstract(!abstract.hidden);
+    toggle.addEventListener('click', () => {
+      updateAbstract(abstract.hidden);
+      refreshScrollSpy();
+    });
   });
   window.addEventListener('load', refreshScrollSpy);
   if (document.fonts) document.fonts.ready.then(refreshScrollSpy);
