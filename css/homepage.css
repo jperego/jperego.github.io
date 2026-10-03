@@ -198,7 +198,13 @@ b, strong { font-weight: 700; }
   white-space: nowrap;
 }
 .paper-status:hover { color: var(--site-accent-red); }
-.paper-list { margin-bottom: 20px; }
+.paper-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 0;
+}
+.paper-list > br { display: none; }
 .paper-abstract-line { font-size: 12.5pt; }
 .paper-abstract-line.is-animating { overflow: hidden; }
 
@@ -243,5 +249,19 @@ b, strong { font-weight: 700; }
 #others .others-subheading {
   color: #303030;
   font-weight: 400;
-  margin: 60px 0 30px;
+  margin: 0 0 30px;
+}
+
+/* Keep section gaps independent of old heading margins and intro padding. */
+body { --section-gap: 80px; }
+.intro { display: block; height: auto; padding: 0; }
+.intro .intro-body { display: block; }
+.site-section, .others-subsection { padding-top: var(--section-gap); }
+.section-heading { margin: 0 0 30px; }
+#others-heading { margin-bottom: 0; }
+#others > .others-subsection:first-of-type { padding-top: 40px; }
+
+@media (max-width: 767.98px) {
+  body { --section-gap: 48px; }
+  #others > .others-subsection:first-of-type { padding-top: 24px; }
 }
