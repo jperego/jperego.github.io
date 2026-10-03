@@ -22,6 +22,17 @@
     scrollSpy = new bootstrap.ScrollSpy(document.body);
   };
   document.querySelectorAll('.paper-abstract').forEach(abstract => {
+    const card = abstract.closest('.paper-card');
+    const toggle = card.querySelector('.abstract-toggle');
+    const title = card.querySelector('.paper-heading').textContent.trim().replace(/\s+/g, ' ');
+    const updateToggleLabel = expanded => {
+      const label = expanded ? 'Click to hide abstract' : 'Click to see abstract';
+      toggle.textContent = label;
+      toggle.setAttribute('aria-label', `${label}: ${title}`);
+    };
+    updateToggleLabel(abstract.classList.contains('show'));
+    abstract.addEventListener('show.bs.collapse', () => updateToggleLabel(true));
+    abstract.addEventListener('hide.bs.collapse', () => updateToggleLabel(false));
     abstract.addEventListener('shown.bs.collapse', refreshScrollSpy);
     abstract.addEventListener('hidden.bs.collapse', refreshScrollSpy);
   });
