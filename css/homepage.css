@@ -151,6 +151,10 @@ b, strong { font-weight: 700; }
   text-align: justify;
 }
 .paper-text > p { margin: 0; font-size: 12.5pt; }
+.paper-citation { text-align: left; }
+.paper-citation a { color: inherit; font-weight: 400; }
+.paper-citation a:hover,
+.paper-citation a:focus-visible { color: var(--site-accent-red); }
 .paper-metadata, .paper-download {
   display: flex;
   flex-wrap: wrap;
