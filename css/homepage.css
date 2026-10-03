@@ -131,9 +131,13 @@ b, strong { font-weight: 700; }
 }
 .paper-text > p { margin: 0; }
 .paper-metadata, .paper-download { display: flow-root; }
+.paper-author-row { display: flex; align-items: baseline; gap: 12px; }
+.paper-authors { flex: 1; min-width: 0; }
+.paper-publication { display: block; margin-top: 12px; }
 .paper-status {
   display: inline-block;
-  margin-left: .75em;
+  flex-shrink: 0;
+  margin-left: auto;
   color: #c90202;
   font-size: medium;
   font-weight: 600;
