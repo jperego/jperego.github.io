@@ -6,7 +6,7 @@
   const menu = document.getElementById('navbar-menu');
   const menuButton = navbar.querySelector('.navbar-toggler');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const navigationSections = Array.from(navbar.querySelectorAll('.nav-link'), link => ({
+  const navigationSections = Array.from(navbar.querySelectorAll('.nav-link.page-scroll'), link => ({
     link,
     section: document.getElementById(link.getAttribute('href').slice(1))
   }));

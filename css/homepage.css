@@ -39,7 +39,7 @@ b, strong { font-weight: 700; }
   .paper-column { width: 75%; margin-inline: auto; }
 }
 
-#working-papers, #research, #others, #resume {
+#working-papers, #research, #others {
   scroll-margin-top: 60px;
 }
 
