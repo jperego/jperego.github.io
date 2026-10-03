@@ -6,21 +6,37 @@
   const menu = document.getElementById('navbar-menu');
   const menuButton = navbar.querySelector('.navbar-toggler');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const navigationSections = Array.from(navbar.querySelectorAll('.nav-link'), link => ({
+    link,
+    section: document.getElementById(link.getAttribute('href').slice(1))
+  }));
+
+  // Section starts keep highlighting predictable across long sections and gaps.
+  const refreshSectionHighlight = () => {
+    const offset = navbar.querySelector('.navbar-brand').getBoundingClientRect().height + 10;
+    let activeLink = null;
+    navigationSections.forEach(({ link, section }) => {
+      if (section.getBoundingClientRect().top <= offset + 1) activeLink = link;
+    });
+    if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+      activeLink = navigationSections[navigationSections.length - 1].link;
+    }
+    navigationSections.forEach(({ link }) => {
+      const active = link === activeLink;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
 
   const updateNavbar = () => {
     navbar.classList.toggle('top-nav-collapse', window.scrollY > 50);
+    refreshSectionHighlight();
   };
 
   updateNavbar();
   window.addEventListener('scroll', updateNavbar, { passive: true });
 
-  // Recreate ScrollSpy after layout changes to reset its cached scroll direction.
-  // refresh() alone can leave stale highlighting after several abstract toggles.
-  let scrollSpy = bootstrap.ScrollSpy.getOrCreateInstance(document.body);
-  const refreshScrollSpy = () => {
-    scrollSpy.dispose();
-    scrollSpy = new bootstrap.ScrollSpy(document.body);
-  };
   const abstractControllers = Array.from(document.querySelectorAll('.paper-abstract'), abstract => {
     const card = abstract.closest('.paper-card');
     const toggle = card.querySelector('.abstract-toggle');
@@ -80,7 +96,7 @@
       fadeAnimation = null;
       renderState();
       line.classList.remove('is-animating');
-      if (refresh) refreshScrollSpy();
+      if (refresh) refreshSectionHighlight();
     };
     const reflow = (force = false) => {
       const width = line.getBoundingClientRect().width;
@@ -163,7 +179,7 @@
   const reflowAbstracts = (force = false) => {
     let changed = false;
     abstractControllers.forEach(controller => { changed = controller.reflow(force) || changed; });
-    if (changed) refreshScrollSpy();
+    if (changed) refreshSectionHighlight();
   };
   let resizeFrame;
   window.addEventListener('resize', () => {
@@ -176,14 +192,13 @@
   window.addEventListener('load', () => reflowAbstracts(true));
   if (document.fonts) document.fonts.ready.then(() => reflowAbstracts(true));
 
-  // Upward navigation from a gap between sections can leave ScrollSpy inactive.
-  // Rebuild it once the requested scroll settles, using the final layout.
+  // Recheck the final section once navigation settles.
   let navigationRefreshTimer;
   const refreshAfterNavigation = () => {
     window.clearTimeout(navigationRefreshTimer);
     navigationRefreshTimer = window.setTimeout(() => {
       window.removeEventListener('scroll', refreshAfterNavigation);
-      refreshScrollSpy();
+      refreshSectionHighlight();
     }, 100);
   };
   const scrollToSection = (target, smooth = true) => {

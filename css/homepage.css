@@ -39,7 +39,16 @@ b, strong { font-weight: 700; }
   .paper-column { width: 75%; margin-inline: auto; }
 }
 
+#working-papers, #research, #others, #resume {
+  scroll-margin-top: 60px;
+}
+
 .navbar-custom {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
   min-height: 50px;
   padding: 0;
   --bs-navbar-color: white;
@@ -92,6 +101,10 @@ b, strong { font-weight: 700; }
   .navbar-custom .navbar-nav { margin: 7.5px -15px; }
   .navbar-custom .nav-link { padding: 10px 15px; }
   .navbar-custom .navbar-collapse { border-top: 1px solid rgba(255, 255, 255, .3); }
+  .navbar-custom .navbar-collapse.show {
+    max-height: calc(100dvh - 50px);
+    overflow-y: auto;
+  }
 }
 
 /* Paper panels use consistent spacing within each card. */
