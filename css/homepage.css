@@ -1,0 +1,267 @@
+/* Bootstrap 5 adjustments for the homepage. Shared teaching-page styles stay in style.css. */
+body {
+  font-size: 14px;
+  line-height: 1.42857143;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+}
+
+h1 { font-size: 36px; }
+h2 { font-size: 30px; }
+h3 { font-size: 24px; }
+h5 { font-size: 14px; }
+h6 { font-size: 12px; }
+
+a { text-decoration: none; }
+b, strong { font-weight: 700; }
+
+/* Preserve Bootstrap 3's content widths, 30px gutters, and responsive layout. */
+.container {
+  --bs-gutter-x: 30px;
+  width: 100%;
+  max-width: none;
+}
+
+.row { --bs-gutter-x: 30px; }
+
+@media (min-width: 768px) {
+  .container { max-width: 750px; }
+}
+
+@media (min-width: 992px) {
+  .container { max-width: 970px; }
+}
+
+@media (min-width: 1200px) {
+  .container { max-width: 1170px; }
+  .paper-column { width: 75%; margin-inline: auto; }
+}
+
+#working-papers, #research, #others {
+  scroll-margin-top: 60px;
+}
+
+/* Navigation moves focus to the content without outlining the whole section. */
+.navigation-target:focus { outline: none; }
+
+.navbar-custom {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  min-height: 50px;
+  padding: 0;
+  --bs-navbar-color: white;
+  --bs-navbar-hover-color: white;
+  --bs-navbar-active-color: white;
+}
+
+.navbar-custom > .container { min-height: 50px; }
+
+.navbar-custom .navbar-brand {
+  margin: 0;
+  padding: 15px 0;
+  font-size: 18px;
+  line-height: 20px;
+  transition: color .1s ease-in-out;
+}
+
+.navbar-custom .navbar-toggler {
+  margin: 8px 0;
+  padding: 6px 10px;
+  color: white;
+  border-color: rgba(255, 255, 255, .4);
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.navbar-custom .nav-link {
+  padding: 15px;
+  color: white;
+  font-size: 16.8px;
+  line-height: 20px;
+}
+
+.navbar-custom .nav-link.active {
+  color: white;
+  background: #00a1ff;
+  border-radius: 2px;
+}
+
+.navbar-custom .nav-link:hover { color: white; }
+
+@media (min-width: 992px) {
+  .navbar-custom { padding: 20px 0; }
+  .navbar-custom.top-nav-collapse { padding: 0; }
+  .navbar-custom .navbar-nav { margin-right: -15px; }
+  .navbar-custom .navbar-nav .nav-link { padding: 15px; }
+}
+
+@media (max-width: 991.98px) {
+  .navbar-custom .navbar-nav { margin: 7.5px -15px; }
+  .navbar-custom .nav-link { padding: 10px 15px; }
+  .navbar-custom .navbar-collapse { border-top: 1px solid rgba(255, 255, 255, .3); }
+  .navbar-custom .navbar-collapse.show {
+    max-height: calc(100dvh - 50px);
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .navbar-custom .navbar-brand { font-size: 14px; }
+}
+
+/* Paper panels use consistent spacing within each card. */
+.paper-card {
+  --paper-row-gap: 12px;
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 #ccc;
+  background: white;
+}
+
+.paper-header {
+  position: relative;
+  padding: 10px 15px 0;
+  border-bottom: 0;
+  border-radius: 3px 3px 0 0;
+  background: white;
+}
+
+.paper-heading {
+  margin: 0;
+  font-size: 16px;
+  scroll-margin-top: 60px;
+}
+
+.paper-title {
+  color: #0081CC;
+  font-size: 120%;
+  text-align: left;
+}
+
+.paper-body { padding: var(--paper-row-gap) 15px 15px; border-top: 0; }
+.paper-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--paper-row-gap);
+  font-size: 90%;
+  text-align: justify;
+}
+.paper-text > p { margin: 0; font-size: 12.5pt; }
+.paper-citation { text-align: left; }
+.paper-citation a { color: inherit; font-weight: 400; }
+.paper-citation a:hover,
+.paper-citation a:focus-visible { color: var(--site-accent-red); }
+.paper-metadata, .paper-download {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--paper-row-gap);
+}
+.paper-author-row {
+  display: flex;
+  flex-basis: 100%;
+  align-items: baseline;
+  gap: var(--paper-row-gap);
+}
+.paper-authors { flex: 1; min-width: 0; }
+.paper-metadata > .paper-authors { flex: 1 1 auto; }
+.paper-publication { display: block; flex-basis: 100%; }
+.paper-journal, .paper-download-note {
+  max-width: 100%;
+  margin-left: auto;
+  text-align: right;
+}
+
+@media (max-width: 767.98px) {
+  .paper-metadata > .paper-journal {
+    flex-basis: 100%;
+    margin-left: 0;
+    text-align: left;
+  }
+}
+
+.paper-download-links { max-width: 100%; }
+.paper-status {
+  display: inline-block;
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--site-accent-red);
+  font-size: medium;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.paper-status:hover { color: var(--site-accent-red); }
+.paper-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 0;
+}
+.paper-list > br { display: none; }
+.paper-abstract-line { font-size: 12.5pt; }
+.paper-abstract-line.is-animating { overflow: hidden; }
+
+.abstract-toggle {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  color: #555;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  transition: color .1s ease-in-out;
+}
+
+.abstract-toggle[hidden] { display: none; }
+
+.abstract-toggle:hover,
+.abstract-toggle:focus-visible {
+  color: var(--site-accent-red);
+  text-decoration: none;
+}
+
+.abstract-toggle:focus-visible,
+.paper-status:focus-visible,
+.navbar-custom a:focus-visible,
+.navbar-custom .navbar-toggler:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  .navbar, a, .abstract-toggle { transition: none !important; }
+  i.animated { animation: none !important; }
+}
+
+/* The three research subsections share one parent heading. */
+#others .others-subheading {
+  color: #303030;
+  font-weight: 400;
+  margin: 0 0 30px;
+}
+
+/* Keep section gaps independent of old heading margins and intro padding. */
+body { --section-gap: 80px; }
+.intro { display: block; height: auto; padding: 0; }
+.intro .intro-body { display: block; }
+.site-section, .others-subsection { padding-top: var(--section-gap); }
+.section-heading { margin: 0 0 30px; }
+#others-heading { margin-bottom: 0; }
+#others > .others-subsection:first-of-type { padding-top: 40px; }
+
+@media (max-width: 767.98px) {
+  body { --section-gap: 48px; }
+  #others > .others-subsection:first-of-type { padding-top: 24px; }
+}
