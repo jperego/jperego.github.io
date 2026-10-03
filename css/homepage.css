@@ -152,6 +152,15 @@ b, strong { font-weight: 700; }
   margin-left: auto;
   text-align: right;
 }
+
+@media (max-width: 767.98px) {
+  .paper-metadata > .paper-journal {
+    flex-basis: 100%;
+    margin-left: 0;
+    text-align: left;
+  }
+}
+
 .paper-download-links { max-width: 100%; }
 .paper-status {
   display: inline-block;
