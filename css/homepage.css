@@ -235,3 +235,10 @@ b, strong { font-weight: 700; }
   .navbar, a, .abstract-toggle { transition: none !important; }
   i.animated { animation: none !important; }
 }
+
+/* The three research subsections share one parent heading. */
+#others .others-subheading {
+  color: #303030;
+  font-weight: 400;
+  margin: 60px 0 30px;
+}
