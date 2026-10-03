@@ -154,7 +154,7 @@ b, strong { font-weight: 700; }
   padding: 0;
   border: 0;
   border-radius: 3px;
-  color: #000;
+  color: inherit;
   background: transparent;
   font: inherit;
   font-weight: 700;
