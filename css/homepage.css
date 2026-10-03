@@ -93,7 +93,7 @@ b, strong { font-weight: 700; }
   .navbar-custom .navbar-collapse { border-top: 1px solid rgba(255, 255, 255, .3); }
 }
 
-/* Cards retain the original paper panels' borders, spacing, and typography. */
+/* Paper panels use consistent spacing within each card. */
 .paper-card {
   margin-bottom: 0;
   border: 0;
@@ -104,7 +104,7 @@ b, strong { font-weight: 700; }
 
 .paper-header {
   position: relative;
-  padding: 10px 15px;
+  padding: 10px 15px 0;
   border-bottom: 0;
   border-radius: 3px 3px 0 0;
   background: white;
@@ -121,8 +121,15 @@ b, strong { font-weight: 700; }
   text-align: left;
 }
 
-.paper-body { padding: 15px; border-top: 1px solid #ddd; }
-.paper-text { font-size: 90%; text-align: justify; }
+.paper-body { padding: 12px 15px 15px; border-top: 0; }
+.paper-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 90%;
+  text-align: justify;
+}
+.paper-text > p { margin: 0; }
 .paper-metadata, .paper-download { display: flow-root; }
 .paper-status {
   display: inline-block;
@@ -134,7 +141,7 @@ b, strong { font-weight: 700; }
 }
 .paper-status:hover { color: #c90202; }
 .paper-list { margin-bottom: 20px; }
-.paper-abstract-line { margin: 8px 0 0; font-size: 12.5pt; }
+.paper-abstract-line { font-size: 12.5pt; }
 
 .abstract-toggle {
   display: inline;
@@ -142,7 +149,7 @@ b, strong { font-weight: 700; }
   padding: 0;
   border: 0;
   border-radius: 3px;
-  color: #0081CC;
+  color: #000;
   background: transparent;
   font: inherit;
   font-weight: 700;
