@@ -237,7 +237,7 @@
     }));
   });
 
-  navbar.querySelectorAll('a.page-scroll').forEach(link => {
+  document.querySelectorAll('a.page-scroll').forEach(link => {
     link.addEventListener('click', event => {
       if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
       const target = document.getElementById(link.getAttribute('href').slice(1));
