@@ -1,0 +1,157 @@
+/* Bootstrap 5 adjustments for the homepage. Shared teaching-page styles stay in style.css. */
+body {
+  font-size: 14px;
+  line-height: 1.42857143;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+}
+
+h1 { font-size: 36px; }
+h2 { font-size: 30px; }
+h3 { font-size: 24px; }
+h5 { font-size: 14px; }
+h6 { font-size: 12px; }
+
+a { text-decoration: none; }
+b, strong { font-weight: 700; }
+
+/* Preserve Bootstrap 3's content widths, 30px gutters, and responsive layout. */
+.container {
+  --bs-gutter-x: 30px;
+  width: 100%;
+  max-width: none;
+}
+
+.row { --bs-gutter-x: 30px; }
+
+@media (min-width: 768px) {
+  .container { max-width: 750px; }
+}
+
+@media (min-width: 992px) {
+  .container { max-width: 970px; }
+}
+
+@media (min-width: 1200px) {
+  .container { max-width: 1170px; }
+}
+
+.navbar-custom {
+  min-height: 50px;
+  padding: 0;
+  --bs-navbar-color: white;
+  --bs-navbar-hover-color: white;
+  --bs-navbar-active-color: white;
+}
+
+.navbar-custom > .container { min-height: 50px; }
+
+.navbar-custom .navbar-brand {
+  margin: 0;
+  padding: 15px 0;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.navbar-custom .navbar-toggler {
+  margin: 8px 0;
+  padding: 6px 10px;
+  color: white;
+  border-color: rgba(255, 255, 255, .4);
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.navbar-custom .nav-link {
+  padding: 15px;
+  color: white;
+  font-size: 16.8px;
+  line-height: 20px;
+}
+
+.navbar-custom .nav-link.active {
+  color: white;
+  background: #00a1ff;
+  border-radius: 2px;
+}
+
+.navbar-custom .nav-link:hover { color: white; }
+
+@media (min-width: 768px) {
+  .navbar-custom { padding: 20px 0; }
+  .navbar-custom.top-nav-collapse { padding: 0; }
+  .navbar-custom .navbar-nav { margin-right: -15px; }
+  .navbar-custom .navbar-nav .nav-link { padding: 15px; }
+}
+
+@media (max-width: 767.98px) {
+  .navbar-custom .navbar-nav { margin: 7.5px -15px; }
+  .navbar-custom .nav-link { padding: 10px 15px; }
+  .navbar-custom .navbar-collapse { border-top: 1px solid rgba(255, 255, 255, .3); }
+}
+
+/* Cards retain the original paper panels' borders, spacing, and typography. */
+.paper-card {
+  margin-bottom: 0;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  background: white;
+}
+
+.paper-header {
+  position: relative;
+  padding: 10px 15px;
+  border-bottom: 0;
+  border-radius: 3px 3px 0 0;
+  background: white;
+}
+
+.paper-heading {
+  margin: 0;
+  font-size: 16px;
+}
+
+.paper-title {
+  color: #0081CC;
+  font-size: 120%;
+  text-align: left;
+}
+
+.paper-body { padding: 15px; border-top: 1px solid #ddd; }
+.paper-text { font-size: 90%; text-align: justify; }
+.paper-list { margin-bottom: 20px; }
+
+.abstract-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 0 auto;
+  padding: 2px 4px;
+  border: 0;
+  border-radius: 3px;
+  color: #595959;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+}
+
+.abstract-toggle:hover { color: #0081CC; }
+.abstract-toggle .fa { transition: transform .2s ease; }
+.abstract-toggle[aria-expanded="false"] .fa { transform: rotate(180deg); }
+
+.abstract-toggle:focus-visible,
+.navbar-custom a:focus-visible,
+.navbar-custom .navbar-toggler:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto !important; }
+  .navbar, a, .abstract-toggle .fa { transition: none !important; }
+  i.animated { animation: none !important; }
+}

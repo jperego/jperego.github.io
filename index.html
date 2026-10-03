@@ -26,10 +26,11 @@
     <link rel="shortcut icon" href="img/columbia.ico" />
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/vendor/bootstrap-5.3.8.min.css" rel="stylesheet" />
 
     <!-- Custom CSS -->
     <link href="css/style.css?v=1.1" rel="stylesheet" />
+    <link href="css/homepage.css" rel="stylesheet" />
 
     <!-- Fonts / Icons -->
     <link
@@ -49,77 +50,35 @@
     />
   </head>
 
-  <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+  <body id="page-top" data-bs-spy="scroll" data-bs-target="#site-navigation" data-bs-root-margin="-55px 0px -30%" data-bs-threshold="[0, 0.01, 0.1]">
     <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <nav id="site-navigation" class="navbar navbar-expand-md navbar-custom fixed-top" aria-label="Main navigation">
       <div class="container">
-        <div class="navbar-header">
-          <button
-            type="button"
-            class="navbar-toggle"
-            data-toggle="collapse"
-            data-target=".navbar-main-collapse"
-            aria-label="Toggle navigation"
-          >
-            <i class="fa fa-bars" style="color: white"></i>
-          </button>
-
-          <a class="navbar-brand page-scroll" href="#page-top">
-            <span class="light" style="color: white">
-              <i
-                class="fa fa-home color"
-                style="color: white"
-                aria-hidden="true"
-              ></i>
-              home
-            </span>
-          </a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-          <ul class="nav navbar-nav">
-            <!--
-            <li>
-              <a class="page-scroll" href="#page-top"> contacts</a>
+        <a class="navbar-brand page-scroll" href="#page-top">
+          <span class="light" style="color: white">
+            <i class="fa fa-home color" style="color: white" aria-hidden="true"></i>
+            home
+          </span>
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbar-menu"
+          aria-controls="navbar-menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+        <div id="navbar-menu" class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="#research">research</a>
             </li>
-            -->
-
-            <li>
-              <a
-                class="page-scroll"
-                href="#research"
-                style="color: white; font-size: 120%"
-              >
-                research
-              </a>
+            <li class="nav-item">
+              <a class="nav-link page-scroll" href="#resume">cv</a>
             </li>
-
-            <li>
-              <a
-                class="page-scroll"
-                href="#resume"
-                style="color: white; font-size: 120%"
-              >
-                cv
-              </a>
-            </li>
-
-            <!--
-            <li>
-              <a class="page-scroll" href="#teaching" style="color:white; font-size:120%">
-                teaching (offline)
-              </a>
-            </li>
-            -->
-
-            <!--
-            <li>
-              <a class="page-scroll" href="https://github.com/jperego" target="_blank" style="color:white; font-size:120%; margin-left: 0px">
-                <i class="fa fa-github fa-1x color" style="color:white; margin-top:0px" aria-hidden="true"></i>
-              </a>
-            </li>
-            -->
           </ul>
         </div>
       </div>
@@ -131,7 +90,7 @@
         <div class="container">
           <div class="row">
             <div
-              class="col-md-8 col-md-offset-2"
+              class="col-lg-8 offset-lg-2"
               style="text-align: left; margin-top: 140px"
             >
               <h1
@@ -276,48 +235,51 @@
     <!-- =========================================================
          Working Papers
     ========================================================== -->
-    <section id="working-papers" class="container text-left">
+    <section id="working-papers" class="container text-start">
       <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-xl-8 offset-xl-2">
           <h2 style="margin-bottom: 30px; margin-top: 100px">
             <span>Working Papers</span>
           </h2>
 
-          <div class="panel-group" id="accordion-working" role="tablist" aria-multiselectable="true">
+          <div class="paper-list" id="accordion-working">
 
 
 
             <!-- WIP 1 -->
-            <div class="panel panel-default">
-              <div
-                class="panel-heading"
-                role="tab"
-                id="heading-facts-opinions"
-                style="background-color: white; cursor: pointer"
-                data-toggle="collapse"
-                data-target="#collapse-facts-opinions"
-                aria-controls="collapse-facts-opinions"
-                aria-expanded="true"
-              >
-                <h4 class="panel-title">
+            <div class="card paper-card">
+              <div class="card-header paper-header">
+                <h4 class="paper-heading" id="heading-facts-opinions">
                   <a href="files/papers/LLP/draft.pdf" target="_blank" rel="noopener noreferrer">
-                  <div style="font-weight: 600" class="panel_title">
+                  <div style="font-weight: 600" class="paper-title">
                     The Limits of Verifiability: Credibility and Flexibility in Communication
                                         <span style="float: right; color: #c90202; font-size: medium">[New Paper]</span>
 
                   </div>
                   </a>
                 </h4>
+                <button
+                  class="abstract-toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse-facts-opinions"
+                  aria-controls="collapse-facts-opinions"
+                  aria-expanded="true"
+                  aria-label="Toggle abstract: The Limits of Verifiability: Credibility and Flexibility in Communication [New Paper]"
+                >
+                  <span>Abstract</span>
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </button>
               </div>
 
               <div
                 id="collapse-facts-opinions"
-                class="panel-collapse collapse in"
-                role="tabpanel"
+                class="paper-abstract collapse show"
+                role="region"
                 aria-labelledby="heading-facts-opinions"
               >
-                <div class="panel-body">
-                  <div class="panel_body">
+                <div class="card-body paper-body">
+                  <div class="paper-text">
                     <p style="font-size: 12.5pt">
                       Joint work with
                       <a href="https://sites.google.com/view/lizzeri" target="_blank" rel="noopener noreferrer">Alessandro Lizzeri</a>
@@ -341,19 +303,10 @@
 
 
             <!-- WP 1 -->
-            <div class="panel panel-default">
-              <div
-                class="panel-heading"
-                role="tab"
-                id="heading-gp-markets"
-                style="background-color: white; cursor: pointer"
-                data-toggle="collapse"
-                data-target="#collapse-gp-markets"
-                aria-controls="collapse-gp-markets"
-                aria-expanded="true"
-              >
-                <h4 class="panel-title">
-                  <div class="panel_title">
+            <div class="card paper-card">
+              <div class="card-header paper-header">
+                <h4 class="paper-heading" id="heading-gp-markets">
+                  <div class="paper-title">
                     <a href="files/papers/GP_markets/draft.pdf" target="_blank" rel="noopener noreferrer">
                       <span style="font-weight: 600">Competitive Markets for Personal Data
                         <span style="float: right; color: #c90202; font-size: medium">[New Version!]</span>
@@ -361,16 +314,28 @@
                     </a>
                   </div>
                 </h4>
+                <button
+                  class="abstract-toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse-gp-markets"
+                  aria-controls="collapse-gp-markets"
+                  aria-expanded="true"
+                  aria-label="Toggle abstract: Competitive Markets for Personal Data [New Version!]"
+                >
+                  <span>Abstract</span>
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </button>
               </div>
 
               <div
                 id="collapse-gp-markets"
-                class="panel-collapse collapse in"
-                role="tabpanel"
+                class="paper-abstract collapse show"
+                role="region"
                 aria-labelledby="heading-gp-markets"
               >
-                <div class="panel-body">
-                  <div class="panel_body">
+                <div class="card-body paper-body">
+                  <div class="paper-text">
                     <p style="font-size: 12.5pt">
                       Joint work with
                       <a href="https://sites.google.com/site/simonegalperti/" target="_blank" rel="noopener noreferrer">Simone Galperti </a>
@@ -410,33 +375,36 @@
 
 
              <!-- WIP 2 -->
-            <div class="panel panel-default">
-              <div
-                class="panel-heading"
-                role="tab"
-                id="heading-price-privacy"
-                style="background-color: white; cursor: pointer"
-                data-toggle="collapse"
-                data-target="#collapse-price-privacy"
-                aria-controls="collapse-price-privacy"
-                aria-expanded="true"
-              >
-                <h4 class="panel-title">
-                  <div style="font-weight: 600" class="panel_title">
+            <div class="card paper-card">
+              <div class="card-header paper-header">
+                <h4 class="paper-heading" id="heading-price-privacy">
+                  <div style="font-weight: 600" class="paper-title">
                   <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7290620" target="_blank" rel="noopener noreferrer">Privacy For Sale: Anarchy, Ban, or Market?</a>
                   <span style="float: right; color: #c90202; font-size: medium">[New Paper]</span>
                   </div>
                 </h4>
+                <button
+                  class="abstract-toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse-price-privacy"
+                  aria-controls="collapse-price-privacy"
+                  aria-expanded="true"
+                  aria-label="Toggle abstract: Privacy For Sale: Anarchy, Ban, or Market? [New Paper]"
+                >
+                  <span>Abstract</span>
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </button>
               </div>
 
               <div
                 id="collapse-price-privacy"
-                class="panel-collapse collapse in"
-                role="tabpanel"
+                class="paper-abstract collapse show"
+                role="region"
                 aria-labelledby="heading-price-privacy"
               >
-                <div class="panel-body">
-                  <div class="panel_body">
+                <div class="card-body paper-body">
+                  <div class="paper-text">
                     <p style="font-size: 12.5pt">
                       Joint work with
                       <a href="https://pdworczak.com" target="_blank" rel="noopener noreferrer">Piotr Dworczak</a>
@@ -459,7 +427,7 @@
               </div>
             </div>
           </div>
-          <!-- /panel-group -->
+          <!-- /paper-list -->
         </div>
       </div>
     </section>
@@ -471,28 +439,19 @@
          - IDs are now unique and valid.
          - Panels remain expanded by default (collapse in), matching your current behavior.
     ========================================================== -->
-    <section id="research" class="container text-left">
+    <section id="research" class="container text-start">
       <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-xl-8 offset-xl-2">
           <h2 style="margin-bottom: 30px; margin-top: 60px">
             <span>Published and Forthcoming Papers</span>
           </h2>
 
-          <div class="panel-group" id="accordion-published" role="tablist" aria-multiselectable="true">
+          <div class="paper-list" id="accordion-published">
             <!-- Paper 1 -->
-            <div class="panel panel-default">
-              <div
-                class="panel-heading"
-                role="tab"
-                id="heading-fflp"
-                style="background-color: white; cursor: pointer"
-                data-toggle="collapse"
-                data-target="#collapse-fflp"
-                aria-controls="collapse-fflp"
-                aria-expanded="true"
-              >
-                <h4 class="panel-title">
-                  <div class="panel_title">
+            <div class="card paper-card">
+              <div class="card-header paper-header">
+                <h4 class="paper-heading" id="heading-fflp">
+                  <div class="paper-title">
                     <a
                       style="font-weight: 600"
                       href="files/papers/FFLP/draft.pdf"
@@ -504,16 +463,28 @@
                   </div>
                   <div style="margin-top: 10px; color: #c90202; font-weight: 600"></div>
                 </h4>
+                <button
+                  class="abstract-toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse-fflp"
+                  aria-controls="collapse-fflp"
+                  aria-expanded="true"
+                  aria-label="Toggle abstract: The Selective Disclosure of Evidence: an Experiment"
+                >
+                  <span>Abstract</span>
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </button>
               </div>
 
               <div
                 id="collapse-fflp"
-                class="panel-collapse collapse in"
-                role="tabpanel"
+                class="paper-abstract collapse show"
+                role="region"
                 aria-labelledby="heading-fflp"
               >
-                <div class="panel-body">
-                  <div class="panel_body">
+                <div class="card-body paper-body">
+                  <div class="paper-text">
                     <p style="font-size: 12.5pt">
                       Joint work with
                       <a href="https://www.agatafarina.com/" target="_blank" rel="noopener noreferrer">A. Farina</a>,
@@ -565,34 +536,37 @@
             <br />
 
             <!-- Paper 2 -->
-            <div class="panel panel-default">
-              <div
-                class="panel-heading"
-                role="tab"
-                id="heading-gp-seeds"
-                style="background-color: white; cursor: pointer"
-                data-toggle="collapse"
-                data-target="#collapse-gp-seeds"
-                aria-controls="collapse-gp-seeds"
-                aria-expanded="true"
-              >
-                <h4 class="panel-title">
-                  <div class="panel_title">
+            <div class="card paper-card">
+              <div class="card-header paper-header">
+                <h4 class="paper-heading" id="heading-gp-seeds">
+                  <div class="paper-title">
                     <a href="files/papers/GP/draft.pdf" target="_blank" rel="noopener noreferrer">
                       <span style="font-weight: 600">Games with Information Constraints: Seeds and Spillovers</span>
                     </a>
                   </div>
                 </h4>
+                <button
+                  class="abstract-toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse-gp-seeds"
+                  aria-controls="collapse-gp-seeds"
+                  aria-expanded="true"
+                  aria-label="Toggle abstract: Games with Information Constraints: Seeds and Spillovers"
+                >
+                  <span>Abstract</span>
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </button>
               </div>
 
               <div
                 id="collapse-gp-seeds"
-                class="panel-collapse collapse in"
-                role="tabpanel"
+                class="paper-abstract collapse show"
+                role="region"
                 aria-labelledby="heading-gp-seeds"
               >
-                <div class="panel-body">
-                  <div class="panel_body">
+                <div class="card-body paper-body">
+                  <div class="paper-text">
                     <p style="font-size: 12.5pt">
                       Joint work with
                       <a href="https://sites.google.com/site/simonegalperti/" target="_blank" rel="noopener noreferrer">Simone Galperti</a>.
@@ -639,19 +613,10 @@
             <br />
 
             <!-- Paper 3 -->
-            <div class="panel panel-default">
-              <div
-                class="panel-heading"
-                role="tab"
-                id="heading-glp-records"
-                style="background-color: white; cursor: pointer"
-                data-toggle="collapse"
-                data-target="#collapse-glp-records"
-                aria-controls="collapse-glp-records"
-                aria-expanded="true"
-              >
-                <h4 class="panel-title">
-                  <div class="panel_title">
+            <div class="card paper-card">
+              <div class="card-header paper-header">
+                <h4 class="paper-heading" id="heading-glp-records">
+                  <div class="paper-title">
                     <a
                       href="files/papers/GLP_price/draft.pdf"
                       target="_blank"
@@ -662,16 +627,28 @@
                     </a>
                   </div>
                 </h4>
+                <button
+                  class="abstract-toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse-glp-records"
+                  aria-controls="collapse-glp-records"
+                  aria-expanded="true"
+                  aria-label="Toggle abstract: The Value of Data Records"
+                >
+                  <span>Abstract</span>
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </button>
               </div>
 
               <div
                 id="collapse-glp-records"
-                class="panel-collapse collapse in"
-                role="tabpanel"
+                class="paper-abstract collapse show"
+                role="region"
                 aria-labelledby="heading-glp-records"
               >
-                <div class="panel-body">
-                  <div class="panel_body">
+                <div class="card-body paper-body">
+                  <div class="paper-text">
                     <p style="font-size: 12.5pt">
                       Joint work with
                       <a href="https://sites.google.com/site/simonegalperti/" target="_blank" rel="noopener noreferrer">S. Galperti</a>
@@ -727,19 +704,10 @@
             <br />
 
             <!-- Paper 4 -->
-            <div class="panel panel-default">
-              <div
-                class="panel-heading"
-                role="tab"
-                id="heading-gp-privacy"
-                style="background-color: white; cursor: pointer"
-                data-toggle="collapse"
-                data-target="#collapse-gp-privacy"
-                aria-controls="collapse-gp-privacy"
-                aria-expanded="true"
-              >
-                <h4 class="panel-title">
-                  <div class="panel_title">
+            <div class="card paper-card">
+              <div class="card-header paper-header">
+                <h4 class="paper-heading" id="heading-gp-privacy">
+                  <div class="paper-title">
                     <a
                       href="files/papers/GP_pp/draft.pdf"
                       target="_blank"
@@ -750,16 +718,28 @@
                     </a>
                   </div>
                 </h4>
+                <button
+                  class="abstract-toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse-gp-privacy"
+                  aria-controls="collapse-gp-privacy"
+                  aria-expanded="true"
+                  aria-label="Toggle abstract: Privacy and the Value of Data"
+                >
+                  <span>Abstract</span>
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </button>
               </div>
 
               <div
                 id="collapse-gp-privacy"
-                class="panel-collapse collapse in"
-                role="tabpanel"
+                class="paper-abstract collapse show"
+                role="region"
                 aria-labelledby="heading-gp-privacy"
               >
-                <div class="panel-body">
-                  <div class="panel_body">
+                <div class="card-body paper-body">
+                  <div class="paper-text">
                     <p style="font-size: 12.5pt">
                       Joint work with
                       <a href="https://sites.google.com/site/simonegalperti/" target="_blank" rel="noopener noreferrer">S. Galperti</a>.
@@ -812,19 +792,10 @@
             <br />
 
             <!-- Paper 5 -->
-            <div class="panel panel-default">
-              <div
-                class="panel-heading"
-                role="tab"
-                id="heading-flp-rules"
-                style="background-color: white; cursor: pointer"
-                data-toggle="collapse"
-                data-target="#collapse-flp-rules"
-                aria-controls="collapse-flp-rules"
-                aria-expanded="true"
-              >
-                <h4 class="panel-title">
-                  <div class="panel_title">
+            <div class="card paper-card">
+              <div class="card-header paper-header">
+                <h4 class="paper-heading" id="heading-flp-rules">
+                  <div class="paper-title">
                     <a
                       href="files/papers/FLP/draft.pdf"
                       target="_blank"
@@ -838,16 +809,28 @@
                   </div>
                   <div style="margin-top: 10px; color: #c90202; font-weight: 600"></div>
                 </h4>
+                <button
+                  class="abstract-toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse-flp-rules"
+                  aria-controls="collapse-flp-rules"
+                  aria-expanded="true"
+                  aria-label="Toggle abstract: Rules and Commitment in Communication: An Experimental Analysis"
+                >
+                  <span>Abstract</span>
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </button>
               </div>
 
               <div
                 id="collapse-flp-rules"
-                class="panel-collapse collapse in"
-                role="tabpanel"
+                class="paper-abstract collapse show"
+                role="region"
                 aria-labelledby="heading-flp-rules"
               >
-                <div class="panel-body">
-                  <div class="panel_body">
+                <div class="card-body paper-body">
+                  <div class="paper-text">
                     <p style="font-size: 12.5pt">
                       Joint work with
                       <a href="http://cess.nyu.edu/frechette/html/econ.htm" target="_blank" rel="noopener noreferrer">G. Frechette</a>
@@ -901,19 +884,10 @@
             <br />
 
             <!-- Paper 6 -->
-            <div class="panel panel-default">
-              <div
-                class="panel-heading"
-                role="tab"
-                id="heading-media"
-                style="background-color: white; cursor: pointer"
-                data-toggle="collapse"
-                data-target="#collapse-media"
-                aria-controls="collapse-media"
-                aria-expanded="true"
-              >
-                <h4 class="panel-title">
-                  <div class="panel_title">
+            <div class="card paper-card">
+              <div class="card-header paper-header">
+                <h4 class="paper-heading" id="heading-media">
+                  <div class="paper-title">
                     <a
                       href="files/papers/py_media/draft.pdf"
                       target="_blank"
@@ -924,16 +898,28 @@
                     </a>
                   </div>
                 </h4>
+                <button
+                  class="abstract-toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse-media"
+                  aria-controls="collapse-media"
+                  aria-expanded="true"
+                  aria-label="Toggle abstract: Media Competition and Social Disagreement"
+                >
+                  <span>Abstract</span>
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </button>
               </div>
 
               <div
                 id="collapse-media"
-                class="panel-collapse collapse in"
-                role="tabpanel"
+                class="paper-abstract collapse show"
+                role="region"
                 aria-labelledby="heading-media"
               >
-                <div class="panel-body">
-                  <div class="panel_body">
+                <div class="card-body paper-body">
+                  <div class="paper-text">
                     <p style="font-size: 12.5pt">
                       Joint work with
                       <a href="http://www.econ.ucsb.edu/~sevgi/" target="_blank" rel="noopener noreferrer">Sevgi Yuksel</a>.
@@ -989,19 +975,10 @@
 
 
             <!-- Paper 7 -->
-            <div class="panel panel-default">
-              <div
-                class="panel-heading"
-                role="tab"
-                id="heading-mpt"
-                style="background-color: white; cursor: pointer"
-                data-toggle="collapse"
-                data-target="#collapse-mpt"
-                aria-controls="collapse-mpt"
-                aria-expanded="true"
-              >
-                <h4 class="panel-title">
-                  <div class="panel_title">
+            <div class="card paper-card">
+              <div class="card-header paper-header">
+                <h4 class="paper-heading" id="heading-mpt">
+                  <div class="paper-title">
                     <a
                       href="http://jperego.com/files/papers/mpt/draft.pdf"
                       target="_blank"
@@ -1012,16 +989,28 @@
                     </a>
                   </div>
                 </h4>
+                <button
+                  class="abstract-toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse-mpt"
+                  aria-controls="collapse-mpt"
+                  aria-expanded="true"
+                  aria-label="Toggle abstract: On Information Design in Games"
+                >
+                  <span>Abstract</span>
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </button>
               </div>
 
               <div
                 id="collapse-mpt"
-                class="panel-collapse collapse in"
-                role="tabpanel"
+                class="paper-abstract collapse show"
+                role="region"
                 aria-labelledby="heading-mpt"
               >
-                <div class="panel-body">
-                  <div class="panel_body">
+                <div class="card-body paper-body">
+                  <div class="paper-text">
                     <div
                       style="
                         font-size: 12.5pt;
@@ -1073,7 +1062,7 @@
               </div>
             </div>
           </div>
-          <!-- /panel-group -->
+          <!-- /paper-list -->
         </div>
       </div>
     </section>
@@ -1082,29 +1071,20 @@
     <!-- =========================================================
          Dormant Projects
     ========================================================== -->
-<section id="work-in-progress" class="container text-left">
+<section id="work-in-progress" class="container text-start">
       <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-xl-8 offset-xl-2">
           <h2 style="margin-bottom: 30px; margin-top: 100px">
             <span>Dormant Projects</span>
           </h2>
 
-          <div class="panel-group" id="accordion-wip" role="tablist" aria-multiselectable="true">
+          <div class="paper-list" id="accordion-wip">
 
             <!-- WP 2 -->
-            <div class="panel panel-default">
-              <div
-                class="panel-heading"
-                role="tab"
-                id="heading-py-search"
-                style="background-color: white; cursor: pointer"
-                data-toggle="collapse"
-                data-target="#collapse-py-search"
-                aria-controls="collapse-py-search"
-                aria-expanded="true"
-              >
-                <h4 class="panel-title">
-                  <div class="panel_title">
+            <div class="card paper-card">
+              <div class="card-header paper-header">
+                <h4 class="paper-heading" id="heading-py-search">
+                  <div class="paper-title">
                     <a
                       style="font-weight: 600"
                       href="files/papers/py_search/draft.pdf"
@@ -1115,16 +1095,28 @@
                     </a>
                   </div>
                 </h4>
+                <button
+                  class="abstract-toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse-py-search"
+                  aria-controls="collapse-py-search"
+                  aria-expanded="true"
+                  aria-label="Toggle abstract: Searching For Information and the Diffusion of Knowledge"
+                >
+                  <span>Abstract</span>
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </button>
               </div>
 
               <div
                 id="collapse-py-search"
-                class="panel-collapse collapse in"
-                role="tabpanel"
+                class="paper-abstract collapse show"
+                role="region"
                 aria-labelledby="heading-py-search"
               >
-                <div class="panel-body">
-                  <div class="panel_body">
+                <div class="card-body paper-body">
+                  <div class="paper-text">
                     <p style="font-size: 12.5pt">
                       Joint work with
                       <a href="http://www.econ.ucsb.edu/~sevgi/" target="_blank" rel="noopener noreferrer">Sevgi Yuksel</a>.
@@ -1181,14 +1173,14 @@
     <!-- =========================================================
          Work in Progress
     ========================================================== -->
-<!--     <section id="work-in-progress" class="container text-left">
+<!--     <section id="work-in-progress" class="container text-start">
       <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-xl-8 offset-xl-2">
           <h2 style="margin-bottom: 30px; margin-top: 200px">
             <span>Work in Progress</span>
           </h2>
 
-          <div class="panel-group" id="accordion-wip" role="tablist" aria-multiselectable="true">
+          <div class="paper-list" id="accordion-wip">
 
 
            
@@ -1200,43 +1192,46 @@
     <!-- =========================================================
          Notes
     ========================================================== -->
-    <section id="notes" class="container text-left">
+    <section id="notes" class="container text-start">
       <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-xl-8 offset-xl-2">
           <h2 style="margin-bottom: 30px; margin-top: 100px">
             <span>Notes</span>
           </h2>
 
-          <div class="panel-group" id="accordion-notes" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-              <div
-                class="panel-heading"
-                role="tab"
-                id="heading-gp-lp"
-                style="background-color: white; cursor: pointer"
-                data-toggle="collapse"
-                data-target="#collapse-gp-lp"
-                aria-controls="collapse-gp-lp"
-                aria-expanded="true"
-              >
-                <h4 class="panel-title">
-                  <div class="panel_title">
+          <div class="paper-list" id="accordion-notes">
+            <div class="card paper-card">
+              <div class="card-header paper-header">
+                <h4 class="paper-heading" id="heading-gp-lp">
+                  <div class="paper-title">
                     <a style="font-weight: 600" href="files/papers/GP_lp/draft.pdf" target="_blank" rel="noopener noreferrer">
                       A Dual Perspective on Information Design
                     </a>
                     <span style="float: right; color: #c90202; font-size: medium"></span>
                   </div>
                 </h4>
+                <button
+                  class="abstract-toggle"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapse-gp-lp"
+                  aria-controls="collapse-gp-lp"
+                  aria-expanded="true"
+                  aria-label="Toggle abstract: A Dual Perspective on Information Design"
+                >
+                  <span>Abstract</span>
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </button>
               </div>
 
               <div
                 id="collapse-gp-lp"
-                class="panel-collapse collapse in"
-                role="tabpanel"
+                class="paper-abstract collapse show"
+                role="region"
                 aria-labelledby="heading-gp-lp"
               >
-                <div class="panel-body">
-                  <div class="panel_body">
+                <div class="card-body paper-body">
+                  <div class="paper-text">
                     <p style="font-size: 12.5pt">
                       Joint work with
                       <a href="https://sites.google.com/site/simonegalperti/" target="_blank" rel="noopener noreferrer">Simone Galperti</a>.
@@ -1277,7 +1272,7 @@
 
             <br /><br />
           </div>
-          <!-- /panel-group -->
+          <!-- /paper-list -->
         </div>
       </div>
     </section>
@@ -1285,9 +1280,9 @@
     <!-- =========================================================
          Resume
     ========================================================== -->
-    <section id="resume" class="container text-left">
+    <section id="resume" class="container text-start">
       <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
+        <div class="col-xl-8 offset-xl-2">
           <h2 style="margin-bottom: 0px; margin-top: 200px">
             <span>Resume</span>
           </h2>
@@ -1336,18 +1331,9 @@
       </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.easing.min.js"></script>
-
-    <!-- NOTE: This includes an API key directly in the page. Best practice is to restrict it (HTTP referrers) and/or load it via config. -->
-    <script
-      type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"
-    ></script>
-
-    <script src="js/grayscale.js"></script>
+    <!-- Homepage scripts (Bootstrap 5 does not require jQuery) -->
+    <script src="js/vendor/bootstrap-5.3.8.min.js"></script>
+    <script src="js/homepage.js"></script>
 
     <!-- Google Analytics (Universal Analytics / analytics.js) -->
     <script>
@@ -1370,29 +1356,5 @@
       ga("send", "pageview");
     </script>
 
-    <!-- Keyboard navigation (currently redirects to external sites; leaving as-is, just formatted) -->
-    <script>
-      $(document).ready(function () {
-        $("body").keydown(function (e) {
-          if (e.which == 37) {
-            // left
-            $(".previous a").trigger("click");
-          } else if (e.which == 39) {
-            // right
-            $(".next a").trigger("click");
-          }
-        });
-
-        $(".previous a").on("click", function () {
-          // your scripts for previous click here
-          window.location = "http://www.google.com";
-        });
-
-        $(".next a").on("click", function () {
-          // your scripts for next click here
-          window.location = "http://sg.yahoo.com/";
-        });
-      });
-    </script>
   </body>
 </html>
