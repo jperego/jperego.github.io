@@ -43,6 +43,9 @@ b, strong { font-weight: 700; }
   scroll-margin-top: 60px;
 }
 
+/* Navigation moves focus to the content without outlining the whole section. */
+.navigation-target:focus { outline: none; }
+
 .navbar-custom {
   position: fixed;
   top: 0;

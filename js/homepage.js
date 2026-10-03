@@ -209,6 +209,7 @@
     window.addEventListener('scroll', refreshAfterNavigation, { passive: true });
     window.scrollTo({ top, behavior: smooth && !reduceMotion.matches ? 'smooth' : 'instant' });
     target.setAttribute('tabindex', '-1');
+    target.classList.add('navigation-target');
     target.focus({ preventScroll: true });
     refreshAfterNavigation();
   };
