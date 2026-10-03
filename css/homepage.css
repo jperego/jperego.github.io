@@ -139,12 +139,12 @@ b, strong { font-weight: 700; }
   display: inline-block;
   flex-shrink: 0;
   margin-left: auto;
-  color: #c90202;
+  color: #7B2323;
   font-size: medium;
   font-weight: 600;
   white-space: nowrap;
 }
-.paper-status:hover { color: #c90202; }
+.paper-status:hover { color: #7B2323; }
 .paper-list { margin-bottom: 20px; }
 .paper-abstract-line { font-size: 12.5pt; }
 .paper-abstract-line.is-animating { overflow: hidden; }
@@ -160,9 +160,14 @@ b, strong { font-weight: 700; }
   font: inherit;
   font-weight: 700;
   text-align: left;
+  transition: color .1s ease-in-out;
 }
 
-.abstract-toggle:hover { text-decoration: underline; }
+.abstract-toggle:hover,
+.abstract-toggle:focus-visible {
+  color: #7B2323;
+  text-decoration: none;
+}
 
 .abstract-toggle:focus-visible,
 .paper-status:focus-visible,
@@ -174,6 +179,6 @@ b, strong { font-weight: 700; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
-  .navbar, a { transition: none !important; }
+  .navbar, a, .abstract-toggle { transition: none !important; }
   i.animated { animation: none !important; }
 }
