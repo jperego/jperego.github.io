@@ -96,6 +96,7 @@ b, strong { font-weight: 700; }
 
 /* Paper panels use consistent spacing within each card. */
 .paper-card {
+  --paper-row-gap: 12px;
   margin-bottom: 0;
   border: 0;
   border-radius: 4px;
@@ -122,19 +123,36 @@ b, strong { font-weight: 700; }
   text-align: left;
 }
 
-.paper-body { padding: 12px 15px 15px; border-top: 0; }
+.paper-body { padding: var(--paper-row-gap) 15px 15px; border-top: 0; }
 .paper-text {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--paper-row-gap);
   font-size: 90%;
   text-align: justify;
 }
-.paper-text > p { margin: 0; }
-.paper-metadata, .paper-download { display: flow-root; }
-.paper-author-row { display: flex; align-items: baseline; gap: 12px; }
+.paper-text > p { margin: 0; font-size: 12.5pt; }
+.paper-metadata, .paper-download {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--paper-row-gap);
+}
+.paper-author-row {
+  display: flex;
+  flex-basis: 100%;
+  align-items: baseline;
+  gap: var(--paper-row-gap);
+}
 .paper-authors { flex: 1; min-width: 0; }
-.paper-publication { display: block; margin-top: 12px; }
+.paper-metadata > .paper-authors { flex: 1 1 auto; }
+.paper-publication { display: block; flex-basis: 100%; }
+.paper-journal, .paper-download-note {
+  max-width: 100%;
+  margin-left: auto;
+  text-align: right;
+}
+.paper-download-links { max-width: 100%; }
 .paper-status {
   display: inline-block;
   flex-shrink: 0;
