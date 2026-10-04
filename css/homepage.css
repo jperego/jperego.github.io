@@ -125,18 +125,75 @@ b, strong { font-weight: 700; }
 /* Paper panels use consistent spacing within each card. */
 .paper-card {
   --paper-row-gap: 12px;
+  --paper-edge-padding: 15px;
+  --paper-outline-color: #ccc;
+  --paper-outline-width: 1px;
+  --paper-outline-duration: 220ms;
+  position: relative;
   margin-bottom: 0;
   border: 0;
-  border-radius: 4px;
-  box-shadow: 0 1px 0 #ccc;
+  border-radius: 10px;
+  box-shadow: none;
   background: white;
 }
 
-.paper-header {
+@media (hover: hover) and (pointer: fine) {
+  .paper-card:hover {
+    --paper-outline-color: #0081CC;
+    --paper-outline-width: 1.3px;
+    --paper-outline-duration: 260ms;
+  }
+}
+
+/* A continuous curved left/bottom line with a short top extension. */
+.paper-card::before,
+.paper-card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  transition: border-color var(--paper-outline-duration) cubic-bezier(.25, .1, .25, 1),
+              border-width var(--paper-outline-duration) cubic-bezier(.25, .1, .25, 1);
+}
+
+.paper-card::before {
+  inset: 10px 0 -1px -1px;
+  border-left: var(--paper-outline-width) solid var(--paper-outline-color);
+  border-bottom: var(--paper-outline-width) solid var(--paper-outline-color);
+  border-radius: 0 0 10px 10px;
+}
+
+.paper-card::after {
+  top: 0;
+  left: -1px;
+  width: 48px;
+  height: 10px;
+  border-top: var(--paper-outline-width) solid var(--paper-outline-color);
+  border-left: var(--paper-outline-width) solid var(--paper-outline-color);
+  border-top-left-radius: 10px;
+}
+
+.paper-card.has-faded-outline::before,
+.paper-card.has-faded-outline::after { display: none; }
+
+.paper-outline {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: calc(100% + 1px);
+  height: calc(100% + 1px);
+  overflow: visible;
+  pointer-events: none;
+  color: var(--paper-outline-color);
+  stroke-width: var(--paper-outline-width);
+  transition: color var(--paper-outline-duration) cubic-bezier(.25, .1, .25, 1),
+              stroke-width var(--paper-outline-duration) cubic-bezier(.25, .1, .25, 1);
+}
+
+.paper-card .paper-header {
   position: relative;
-  padding: 10px 15px 0;
+  padding: var(--paper-edge-padding) var(--paper-edge-padding) 0;
   border-bottom: 0;
-  border-radius: 3px 3px 0 0;
+  border-radius: 10px 10px 0 0;
   background: white;
 }
 
@@ -160,7 +217,7 @@ b, strong { font-weight: 700; }
 }
 .paper-download-links .fa-cloud-download { color: #303030; margin-right: 5px; }
 
-.paper-body { padding: var(--paper-row-gap) 15px 15px; border-top: 0; }
+.paper-body { padding: var(--paper-row-gap) var(--paper-edge-padding) var(--paper-edge-padding); border-top: 0; }
 .paper-text {
   display: flex;
   flex-direction: column;
@@ -228,10 +285,11 @@ b, strong { font-weight: 700; }
   padding: 0;
   border: 0;
   border-radius: 3px;
-  color: #444;
+  color: inherit;
   background: transparent;
   font: inherit;
   font-weight: 400;
+  -webkit-text-stroke: 0.65px currentColor;
   text-align: left;
   white-space: nowrap;
   transition: color .1s ease-in-out;
@@ -255,7 +313,8 @@ b, strong { font-weight: 700; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
-  .navbar, a, .abstract-toggle { transition: none !important; }
+  .navbar, a, .abstract-toggle, .paper-outline,
+  .paper-card::before, .paper-card::after { transition: none !important; }
   i.animated { animation: none !important; }
 }
 
