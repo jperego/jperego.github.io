@@ -137,9 +137,12 @@ b, strong { font-weight: 700; }
   background: white;
 }
 
-.paper-card.is-abstract-expanded {
-  --paper-outline-color: #0081CC;
-  --paper-outline-width: 1.3px;
+@media (hover: hover) and (pointer: fine) {
+  .paper-card:hover {
+    --paper-outline-color: #0081CC;
+    --paper-outline-width: 1.3px;
+    --paper-outline-duration: 260ms;
+  }
 }
 
 /* A continuous curved left/bottom line with a short top extension. */

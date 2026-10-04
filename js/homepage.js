@@ -76,8 +76,6 @@
       return range.cloneContents();
     };
     const updateToggle = () => {
-      card.style.setProperty('--paper-outline-duration', `${abstractTransitionDuration(expanded)}ms`);
-      card.classList.toggle('is-abstract-expanded', expanded);
       toggle.hidden = !hasOverflow;
       toggle.textContent = expanded ? 'See less' : 'See more';
       toggle.setAttribute('aria-expanded', String(expanded || !hasOverflow));
