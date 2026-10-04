@@ -1,8 +1,12 @@
 /* Bootstrap 5 adjustments for the homepage. Shared teaching-page styles stay in style.css. */
 body {
-  font-size: 14px;
-  line-height: 1.42857143;
+  --body-copy-size: 19px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: var(--body-copy-size);
+  line-height: 1.5;
 }
+
+.intro p { font-size: var(--body-copy-size); }
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
@@ -144,7 +148,7 @@ b, strong { font-weight: 700; }
 
 .paper-title {
   color: #0081CC;
-  font-size: 120%;
+  font-size: 22px;
   text-align: left;
 }
 
@@ -156,10 +160,10 @@ b, strong { font-weight: 700; }
   display: flex;
   flex-direction: column;
   gap: var(--paper-row-gap);
-  font-size: 90%;
+  font-size: inherit;
   text-align: justify;
 }
-.paper-text > p { margin: 0; font-size: 12.5pt; }
+.paper-text > p { margin: 0; font-size: var(--body-copy-size); }
 .paper-citation { text-align: left; }
 .paper-citation a { color: inherit; font-weight: 400; }
 .paper-citation a:hover,
@@ -199,7 +203,7 @@ b, strong { font-weight: 700; }
   flex-shrink: 0;
   margin-left: auto;
   color: var(--site-accent-red);
-  font-size: medium;
+  font-size: 18px;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -210,7 +214,7 @@ b, strong { font-weight: 700; }
   gap: 40px;
   margin-bottom: 0;
 }
-.paper-abstract-line { font-size: 12.5pt; }
+.paper-abstract-line { font-size: var(--body-copy-size); }
 .paper-abstract-line.is-animating { overflow: hidden; }
 
 .abstract-toggle {
@@ -222,7 +226,7 @@ b, strong { font-weight: 700; }
   color: #555;
   background: transparent;
   font: inherit;
-  font-weight: 600;
+  font-weight: 400;
   text-align: left;
   white-space: nowrap;
   transition: color .1s ease-in-out;
