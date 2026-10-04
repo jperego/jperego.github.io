@@ -125,6 +125,7 @@ b, strong { font-weight: 700; }
 /* Paper panels use consistent spacing within each card. */
 .paper-card {
   --paper-row-gap: 12px;
+  --paper-edge-padding: 15px;
   position: relative;
   margin-bottom: 0;
   border: 0;
@@ -160,7 +161,7 @@ b, strong { font-weight: 700; }
 
 .paper-card .paper-header {
   position: relative;
-  padding: 10px 15px 0;
+  padding: var(--paper-edge-padding) var(--paper-edge-padding) 0;
   border-bottom: 0;
   border-radius: 10px 10px 0 0;
   background: white;
@@ -186,7 +187,7 @@ b, strong { font-weight: 700; }
 }
 .paper-download-links .fa-cloud-download { color: #303030; margin-right: 5px; }
 
-.paper-body { padding: var(--paper-row-gap) 15px 15px; border-top: 0; }
+.paper-body { padding: var(--paper-row-gap) var(--paper-edge-padding) var(--paper-edge-padding); border-top: 0; }
 .paper-text {
   display: flex;
   flex-direction: column;
