@@ -6,6 +6,7 @@
   const menu = document.getElementById('navbar-menu');
   const menuButton = navbar.querySelector('.navbar-toggler');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const abstractTransitionDuration = expanded => expanded ? 260 : 220;
   const navigationSections = Array.from(navbar.querySelectorAll('.nav-link.page-scroll'), link => ({
     link,
     section: document.getElementById(link.getAttribute('href').slice(1))
@@ -75,6 +76,8 @@
       return range.cloneContents();
     };
     const updateToggle = () => {
+      card.style.setProperty('--paper-outline-duration', `${abstractTransitionDuration(expanded)}ms`);
+      card.classList.toggle('is-abstract-expanded', expanded);
       toggle.hidden = !hasOverflow;
       toggle.textContent = expanded ? 'See less' : 'See more';
       toggle.setAttribute('aria-expanded', String(expanded || !hasOverflow));
@@ -159,7 +162,7 @@
       remainder.append(slice(previewEnd, fullText.length));
       abstract.replaceChildren(slice(0, previewEnd), remainder);
       const expandedHeight = line.getBoundingClientRect().height;
-      const duration = expanded ? 260 : 220;
+      const duration = abstractTransitionDuration(expanded);
       line.classList.add('is-animating');
       const animation = line.animate([
         { height: `${startHeight}px` },
@@ -229,7 +232,6 @@
       const topStyle = getComputedStyle(card, '::after');
       const radius = Number.parseFloat(cardStyle.borderTopLeftRadius);
       const extension = Number.parseFloat(topStyle.width);
-      const color = topStyle.borderTopColor;
       const svg = svgElement('svg', {
         class: 'paper-outline', 'aria-hidden': 'true', focusable: 'false',
         fill: 'none', 'stroke-width': '1'
@@ -261,7 +263,7 @@
         const definitions = svgElement('defs');
         let distance = 0;
         const paths = segments.map((segment, segmentIndex) => {
-          const path = svgElement('path', { d: segment.d, stroke: color });
+          const path = svgElement('path', { d: segment.d, stroke: 'currentColor' });
           if (opacityAt(distance + segment.length) < 1) {
             const id = `paper-outline-gradient-${cardIndex}-${segmentIndex}`;
             const gradient = svgElement('linearGradient', {
@@ -282,7 +284,7 @@
               const offset = ((point[0] - segment.from[0]) * dx + (point[1] - segment.from[1]) * dy) / (dx * dx + dy * dy);
               gradient.append(svgElement('stop', {
                 offset: Math.min(1, Math.max(0, offset)),
-                'stop-color': color,
+                'stop-color': 'currentColor',
                 'stop-opacity': opacityAt(distance + fraction * segment.length)
               }));
             });

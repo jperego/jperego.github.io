@@ -126,6 +126,9 @@ b, strong { font-weight: 700; }
 .paper-card {
   --paper-row-gap: 12px;
   --paper-edge-padding: 15px;
+  --paper-outline-color: #ccc;
+  --paper-outline-width: 1px;
+  --paper-outline-duration: 220ms;
   position: relative;
   margin-bottom: 0;
   border: 0;
@@ -134,18 +137,25 @@ b, strong { font-weight: 700; }
   background: white;
 }
 
+.paper-card.is-abstract-expanded {
+  --paper-outline-color: #0081CC;
+  --paper-outline-width: 1.3px;
+}
+
 /* A continuous curved left/bottom line with a short top extension. */
 .paper-card::before,
 .paper-card::after {
   content: "";
   position: absolute;
   pointer-events: none;
+  transition: border-color var(--paper-outline-duration) cubic-bezier(.25, .1, .25, 1),
+              border-width var(--paper-outline-duration) cubic-bezier(.25, .1, .25, 1);
 }
 
 .paper-card::before {
   inset: 10px 0 -1px -1px;
-  border-left: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border-left: var(--paper-outline-width) solid var(--paper-outline-color);
+  border-bottom: var(--paper-outline-width) solid var(--paper-outline-color);
   border-radius: 0 0 10px 10px;
 }
 
@@ -154,8 +164,8 @@ b, strong { font-weight: 700; }
   left: -1px;
   width: 48px;
   height: 10px;
-  border-top: 1px solid #ccc;
-  border-left: 1px solid #ccc;
+  border-top: var(--paper-outline-width) solid var(--paper-outline-color);
+  border-left: var(--paper-outline-width) solid var(--paper-outline-color);
   border-top-left-radius: 10px;
 }
 
@@ -170,6 +180,10 @@ b, strong { font-weight: 700; }
   height: calc(100% + 1px);
   overflow: visible;
   pointer-events: none;
+  color: var(--paper-outline-color);
+  stroke-width: var(--paper-outline-width);
+  transition: color var(--paper-outline-duration) cubic-bezier(.25, .1, .25, 1),
+              stroke-width var(--paper-outline-duration) cubic-bezier(.25, .1, .25, 1);
 }
 
 .paper-card .paper-header {
@@ -296,7 +310,8 @@ b, strong { font-weight: 700; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto !important; }
-  .navbar, a, .abstract-toggle { transition: none !important; }
+  .navbar, a, .abstract-toggle, .paper-outline,
+  .paper-card::before, .paper-card::after { transition: none !important; }
   i.animated { animation: none !important; }
 }
 
