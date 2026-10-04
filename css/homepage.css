@@ -151,7 +151,7 @@ b, strong { font-weight: 700; }
 .paper-card::after {
   top: 0;
   left: -1px;
-  width: 96px;
+  width: 48px;
   height: 10px;
   border-top: 1px solid #ccc;
   border-left: 1px solid #ccc;
