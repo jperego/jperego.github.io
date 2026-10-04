@@ -152,7 +152,8 @@ b, strong { font-weight: 700; }
   text-align: left;
 }
 
-.paper-title a {
+.paper-title a,
+.paper-download-links .pdf-link {
   font-weight: 400;
   /* Georgia has no semibold face; slightly reinforce the regular face. */
   -webkit-text-stroke: 0.65px currentColor;
