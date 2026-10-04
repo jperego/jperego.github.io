@@ -159,6 +159,19 @@ b, strong { font-weight: 700; }
   border-top-left-radius: 10px;
 }
 
+.paper-card.has-faded-outline::before,
+.paper-card.has-faded-outline::after { display: none; }
+
+.paper-outline {
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: calc(100% + 1px);
+  height: calc(100% + 1px);
+  overflow: visible;
+  pointer-events: none;
+}
+
 .paper-card .paper-header {
   position: relative;
   padding: var(--paper-edge-padding) var(--paper-edge-padding) 0;
