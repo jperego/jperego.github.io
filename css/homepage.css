@@ -36,8 +36,11 @@ b, strong { font-weight: 700; }
 
 @media (min-width: 1200px) {
   .container { max-width: 1170px; }
-  .paper-column { width: 75%; margin-inline: auto; }
+  .site-content-column { width: 75%; margin-inline: auto; }
 }
+
+/* Align biography copy with the text inside the paper panels. */
+.bio-copy { padding-inline: 15px; }
 
 #working-papers, #research, #others {
   scroll-margin-top: 60px;
