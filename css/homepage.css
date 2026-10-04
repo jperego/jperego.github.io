@@ -254,10 +254,11 @@ b, strong { font-weight: 700; }
   padding: 0;
   border: 0;
   border-radius: 3px;
-  color: #444;
+  color: inherit;
   background: transparent;
   font: inherit;
   font-weight: 400;
+  -webkit-text-stroke: 0.35px currentColor;
   text-align: left;
   white-space: nowrap;
   transition: color .1s ease-in-out;
