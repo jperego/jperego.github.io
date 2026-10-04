@@ -272,7 +272,7 @@ b, strong { font-weight: 700; }
   background: transparent;
   font: inherit;
   font-weight: 400;
-  -webkit-text-stroke: 0.35px currentColor;
+  -webkit-text-stroke: 0.65px currentColor;
   text-align: left;
   white-space: nowrap;
   transition: color .1s ease-in-out;
