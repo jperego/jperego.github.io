@@ -125,11 +125,37 @@ b, strong { font-weight: 700; }
 /* Paper panels use consistent spacing within each card. */
 .paper-card {
   --paper-row-gap: 12px;
+  position: relative;
   margin-bottom: 0;
   border: 0;
   border-radius: 10px;
-  box-shadow: -1px 1px 0 #ccc;
+  box-shadow: none;
   background: white;
+}
+
+/* A continuous curved left/bottom line with a short top extension. */
+.paper-card::before,
+.paper-card::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+
+.paper-card::before {
+  inset: 10px 0 -1px -1px;
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0 0 10px 10px;
+}
+
+.paper-card::after {
+  top: 0;
+  left: -1px;
+  width: 96px;
+  height: 10px;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-top-left-radius: 10px;
 }
 
 .paper-card .paper-header {
