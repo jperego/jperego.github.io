@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#344e86">
+  <meta name="description" content="Privacy For Sale — an interactive presentation by Piotr Dworczak, Jacopo Perego, and Laura Veldkamp.">
+  <title>Privacy For Sale</title>
+  <link rel="stylesheet" href="styles.css?v=98718dfbdd4ad29c">
+</head>
+<body>
+  <header class="topbar chrome">
+    <button class="brand" id="home" title="Go to the title slide" aria-label="Privacy For Sale, go to title slide">
+      <span><strong>Privacy For Sale</strong><small>OCTOBER 2026</small></span>
+    </button>
+    <button class="chapter-pill" id="chaptersButton" aria-haspopup="dialog"><span id="chapterLabel">Introduction</span><span data-icon="chevron-down"></span></button>
+    <nav class="tools" aria-label="Presentation tools">
+      <button class="icon-button" id="overviewButton" title="Slide overview (O)" aria-label="Slide overview" data-icon="grid"></button>
+      <a class="download-button" id="downloadPdf" href="source/slides75.pdf?v=30d7f61c636f2a09" download="Privacy For Sale.pdf" title="Download the complete slide deck as a PDF"><span data-icon="download"></span><span>Download PDF</span></a>
+      <span class="tool-rule"></span>
+      <button class="icon-button" id="helpButton" title="Keyboard shortcuts (?)" aria-label="Keyboard shortcuts" data-icon="help"></button>
+      <button class="present-button" id="fullscreenButton" title="Present fullscreen (F)"><span data-icon="expand"></span><span>Present</span></button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="presentation-area">
+      <section class="slide-column" aria-label="Current slide">
+        <div class="stage" id="stage" tabindex="0" aria-label="Presentation. Use arrow keys, Page Up, or Page Down to navigate.">
+          <img id="slideImage" class="slide-image" src="assets/slides/page-001.svg?v=2142dc15d6913987" alt="Privacy For Sale — title slide" draggable="false">
+          <img id="transitionImage" class="slide-image incoming" alt="" aria-hidden="true" draggable="false">
+          <div id="motionSlide" class="slide-image motion-slide" aria-hidden="true" hidden></div>
+          <div class="slide-links" id="slideLinks"></div>
+          <div class="laser" id="laser" aria-hidden="true"></div>
+          <div class="blackout" id="blackout" aria-hidden="true"><span>Presentation paused<span>Press B to return</span></span></div>
+        </div>
+      </section>
+    </div>
+    <footer class="bottom-bar chrome">
+      <button class="slide-info" id="slideInfo" title="Browse slides (O)"><span class="slide-count"><strong id="frameNumber">01</strong><span>/ 45</span></span><span class="slide-heading" id="slideTitle">Title</span></button>
+      <div class="step-controls"><button id="prevButton" class="icon-button nav-button" title="Previous reveal (←)" aria-label="Previous reveal" data-icon="arrow-left"></button><div id="steps" class="steps" aria-label="Reveal steps"></div><button id="nextButton" class="icon-button nav-button" title="Next reveal (→)" aria-label="Next reveal" data-icon="arrow-right"></button></div>
+    </footer>
+    <div class="timeline chrome" id="timeline" aria-label="Jump to a slide"></div>
+  </main>
+
+  <button id="exitPresent" class="exit-present" title="Exit presentation (Esc)"><span data-icon="minimize"></span>Exit presentation</button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <p class="sr-only" id="announcement" aria-live="polite" aria-atomic="true"></p>
+
+  <dialog id="overview" class="overview dialog">
+    <div class="overview-header"><div><span class="eyebrow">EXPLORE THE DECK</span><h1>Slide overview</h1></div><button class="icon-button close-dialog" aria-label="Close overview" data-icon="close"></button></div>
+    <div class="searchbox"><span data-icon="search"></span><input id="slideSearch" type="search" placeholder="Find a slide, topic, or equation…" aria-label="Search all slides" autocomplete="off"><kbd>ESC</kbd></div>
+    <div class="overview-layout"><nav id="sectionFilters" class="section-filters" aria-label="Filter slides by section"></nav><div class="overview-results"><div class="results-heading"><span id="resultsCount">45 slides</span><span>Click to jump · arrows to navigate</span></div><div id="slideGrid" class="slide-grid"></div><p id="noResults" class="no-results" hidden>No slides match your search.</p></div></div>
+  </dialog>
+
+  <dialog id="chapters" class="chapters dialog"><div class="dialog-header"><div><span class="eyebrow">THE ARGUMENT</span><h2>Jump to a section</h2></div><button class="icon-button close-dialog" aria-label="Close sections" data-icon="close"></button></div><nav id="chapterList" aria-label="Sections"></nav></dialog>
+
+  <dialog id="help" class="help dialog">
+    <div class="dialog-header"><div><span class="eyebrow">PRESENT WITH CONFIDENCE</span><h2>Presentation controls</h2></div><button class="icon-button close-dialog" aria-label="Close help" data-icon="close"></button></div>
+    <dl class="shortcuts">
+      <div><dt>Next / previous reveal</dt><dd><kbd>→</kbd><kbd>←</kbd></dd></div>
+      <div><dt>Presentation clicker</dt><dd><kbd>Page Down</kbd><kbd>Page Up</kbd></dd></div>
+      <div><dt>Next reveal</dt><dd><kbd>Space</kbd><kbd>Enter</kbd></dd></div>
+      <div><dt>Previous reveal</dt><dd><kbd>Shift</kbd><span>+</span><kbd>Space</kbd></dd></div>
+      <div><dt>Next / previous slide</dt><dd><kbd>Shift</kbd><span>+</span><kbd>→</kbd><kbd>←</kbd></dd></div>
+      <div><dt>Slide overview</dt><dd><kbd>O</kbd></dd></div>
+      <div><dt>Search the deck</dt><dd><kbd>⌘ / Ctrl</kbd><span>+</span><kbd>K</kbd></dd></div>
+      <div><dt>Fullscreen presentation</dt><dd><kbd>F</kbd></dd></div>
+      <div><dt>Blank / restore screen</dt><dd><kbd>B</kbd><kbd>.</kbd></dd></div>
+      <div><dt>First / last slide</dt><dd><kbd>Home</kbd><kbd>End</kbd></dd></div>
+    </dl>
+    <p class="help-note">Click the slide or swipe left to advance. Move the mouse over the slide to use the red laser. Standard clickers work while this browser window is active. Everything works offline.</p>
+    <a class="pdf-link" href="source/slides75.pdf?v=30d7f61c636f2a09" download="Privacy For Sale.pdf"><span data-icon="download"></span>Download the complete PDF</a>
+  </dialog>
+
+  <noscript><div class="noscript">Enable JavaScript to use the presentation, or <a href="source/slides75.pdf?v=30d7f61c636f2a09">open the PDF</a>.</div></noscript>
+  <script src="data.js?v=7984797b5e27f2c6"></script>
+  <script src="motion-data.js?v=90158ecf66af55d3"></script>
+  <script src="motion.js?v=ef0f49405ac09bdd"></script>
+  <script src="app.js?v=f835f9a2caa5eb9d"></script>
+</body>
+</html>
