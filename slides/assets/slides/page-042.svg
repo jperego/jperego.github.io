@@ -87,7 +87,7 @@
 <path id="font_2_36" d="M.576004 .6349945H.34399415V0H.24749756V.6349945H.01499939V.71650698H.576004V.6349945Z" />
 </defs>
 <path transform="matrix(1,0,0,-1,72,72.002)" d="M-72-183.118H324.85V72H-72Z" fill="#f5f6f9" />
-<g data-aside="blue"><rect x="17" y="149.738" width="362.850" height="78.868" rx="3.5" fill="#e7edf7" /><path d="M17.6 159.738V218.606" stroke="#9cafcf" stroke-width="1.2" stroke-linecap="round" /></g><path transform="matrix(1,0,0,-1,72,72.002)" d="M-72 43.893H324.85V72H-72Z" fill="#e1e4ed" />
+<g data-aside="blue"><rect x="0" y="149.738" width="396.850" height="105.382" fill="#e1e4ed" /></g><path transform="matrix(1,0,0,-1,72,72.002)" d="M-72 43.893H324.85V72H-72Z" fill="#e1e4ed" />
 <use data-text="P" xlink:href="#font_1_30" transform="matrix(14.3462,0,0,-14.3462,9.731998,18.376999)" fill="#344e86" />
 <use data-text="a" xlink:href="#font_1_45" transform="matrix(14.3462,0,0,-14.3462,18.397103,18.376999)" fill="#344e86" />
 <use data-text="y" xlink:href="#font_1_139" transform="matrix(14.3462,0,0,-14.3462,25.469777,18.376999)" fill="#344e86" />
