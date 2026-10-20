@@ -76,7 +76,7 @@
 <use data-text="n" xlink:href="#font_2_109" transform="matrix(7.9701,0,0,-7.9701,379.78233,16.96)" fill="#344e86"/>
 <path transform="matrix(1,0,0,-1,72,72.002)" stroke-width="1.4944" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#9aa7c3" d="M-72 43.146H324.85"/>
 <path transform="matrix(1,0,0,-1,0,29.603)" d="M0 0V1.49442H396.8555V0ZM396.8555 1.49442" fill="#9aa7c3"/>
-<path transform="matrix(1,0,0,-1,0,29.603)" d="M0 0V1.49442H52.21686V0ZM52.21686 1.49442" fill="#b84646"/>
+
 <use data-text="1" xlink:href="#font_1_400" transform="matrix(9.9626,0,0,-9.9626,28.346,63.466)" fill="#344e86"/>
 <use data-text="." xlink:href="#font_1_314" transform="matrix(9.9626,0,0,-9.9626,34.12431,63.466)" fill="#344e86"/>
 <use data-text="A" xlink:href="#font_1_3" transform="matrix(9.9626,0,0,-9.9626,39.72329,63.466)" fill="#344e86"/>

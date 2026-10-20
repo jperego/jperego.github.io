@@ -16,3 +16,8 @@
 .motion-slide{z-index:1;pointer-events:none}
 .motion-slide[hidden]{display:none}
 .motion-slide>svg{display:block;width:100%;height:100%}
+
+/* Persistent red bar: glide between frames without crossfading or resetting. */
+.slide-progress{position:absolute;left:0;width:100%;z-index:3;pointer-events:none}
+.slide-progress[hidden]{display:none}
+#slideProgressFill{width:100%;height:100%;background:#b84646;transform:scaleX(0);transform-origin:left center;transition:transform 600ms cubic-bezier(.25,.1,.25,1);will-change:transform}

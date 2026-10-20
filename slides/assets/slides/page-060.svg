@@ -119,7 +119,7 @@
 <use data-text="&#x03b2;" xlink:href="#font_4_1" transform="matrix(7.9701,0,0,-7.9701,379.05299,16.96)" fill="#344e86"/>
 <path transform="matrix(1,0,0,-1,72,72.002)" stroke-width="1.4944" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#9aa7c3" d="M-72 43.146H324.85"/>
 <path transform="matrix(1,0,0,-1,0,29.603)" d="M0 0V1.49442H396.8555V0ZM396.8555 1.49442" fill="#9aa7c3"/>
-<path transform="matrix(1,0,0,-1,0,29.603)" d="M0 0V1.49442H187.98194V0ZM187.98194 1.49442" fill="#b84646"/>
+
 <use data-text="T" xlink:href="#font_3_36" transform="matrix(9.9626,0,0,-9.9626,28.346,58.095)" fill="#333333"/>
 <use data-text="h" xlink:href="#font_3_95" transform="matrix(9.9626,0,0,-9.9626,34.154199,58.095)" fill="#333333"/>
 <use data-text="e" xlink:href="#font_3_59" transform="matrix(9.9626,0,0,-9.9626,39.71333,58.095)" fill="#333333"/>

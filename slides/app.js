@@ -107,6 +107,24 @@
     document.title = `${f.label || f.title} · Privacy For Sale`;
     setHash();
   }
+  function updateProgress(n, instant = false) {
+    const bar = $('slideProgress'), fill = $('slideProgressFill');
+    const target = deck.progress?.[n];
+    if (!target) { bar.hidden = true; return; }
+    bar.style.top = `${target.top}%`;
+    bar.style.height = `${target.height}%`;
+    fill.style.backgroundColor = target.color;
+    const wasHidden = bar.hidden;
+    bar.hidden = false;
+    if (instant || reducedMotion.matches) fill.style.transition = 'none';
+    // Establish the retained width when returning from a section/title slide.
+    if (wasHidden) void fill.offsetWidth;
+    fill.style.transform = `scaleX(${target.fraction})`;
+    if (instant || reducedMotion.matches) {
+      void fill.offsetWidth;
+      fill.style.transition = '';
+    }
+  }
   async function go(next, opts = {}) {
     hideLaser();
     next = Math.max(1, Math.min(deck.totalPages, next));
@@ -124,6 +142,7 @@
     $('slideImage').src = path(previous);
     page = next;
     const sameFrame = frameFor(previous).index === frameFor(next).index;
+    updateProgress(next, opts.instant);
     const isSectionOpening = !sameFrame && frameFor(next).isDivider;
     const motionPlan = !opts.instant && !reducedMotion.matches && next > previous
       ? window.SlideMotion.plan(next, previous) : null;
@@ -323,6 +342,7 @@
   window.addEventListener('hashchange', () => go(hashPage(), { instant: true }));
   reducedMotion.addEventListener('change', () => {
     if (!reducedMotion.matches) return;
+    updateProgress(page, true);
     if (animation) { animation.cancel(); animation = null; }
     $('slideImage').src = path(page);
     $('transitionImage').style.visibility = 'hidden';

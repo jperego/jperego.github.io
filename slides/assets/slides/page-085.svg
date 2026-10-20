@@ -123,7 +123,7 @@
 <use data-text="&#x03b2;" xlink:href="#font_5_1" transform="matrix(7.9701,0,0,-7.9701,379.053,16.96)" fill="#b03232"/>
 <path transform="matrix(1,0,0,-1,72,72.002)" stroke-width="1.4944" stroke-linecap="butt" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#9aa7c3" d="M-72 43.146H324.85"/>
 <path transform="matrix(1,0,0,-1,0,29.603)" d="M0 0V1.49442H396.8555V0ZM396.8555 1.49442" fill="#9aa7c3"/>
-<path transform="matrix(1,0,0,-1,0,29.603)" d="M0 0V1.49442H323.75309V0ZM323.75309 1.49442" fill="#b84646"/>
+
 <path transform="matrix(1,0,0,-1,28.346123,229.69896)" d="M0 2.83466V166.33284H340.16188V2.83466C340.16188 1.2691 338.8928 0 337.3272 0H2.83466C1.2691 0 0 1.2691 0 2.83466Z" fill="#f5f6f9" fill-opacity="0"/>
 <path transform="matrix(1,0,0,-1,28.346123,229.69896)" d="M0 166.33284V176.55934C0 178.12491 1.2691 179.39402 2.83466 179.39402H337.3272C338.8928 179.39402 340.16188 178.12491 340.16188 176.55934V166.33284Z" fill="#f5f6f9" fill-opacity="0"/>
 <path transform="matrix(1,0,0,-1,28.346123,229.69896)" stroke-width=".64757" stroke-linecap="round" stroke-miterlimit="10" stroke-linejoin="miter" fill="none" stroke="#bc5151" d="M68.13118 171.9867V179.97037C68.13118 182.78838 65.84679 185.07279 63.02876 185.07279H-3.4016C-6.21962 185.07279-8.50403 182.78838-8.50403 179.97037V2.41248C-8.50403-.40553-6.21962-2.68994-3.4016-2.68994H0"/>
