@@ -18,6 +18,12 @@
   const icon = name => `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true">${icons[name] || ''}</svg>`;
   document.querySelectorAll('[data-icon]').forEach(el => el.innerHTML = icon(el.dataset.icon));
   const frames = deck.frames;
+  frames.forEach(f => {
+    f.pages = f.pages || Array.from({ length: f.lastPage - f.firstPage + 1 }, (_, i) => f.firstPage + i);
+    f.steps = f.pages.length;
+  });
+  const revealPages = frames.flatMap(f => f.pages);
+  const revealIndex = new Map(revealPages.map((n, i) => [n, i]));
   const frameFor = n => frames.find(f => n >= f.firstPage && n <= f.lastPage) || frames[0];
   // Tie every rendered page to the exact PDF revision, including file:// use.
   const assetRevision = encodeURIComponent(deck.contentRevision || deck.pdfMtime || '');
@@ -48,7 +54,7 @@
   }
   function setHash() {
     const f = frameFor(page);
-    const hash = `#slide=${f.index}&step=${page - f.firstPage + 1}`;
+    const hash = `#slide=${f.index}&step=${f.pages.indexOf(page) + 1}`;
     if (location.hash !== hash) {
       try { history.replaceState(null, '', hash); } catch (_) { location.hash = hash; }
     }
@@ -58,16 +64,16 @@
     const index = Math.max(1, Math.min(frames.length, Number(query.get('slide')) || 1));
     const f = frames[index - 1];
     const step = Math.max(1, Math.min(f.steps, Number(query.get('step')) || 1));
-    return f.firstPage + step - 1;
+    return f.pages[step - 1];
   }
   function updateUI() {
-    const f = frameFor(page), step = page - f.firstPage + 1;
+    const f = frameFor(page), step = f.pages.indexOf(page) + 1;
     $('frameNumber').textContent = String(f.index).padStart(2, '0');
     $('slideTitle').textContent = f.label || f.title;
     $('chapterLabel').textContent = f.section;
     $('slideImage').alt = `${f.title}. Slide ${f.index} of ${frames.length}, reveal ${step} of ${f.steps}.`;
-    $('prevButton').disabled = page === 1;
-    $('nextButton').disabled = page === deck.totalPages;
+    $('prevButton').disabled = page === revealPages[0];
+    $('nextButton').disabled = page === revealPages[revealPages.length - 1];
     const steps = $('steps');
     // Keep the same buttons during reveals so the active marker can glide
     // between them instead of being destroyed and recreated at every click.
@@ -79,7 +85,7 @@
         b.className = 'step-dot';
         b.title = `Reveal ${i} of ${f.steps}`;
         b.setAttribute('aria-label', b.title);
-        b.addEventListener('click', () => go(f.firstPage + i - 1));
+        b.addEventListener('click', () => go(f.pages[i - 1]));
         steps.append(b);
       }
     }
@@ -104,6 +110,8 @@
   async function go(next, opts = {}) {
     hideLaser();
     next = Math.max(1, Math.min(deck.totalPages, next));
+    // Internal PDF links may target a duplicate; use its identical visible reveal.
+    next = frameFor(next).pages.reduce((kept, n) => n <= next ? n : kept);
     const myGeneration = ++generation;
     requestedPage = next;
     try { await load(next); }
@@ -147,7 +155,10 @@
       $('slideImage').src = path(next); incoming.style.visibility = 'hidden';
     }
     updateUI();
-    for (const n of [next - 1, next + 1, next + 2]) if (n >= 1 && n <= deck.totalPages) load(n).catch(() => {});
+    const position = revealIndex.get(next);
+    for (const i of [position - 1, position + 1, position + 2]) {
+      if (revealPages[i]) load(revealPages[i]).catch(() => {});
+    }
   }
   function advance(direction, skip = false) {
     if (document.body.classList.contains('is-blank')) { toggleBlank(false); return; }
@@ -156,8 +167,9 @@
       const target = frames[index + direction];
       if (target) go(target.firstPage);
     } else {
-      if (direction > 0 && requestedPage === deck.totalPages) { notify('You’ve reached the end of the deck'); return; }
-      go(requestedPage + direction);
+      const position = revealIndex.get(requestedPage);
+      if (direction > 0 && position === revealPages.length - 1) { notify('You’ve reached the end of the deck'); return; }
+      go(revealPages[Math.max(0, Math.min(revealPages.length - 1, position + direction))]);
     }
   }
   function toggleBlank(value) {
