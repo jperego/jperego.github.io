@@ -22,14 +22,15 @@
     const activeArrows = entry.arrows.filter(key => !oldArrows.has(key));
     return activeArrows.length ? { ...entry, activeArrows } : null;
   }
-  function draw(el, start, duration) {
+  function draw(el, start, duration, reverse = false) {
     const length = el.getTotalLength();
+    const offset = reverse ? -length : length;
     el.style.strokeDasharray = `${length} ${length}`;
-    el.style.strokeDashoffset = String(length);
+    el.style.strokeDashoffset = String(offset);
     el.style.opacity = '0';
     tasks.push({ start, duration, apply: t => {
       el.style.opacity = t > 0 ? '1' : '0';
-      el.style.strokeDashoffset = String(length * (1 - smooth(t)));
+      el.style.strokeDashoffset = String(offset * (1 - smooth(t)));
     }});
   }
   function fade(el, start, duration) {
@@ -43,12 +44,20 @@
     surface.hidden = false;
     surface.dataset.kind = entry.kind;
     if (entry.kind === 'border') {
-      draw(surface.querySelector('[data-motion="border"]'), 120, 600);
-      fade(surface.querySelector('[data-motion="dot"]'), 0, 120);
+      // Start at the faded bottom-right edge, climb the left side, and finish
+      // around the heading with the dot. Arrow paths keep their own direction.
       const rect = surface.querySelector('[data-motion="tail"]');
       const width = Number(rect.dataset.fullWidth);
+      const x = Number(rect.getAttribute('x'));
+      rect.setAttribute('x', String(x + width));
       rect.setAttribute('width', '0');
-      tasks.push({ start: 720, duration: 260, apply: t => rect.setAttribute('width', String(width * smooth(t))) });
+      tasks.push({ start: 0, duration: 260, apply: t => {
+        const shown = width * smooth(t);
+        rect.setAttribute('x', String(x + width - shown));
+        rect.setAttribute('width', String(shown));
+      }});
+      draw(surface.querySelector('[data-motion="border"]'), 260, 600, true);
+      fade(surface.querySelector('[data-motion="dot"]'), 860, 120);
     } else {
       entry.activeArrows.forEach((key, i) => {
         const start = 100 + i * 70;
