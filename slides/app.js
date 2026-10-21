@@ -33,9 +33,11 @@
   let page = 1, requestedPage = 1, generation = 0, animation = null;
   let touchStart = null, suppressClick = false;
   let idleTimeout, toastTimeout;
-  let heldKey = null, holdTimer, browseTimer, browseCleanup, browsing = false;
-  let browseEpoch = 0, browseIndex = 0;
-  const HOLD_DELAY = 700, BROWSE_INTERVAL = 620;
+  let heldKey = null, holdTimer, browseRaf, browseCleanup, browsing = false;
+  let browseEpoch = 0, browseIndex = 0, browsePosition = 0, browseSpacing = 0;
+  const browseCards = new Map();
+  // Old cadence: one slide per 620ms. Start 1.5x faster, reach 2x in 4s.
+  const HOLD_DELAY = 700, BROWSE_BASE_INTERVAL = 620, BROWSE_ACCELERATION_MS = 2000;
   document.body.classList.add('laser-active');
   const loaded = new Map();
   function load(n) {
@@ -134,7 +136,7 @@
       rail.dataset.frame = String(f.index);
       const selected = rail.children[f.index - 1];
       // Move only this rail, never the document or presentation area.
-      if (selected) rail.scrollTo({left: selected.offsetLeft - rail.clientWidth / 2 + selected.offsetWidth / 2,
+      if (selected && !browsing) rail.scrollTo({left: selected.offsetLeft - rail.clientWidth / 2 + selected.offsetWidth / 2,
         behavior: reducedMotion.matches || browsing ? 'instant' : 'smooth'});
     }
     $('chapterList').querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.section === f.section));
@@ -234,39 +236,67 @@
     const width = Math.max(1, Math.min(column.clientWidth, column.clientHeight * ratio));
     $('stage').style.width = `${width}px`;
     column.style.setProperty('--slide-width', `${width}px`);
-    if (browsing) renderBrowseCards();
+    if (browsing) { refreshBrowseRail(); renderBrowseCards(); }
   }
   new ResizeObserver(layoutStage).observe(document.querySelector('.slide-column'));
 
   function renderBrowseCards() {
     const container = $('browseCards'), width = $('stage').offsetWidth;
-    const spacing = width * .84 + 24;
-    for (const card of [...container.children]) {
-      if (Math.abs(Number(card.dataset.index) - browseIndex) > 3) card.remove();
+    browseSpacing = width * .80 + 28;
+    for (const [i, card] of browseCards) {
+      if (Math.abs(i - browseIndex) > 3) { card.remove(); browseCards.delete(i); }
     }
     for (let i = Math.max(0, browseIndex - 3); i <= Math.min(frames.length - 1, browseIndex + 3); i++) {
-      let card = container.querySelector(`[data-index="${i}"]`);
-      if (!card) {
-        card = document.createElement('div'); card.className = 'browse-card'; card.dataset.index = i;
-        const image = document.createElement('img'); image.src = path(frames[i].lastPage); image.alt = '';
-        image.draggable = false; card.append(image);
-        // The red bar is a separate player layer in the canonical SVGs.
-        const progress = deck.progress?.[frames[i].lastPage];
-        if (progress) {
-          const bar = document.createElement('span'); bar.className = 'browse-progress';
-          Object.assign(bar.style, {top: `${progress.top}%`, height: `${progress.height}%`,
-            width: `${progress.fraction * 100}%`, background: progress.color});
-          card.append(bar);
-        }
-        card.style.transition = 'none';
-        card.style.transform = `translateX(${(i - browseIndex) * spacing}px) scale(.82)`;
-        card.style.opacity = Math.abs(i - browseIndex) <= 1 ? (i === browseIndex ? '1' : '.3') : '0';
-        container.append(card); void card.offsetWidth; card.style.transition = '';
+      if (browseCards.has(i)) continue;
+      const card = document.createElement('div'); card.className = 'browse-card'; card.dataset.index = i;
+      const image = document.createElement('img'); image.src = path(frames[i].lastPage); image.alt = '';
+      image.draggable = false; card.append(image);
+      const progress = deck.progress?.[frames[i].lastPage];
+      if (progress) {
+        const bar = document.createElement('span'); bar.className = 'browse-progress';
+        Object.assign(bar.style, {top: `${progress.top}%`, height: `${progress.height}%`,
+          width: `${progress.fraction * 100}%`, background: progress.color});
+        card.append(bar);
       }
-      const offset = i - browseIndex;
-      card.style.transform = `translateX(${offset * spacing}px) scale(.82)`;
-      card.style.opacity = offset === 0 ? '1' : Math.abs(offset) === 1 ? '.3' : '0';
-      card.classList.toggle('is-selected', offset === 0);
+      browseCards.set(i, card); container.append(card);
+    }
+    paintBrowseCards();
+  }
+  function paintBrowseCards() {
+    // Continuous position: no per-slide ease/restart, layout reads, or DOM creation.
+    for (const [i, card] of browseCards) {
+      const offset = i - browsePosition, distance = Math.abs(offset);
+      const focus = (1 + Math.cos(Math.PI * Math.min(1, distance))) / 2;
+      const scale = .73 + .07 * focus;
+      card.style.transform = `translate3d(${offset * browseSpacing}px,${(1 - focus) * 8}px,0) scale(${scale})`;
+      card.style.opacity = Math.pow(Math.max(0, 1 - distance / 2.2), 1.3);
+      card.classList.toggle('is-selected', i === browseIndex);
+    }
+    // The thumbnail rail follows the same continuous position, without jumping.
+    if (browseRailMetrics && !document.body.classList.contains('presenting')) {
+      const {start, stride} = browseRailMetrics;
+      $('filmstrip').scrollLeft = start + (reducedMotion.matches ? browseIndex : browsePosition) * stride;
+    }
+  }
+  let browseRailMetrics = null;
+  function refreshBrowseRail() {
+    const rail = $('filmstrip'), first = rail.children[0], second = rail.children[1];
+    browseRailMetrics = first && second ? {
+      start: first.offsetLeft - rail.clientWidth / 2 + first.offsetWidth / 2,
+      stride: second.offsetLeft - first.offsetLeft
+    } : null;
+  }
+  function selectBrowseSlide() {
+    const index = Math.round(browsePosition);
+    if (index === browseIndex) return;
+    browseIndex = index;
+    renderBrowseCards();
+    go(frames[index].lastPage, {instant: true, browse: true});
+    // Preload ahead of the moving camera, rather than waiting between slides.
+    const direction = heldKey?.direction || 1;
+    for (let ahead = 1; ahead <= 5; ahead++) {
+      const frame = frames[index + direction * ahead];
+      if (frame) load(frame.lastPage).catch(() => {});
     }
   }
   function startHold(key, direction, skip) {
@@ -277,45 +307,61 @@
     if (wasBlank) { heldKey = null; return; }
     holdTimer = setTimeout(() => {
       if (heldKey !== hold) return;
-      browsing = true; const epoch = ++browseEpoch;
       browseIndex = frameFor(requestedPage).index - 1;
+      if (!frames[browseIndex + direction]) return;
+      browsing = true; const epoch = ++browseEpoch;
+      browsePosition = browseIndex;
       clearTimeout(browseCleanup);
-      $('browseCards').replaceChildren();
-      renderBrowseCards();
+      browseCards.clear(); $('browseCards').replaceChildren();
+      refreshBrowseRail(); renderBrowseCards();
       document.body.classList.add('is-browsing');
       hideLaser();
-      // Show complete slides while browsing, skipping their individual reveals.
       go(frames[browseIndex].lastPage, {instant: true, browse: true});
-      for (let i = -3; i <= 3; i++) {
-        if (frames[browseIndex + i]) load(frames[browseIndex + i].lastPage).catch(() => {});
+      for (let i = -3; i <= 5; i++) {
+        const frame = frames[browseIndex + direction * i];
+        if (frame) load(frame.lastPage).catch(() => {});
       }
-      browseTimer = setTimeout(() => browseNext(hold, epoch), reducedMotion.matches ? 0 : 200);
+      const started = performance.now(), origin = browsePosition;
+      function tick(now) {
+        if (!browsing || heldKey !== hold || epoch !== browseEpoch) return;
+        // Integrate the speed curve against elapsed time, so dropped frames
+        // cannot slow the journey. Reach 2x after two seconds of browsing.
+        const elapsed = Math.max(0, now - started);
+        const ramp = Math.min(1, elapsed / BROWSE_ACCELERATION_MS);
+        const distance = (BROWSE_ACCELERATION_MS *
+          (1.5 * ramp + .5 * ramp ** 3 - .25 * ramp ** 4) +
+          2 * Math.max(0, elapsed - BROWSE_ACCELERATION_MS)) / BROWSE_BASE_INTERVAL;
+        browsePosition = Math.max(0, Math.min(frames.length - 1, origin + direction * distance));
+        selectBrowseSlide(); paintBrowseCards();
+        if (browsePosition > 0 && browsePosition < frames.length - 1) browseRaf = requestAnimationFrame(tick);
+      }
+      browseRaf = requestAnimationFrame(tick);
     }, HOLD_DELAY);
   }
-  async function browseNext(hold, epoch) {
-    if (!browsing || heldKey !== hold || epoch !== browseEpoch) return;
-    const nextIndex = browseIndex + hold.direction;
-    if (!frames[nextIndex]) return;
-    const next = frames[nextIndex].lastPage;
-    try { await load(next); } catch (_) { stopHold(); notify('This slide could not be loaded.'); return; }
-    if (!browsing || heldKey !== hold || epoch !== browseEpoch) return;
-    browseIndex = nextIndex;
-    renderBrowseCards();
-    go(next, {instant: true, browse: true});
-    const ahead = frames[nextIndex + 3 * hold.direction];
-    if (ahead) load(ahead.lastPage).catch(() => {});
-    browseTimer = setTimeout(() => browseNext(hold, epoch), BROWSE_INTERVAL);
-  }
-  function stopHold() {
-    clearTimeout(holdTimer); clearTimeout(browseTimer); heldKey = null;
-    ++browseEpoch;
-    if (!browsing) return;
+  function closeBrowse() {
     browsing = false;
     document.body.classList.remove('is-browsing');
-    // The selected full-resolution slide is already underneath the carousel.
     browseCleanup = setTimeout(() => {
-      if (!browsing) $('browseCards').replaceChildren();
-    }, reducedMotion.matches ? 0 : 450);
+      if (!browsing) { browseCards.clear(); $('browseCards').replaceChildren(); }
+    }, reducedMotion.matches ? 0 : 360);
+  }
+  function stopHold(settle = false) {
+    clearTimeout(holdTimer); cancelAnimationFrame(browseRaf); heldKey = null;
+    const epoch = ++browseEpoch;
+    if (!browsing) return;
+    const origin = browsePosition, target = Math.round(origin);
+    if (!settle || reducedMotion.matches || Math.abs(origin - target) < .015) { closeBrowse(); return; }
+    const started = performance.now();
+    // Finish the fractional travel, then smoothly return the selected slide to full size.
+    function finish(now) {
+      if (epoch !== browseEpoch) return;
+      const t = Math.min(1, (now - started) / 180);
+      browsePosition = origin + (target - origin) * (1 - Math.pow(1 - t, 3));
+      paintBrowseCards();
+      if (t < 1) browseRaf = requestAnimationFrame(finish);
+      else closeBrowse();
+    }
+    browseRaf = requestAnimationFrame(finish);
   }
   function toggleBlank(value) {
     stopHold();
@@ -460,7 +506,7 @@
     else if (key === 'escape') { exitPresentation(); toggleBlank(false); }
   });
   document.addEventListener('keyup', e => {
-    if (heldKey?.key === e.key.toLowerCase()) stopHold();
+    if (heldKey?.key === e.key.toLowerCase()) stopHold(true);
   });
   makeNavigation();
   updateClock();

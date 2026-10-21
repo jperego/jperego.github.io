@@ -26,7 +26,7 @@ svg.icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.65;
 #main{min-width:0;height:100dvh;display:flex;flex-direction:column;padding:16px 20px 10px 18px}
 .presentation-area{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
 .slide-column{display:flex;align-items:center;justify-content:center;width:100%;height:100%;min-width:0;position:relative;isolation:isolate}
-.stage{position:relative;flex:none;width:100%;max-width:100%;aspect-ratio:396.85 / 255.12;background:var(--paper);overflow:hidden;box-shadow:0 20px 60px -22px #27395733,0 2px 6px #2739570c;outline:1px solid #344e860c;isolation:isolate;user-select:none;touch-action:pan-y;transition:transform 420ms var(--ease),opacity 300ms ease}
+.stage{position:relative;flex:none;width:100%;max-width:100%;aspect-ratio:396.85 / 255.12;background:var(--paper);overflow:hidden;box-shadow:0 20px 60px -22px #27395733,0 2px 6px #2739570c;outline:1px solid #344e860c;isolation:isolate;user-select:none;touch-action:pan-y;transition:transform 340ms var(--ease),opacity 260ms ease}
 .slide-image{display:block;width:100%;height:100%;position:absolute;inset:0;pointer-events:none;object-fit:contain}
 .incoming{visibility:hidden;z-index:1}.slide-links{position:absolute;inset:0;z-index:2;pointer-events:none}
 .slide-links a{position:absolute;pointer-events:auto;border-radius:3px}.slide-links a:hover{outline:1px solid #344e8640;background:#344e860b}
@@ -51,17 +51,17 @@ svg.icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.65;
 .filmstrip-slide.is-active{background:#dce3ef;color:var(--blue)}.filmstrip-slide.is-active img{outline:2px solid var(--blue);outline-offset:1px}
 .filmstrip-label{display:flex;align-items:baseline;gap:7px;margin-top:7px;font-size:9px;line-height:14px;white-space:nowrap}
 .filmstrip-label>span:first-child{font-variant-numeric:tabular-nums;font-weight:700}.filmstrip-label>span:last-child{overflow:hidden;text-overflow:ellipsis}
-/* Holding a navigation key moves a quiet carousel of complete slides. */
-.browse-deck{position:absolute;inset:-8px -18px;z-index:4;pointer-events:none;overflow:hidden;opacity:0;visibility:hidden;transform:scale(1.22);transition:opacity 320ms ease,transform 420ms var(--ease),visibility 0s 420ms}
+/* Held-key browsing uses a continuous camera; cards never stop at each slide. */
+.browse-deck{position:absolute;inset:-8px -18px;z-index:4;pointer-events:none;overflow:hidden;opacity:0;visibility:hidden;transform:scale(1.25);transition:opacity 260ms ease,transform 340ms var(--ease),visibility 0s 340ms;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
 .browse-cards{position:absolute;inset:0}
-.browse-card{position:absolute;left:50%;top:50%;width:var(--slide-width);aspect-ratio:396.85 / 255.12;margin-left:calc(var(--slide-width) / -2);margin-top:calc(var(--slide-width) / -3.11112);overflow:hidden;background:var(--paper);border-radius:3px;box-shadow:0 16px 50px -15px #27395730;outline:1px solid #344e8615;transition:transform 460ms cubic-bezier(.25,.1,.25,1),opacity 400ms ease;will-change:transform,opacity}
+.browse-card{position:absolute;left:50%;top:50%;width:var(--slide-width);aspect-ratio:396.85 / 255.12;margin-left:calc(var(--slide-width) / -2);margin-top:calc(var(--slide-width) / -3.11112);overflow:hidden;background:var(--paper);border-radius:3px;box-shadow:0 16px 50px -15px #27395730;outline:1px solid #344e8615;will-change:transform,opacity;backface-visibility:hidden;contain:layout style}
 .browse-card img{display:block;width:100%;height:100%;object-fit:contain}.browse-progress{position:absolute;left:0}
 .browse-hint{position:absolute;left:50%;bottom:8px;transform:translateX(-50%);color:#71809a;font-size:11px;letter-spacing:.2px;white-space:nowrap}
 .is-browsing .browse-deck{opacity:1;visibility:visible;transform:scale(1);transition-delay:0s}
-.is-browsing .stage{opacity:0;transform:scale(.82);pointer-events:none}
+.is-browsing .stage{opacity:0;transform:scale(.80);pointer-events:none}
 .is-browsing .slide-column{cursor:default}
 /* The clock fades in on entering content and stays steady until a title card. */
-.slide-hud{position:absolute;right:clamp(10px,calc(var(--slide-width) * .018),24px);bottom:clamp(7px,calc(var(--slide-width) * .012),16px);z-index:6;display:grid;place-items:center;min-width:8.8ch;height:2em;padding:0 .65em;border-radius:6px;background:#f5f6f9b8;color:#687b9b;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:clamp(10px,calc(var(--slide-width) * .011),14px);font-weight:400;font-variant-numeric:tabular-nums;letter-spacing:.025em;pointer-events:none;user-select:none;opacity:0;visibility:hidden}
+.slide-hud{position:absolute;right:calc(var(--slide-width) * .018);bottom:calc(var(--slide-width) * .012);z-index:6;display:grid;place-items:center;min-width:8.8ch;height:2em;padding:0 .65em;border-radius:.5em;background:#f5f6f9b8;color:#687b9b;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:calc(var(--slide-width) * .011);-webkit-text-size-adjust:100%;text-size-adjust:100%;font-weight:400;font-variant-numeric:tabular-nums;letter-spacing:.025em;pointer-events:none;user-select:none;opacity:0;visibility:hidden}
 .slide-hud.is-visible{opacity:1;visibility:visible;transition:opacity 420ms ease}
 .hud-clock{display:flex;align-items:baseline;justify-content:center;white-space:nowrap;gap:.5em}
 .hud-period{font-size:.68em;letter-spacing:.06em;opacity:.8}
