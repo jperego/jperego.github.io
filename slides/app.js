@@ -7,8 +7,6 @@
     'arrow-left':'<path d="M19 12H5m7-7-7 7 7 7"/>',
     'arrow-right':'<path d="M5 12h14m-7-7 7 7-7 7"/>',
     'chevron-down':'<path d="m6 9 6 6 6-6"/>',
-    grid:'<rect x="3" y="3" width="7" height="7" rx="1.3"/><rect x="14" y="3" width="7" height="7" rx="1.3"/><rect x="3" y="14" width="7" height="7" rx="1.3"/><rect x="14" y="14" width="7" height="7" rx="1.3"/>',
-    search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/>',
     help:'<circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 0 1 4.8 1c0 1.6-2.4 2-2.4 3.5M12 17h.01"/>',
     expand:'<path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/>',
     minimize:'<path d="M3 8h5V3m13 5h-5V3M8 21v-5H3m13 5v-5h5"/>',
@@ -30,9 +28,14 @@
   const path = n => `assets/slides/page-${String(n).padStart(3, '0')}.svg?v=${assetRevision}`;
   const thumb = n => `assets/thumbs/page-${String(n).padStart(3, '0')}.webp?v=${assetRevision}`;
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const clockFormat = new Intl.DateTimeFormat('en-US', {hour: '2-digit', minute: '2-digit', hour12: true});
+  let clockVisible = false, clockTimer;
   let page = 1, requestedPage = 1, generation = 0, animation = null;
-  let activeSection = 'All slides', touchStart = null, suppressClick = false;
-  let idleTimeout, toastTimeout, searchTimeout;
+  let touchStart = null, suppressClick = false;
+  let idleTimeout, toastTimeout;
+  let heldKey = null, holdTimer, browseTimer, browseCleanup, browsing = false;
+  let browseEpoch = 0, browseIndex = 0;
+  const HOLD_DELAY = 700, BROWSE_INTERVAL = 620;
   document.body.classList.add('laser-active');
   const loaded = new Map();
   function load(n) {
@@ -66,8 +69,32 @@
     const step = Math.max(1, Math.min(f.steps, Number(query.get('step')) || 1));
     return f.pages[step - 1];
   }
+  function updateClock() {
+    clearTimeout(clockTimer);
+    const now = new Date();
+    const parts = clockFormat.formatToParts(now);
+    const hour = parts.find(p => p.type === 'hour').value;
+    const minute = parts.find(p => p.type === 'minute').value;
+    const period = parts.find(p => p.type === 'dayPeriod').value;
+    $('hudTime').textContent = `${hour}:${minute}`;
+    $('hudPeriod').textContent = period;
+    $('hudClock').dateTime = `${String(now.getHours()).padStart(2, '0')}:${minute}`;
+    $('hudClock').setAttribute('aria-label', `Local time ${hour}:${minute} ${period}`);
+    // Update on the minute, without blinking seconds or continuous animation.
+    clockTimer = setTimeout(updateClock, 60000 - now.getTime() % 60000 + 30);
+  }
+  function updateClockVisibility(frame) {
+    // Keep one persistent clock throughout the content, including reveal clicks.
+    // Section dividers and the opening/closing paper-title cards stay clear.
+    const visible = !frame.isDivider && frame.index !== 1 && frame.title !== deck.title;
+    if (visible === clockVisible) return;
+    clockVisible = visible;
+    $('slideHud').classList.toggle('is-visible', visible);
+    $('slideHud').setAttribute('aria-hidden', String(!visible));
+  }
   function updateUI() {
     const f = frameFor(page), step = f.pages.indexOf(page) + 1;
+    updateClockVisibility(f);
     $('frameNumber').textContent = String(f.index).padStart(2, '0');
     $('slideTitle').textContent = f.label || f.title;
     $('chapterLabel').textContent = f.section;
@@ -95,16 +122,24 @@
       if (i + 1 === step) b.setAttribute('aria-current', 'step');
       else b.removeAttribute('aria-current');
     });
-    $('timeline').querySelectorAll('button').forEach((b, i) => {
-      b.classList.toggle('is-active', i === f.index - 1);
-      b.classList.toggle('is-complete', i < f.index - 1);
-      if (i === f.index - 1) b.setAttribute('aria-current', 'step');
+    const rail = $('filmstrip');
+    rail.querySelectorAll('button').forEach((b, i) => {
+      const current = i === f.index - 1;
+      b.classList.toggle('is-active', current);
+      b.tabIndex = current ? 0 : -1;
+      if (current) b.setAttribute('aria-current', 'page');
       else b.removeAttribute('aria-current');
     });
+    if (rail.dataset.frame !== String(f.index)) {
+      rail.dataset.frame = String(f.index);
+      const selected = rail.children[f.index - 1];
+      // Move only this rail, never the document or presentation area.
+      if (selected) rail.scrollTo({left: selected.offsetLeft - rail.clientWidth / 2 + selected.offsetWidth / 2,
+        behavior: reducedMotion.matches || browsing ? 'instant' : 'smooth'});
+    }
     $('chapterList').querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.section === f.section));
-    $('slideGrid').querySelectorAll('button').forEach(b => b.classList.toggle('current', Number(b.dataset.frame) === f.index));
     $('announcement').textContent = `${f.title}. Slide ${f.index} of ${frames.length}. Reveal ${step} of ${f.steps}.`;
-    document.title = `${f.label || f.title} · Privacy For Sale`;
+    document.title = `${f.label || f.title} · ${deck.title}`;
     setHash();
   }
   function updateProgress(n, instant = false) {
@@ -126,6 +161,7 @@
     }
   }
   async function go(next, opts = {}) {
+    if (!opts.browse) stopHold();
     hideLaser();
     next = Math.max(1, Math.min(deck.totalPages, next));
     // Internal PDF links may target a duplicate; use its identical visible reveal.
@@ -133,7 +169,7 @@
     const myGeneration = ++generation;
     requestedPage = next;
     try { await load(next); }
-    catch (_) { notify('Unable to load this slide. Keep the assets folder beside index.html.'); return; }
+    catch (_) { if (myGeneration === generation) requestedPage = page; notify('Unable to load this slide. Keep the assets folder beside index.html.'); return; }
     if (myGeneration !== generation) return;
     const previous = page;
     if (animation) { animation.cancel(); animation = null; }
@@ -179,19 +215,110 @@
       if (revealPages[i]) load(revealPages[i]).catch(() => {});
     }
   }
-  function advance(direction, skip = false) {
+  function advance(direction, skip = false, fromHold = false) {
+    if (!fromHold) stopHold();
     if (document.body.classList.contains('is-blank')) { toggleBlank(false); return; }
     if (skip) {
       const f = frameFor(requestedPage), index = f.index - 1;
       const target = frames[index + direction];
-      if (target) go(target.firstPage);
+      if (target) go(target.firstPage, { browse: true });
     } else {
       const position = revealIndex.get(requestedPage);
       if (direction > 0 && position === revealPages.length - 1) { notify('You’ve reached the end of the deck'); return; }
-      go(revealPages[Math.max(0, Math.min(revealPages.length - 1, position + direction))]);
+      go(revealPages[Math.max(0, Math.min(revealPages.length - 1, position + direction))], { browse: true });
     }
   }
+  function layoutStage() {
+    const column = document.querySelector('.slide-column');
+    const ratio = deck.pdfDimensionsPt[0] / deck.pdfDimensionsPt[1];
+    const width = Math.max(1, Math.min(column.clientWidth, column.clientHeight * ratio));
+    $('stage').style.width = `${width}px`;
+    column.style.setProperty('--slide-width', `${width}px`);
+    if (browsing) renderBrowseCards();
+  }
+  new ResizeObserver(layoutStage).observe(document.querySelector('.slide-column'));
+
+  function renderBrowseCards() {
+    const container = $('browseCards'), width = $('stage').offsetWidth;
+    const spacing = width * .84 + 24;
+    for (const card of [...container.children]) {
+      if (Math.abs(Number(card.dataset.index) - browseIndex) > 3) card.remove();
+    }
+    for (let i = Math.max(0, browseIndex - 3); i <= Math.min(frames.length - 1, browseIndex + 3); i++) {
+      let card = container.querySelector(`[data-index="${i}"]`);
+      if (!card) {
+        card = document.createElement('div'); card.className = 'browse-card'; card.dataset.index = i;
+        const image = document.createElement('img'); image.src = path(frames[i].lastPage); image.alt = '';
+        image.draggable = false; card.append(image);
+        // The red bar is a separate player layer in the canonical SVGs.
+        const progress = deck.progress?.[frames[i].lastPage];
+        if (progress) {
+          const bar = document.createElement('span'); bar.className = 'browse-progress';
+          Object.assign(bar.style, {top: `${progress.top}%`, height: `${progress.height}%`,
+            width: `${progress.fraction * 100}%`, background: progress.color});
+          card.append(bar);
+        }
+        card.style.transition = 'none';
+        card.style.transform = `translateX(${(i - browseIndex) * spacing}px) scale(.82)`;
+        card.style.opacity = Math.abs(i - browseIndex) <= 1 ? (i === browseIndex ? '1' : '.3') : '0';
+        container.append(card); void card.offsetWidth; card.style.transition = '';
+      }
+      const offset = i - browseIndex;
+      card.style.transform = `translateX(${offset * spacing}px) scale(.82)`;
+      card.style.opacity = offset === 0 ? '1' : Math.abs(offset) === 1 ? '.3' : '0';
+      card.classList.toggle('is-selected', offset === 0);
+    }
+  }
+  function startHold(key, direction, skip) {
+    stopHold();
+    const hold = {key, direction}; heldKey = hold;
+    const wasBlank = document.body.classList.contains('is-blank');
+    advance(direction, skip, true);
+    if (wasBlank) { heldKey = null; return; }
+    holdTimer = setTimeout(() => {
+      if (heldKey !== hold) return;
+      browsing = true; const epoch = ++browseEpoch;
+      browseIndex = frameFor(requestedPage).index - 1;
+      clearTimeout(browseCleanup);
+      $('browseCards').replaceChildren();
+      renderBrowseCards();
+      document.body.classList.add('is-browsing');
+      hideLaser();
+      // Show complete slides while browsing, skipping their individual reveals.
+      go(frames[browseIndex].lastPage, {instant: true, browse: true});
+      for (let i = -3; i <= 3; i++) {
+        if (frames[browseIndex + i]) load(frames[browseIndex + i].lastPage).catch(() => {});
+      }
+      browseTimer = setTimeout(() => browseNext(hold, epoch), reducedMotion.matches ? 0 : 200);
+    }, HOLD_DELAY);
+  }
+  async function browseNext(hold, epoch) {
+    if (!browsing || heldKey !== hold || epoch !== browseEpoch) return;
+    const nextIndex = browseIndex + hold.direction;
+    if (!frames[nextIndex]) return;
+    const next = frames[nextIndex].lastPage;
+    try { await load(next); } catch (_) { stopHold(); notify('This slide could not be loaded.'); return; }
+    if (!browsing || heldKey !== hold || epoch !== browseEpoch) return;
+    browseIndex = nextIndex;
+    renderBrowseCards();
+    go(next, {instant: true, browse: true});
+    const ahead = frames[nextIndex + 3 * hold.direction];
+    if (ahead) load(ahead.lastPage).catch(() => {});
+    browseTimer = setTimeout(() => browseNext(hold, epoch), BROWSE_INTERVAL);
+  }
+  function stopHold() {
+    clearTimeout(holdTimer); clearTimeout(browseTimer); heldKey = null;
+    ++browseEpoch;
+    if (!browsing) return;
+    browsing = false;
+    document.body.classList.remove('is-browsing');
+    // The selected full-resolution slide is already underneath the carousel.
+    browseCleanup = setTimeout(() => {
+      if (!browsing) $('browseCards').replaceChildren();
+    }, reducedMotion.matches ? 0 : 450);
+  }
   function toggleBlank(value) {
+    stopHold();
     hideLaser();
     const on = value ?? !document.body.classList.contains('is-blank');
     document.body.classList.toggle('is-blank', on);
@@ -199,64 +326,27 @@
   }
   function closeDialogs() { document.querySelectorAll('dialog[open]').forEach(d => d.close()); }
   function showDialog(id) {
+    stopHold();
     hideLaser();
     closeDialogs();
     if (document.body.classList.contains('is-blank')) toggleBlank(false);
     $(id).showModal();
   }
-  function renderGrid() {
-    const query = $('slideSearch').value.toLocaleLowerCase().trim();
-    const terms = query.split(/\s+/).filter(Boolean);
-    const shown = frames.filter(f => (activeSection === 'All slides' || f.section === activeSection)
-      && terms.every(t => `${f.title} ${f.label} ${f.section} ${f.searchText}`.toLocaleLowerCase().includes(t)));
-    const current = frameFor(page);
-    const fragment = document.createDocumentFragment();
-    for (const f of shown) {
-      const card = document.createElement('button');
-      card.className = `slide-card${f.index === current.index ? ' current' : ''}`;
-      card.dataset.frame = f.index;
-      card.setAttribute('aria-label', `Slide ${f.index}: ${f.title}, ${f.steps} reveal${f.steps > 1 ? 's' : ''}`);
-      const img = document.createElement('img');
-      img.className = 'thumbnail'; img.src = thumb(f.lastPage); img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
-      card.append(img);
-      if (f.steps > 1) { const tag = document.createElement('span'); tag.className = 'card-steps'; tag.textContent = `${f.steps} reveals`; card.append(tag); }
-      const meta = document.createElement('span'); meta.className = 'card-meta';
-      const number = document.createElement('span'); number.className = 'card-number'; number.textContent = String(f.index).padStart(2, '0');
-      const label = document.createElement('span'); label.className = 'card-label'; label.textContent = f.label || f.title;
-      meta.append(number, label); card.append(meta);
-      card.addEventListener('click', () => { closeDialogs(); go(f.firstPage); $('stage').focus({ preventScroll: true }); });
-      fragment.append(card);
-    }
-    $('slideGrid').replaceChildren(fragment);
-    $('resultsCount').textContent = `${shown.length} slide${shown.length === 1 ? '' : 's'}${activeSection !== 'All slides' ? ' · ' + activeSection : ''}`;
-    $('noResults').hidden = shown.length !== 0;
-    $('sectionFilters').querySelectorAll('button').forEach(b => {
-      b.classList.toggle('active', b.dataset.section === activeSection);
-      b.setAttribute('aria-pressed', String(b.dataset.section === activeSection));
-    });
-  }
-  function overview(search = false) {
-    activeSection = 'All slides'; $('slideSearch').value = ''; renderGrid(); showDialog('overview');
-    if (search) $('slideSearch').focus();
-    else {
-      const current = $('slideGrid').querySelector('.current');
-      if (current) { current.focus({ preventScroll: true }); current.scrollIntoView({ block: 'center' }); }
-    }
-  }
   function makeNavigation() {
-    frames.forEach((f, i) => {
-      const b = document.createElement('button');
-      b.title = `${f.index}. ${f.label || f.title}`; b.setAttribute('aria-label', b.title);
-      if (f.isDivider) b.classList.add('is-divider');
-      if (i && f.section !== frames[i - 1].section) b.dataset.sectionStart = 'true';
-      b.addEventListener('click', () => go(f.firstPage)); $('timeline').append(b);
-    });
-    ['All slides', ...deck.sections.map(s => s.label)].forEach(s => {
-      const b = document.createElement('button'); b.dataset.section = s;
-      const label = document.createTextNode(s); const count = document.createElement('span');
-      count.textContent = s === 'All slides' ? frames.length : frames.filter(f => f.section === s).length;
-      b.append(label, count);
-      b.addEventListener('click', () => { activeSection = s; renderGrid(); }); $('sectionFilters').append(b);
+    frames.forEach(f => {
+      const button = document.createElement('button');
+      button.className = 'filmstrip-slide'; button.dataset.frame = f.index;
+      button.title = `${f.index}. ${f.label || f.title}`;
+      button.setAttribute('aria-label', `Slide ${f.index}: ${f.title}`);
+      const image = document.createElement('img');
+      image.src = thumb(f.lastPage); image.alt = ''; image.loading = 'lazy'; image.decoding = 'async';
+      image.draggable = false;
+      const label = document.createElement('span'); label.className = 'filmstrip-label';
+      const number = document.createElement('span'); number.textContent = String(f.index).padStart(2, '0');
+      const title = document.createElement('span'); title.textContent = f.label || f.title;
+      label.append(number, title); button.append(image, label);
+      button.addEventListener('click', () => { go(f.firstPage); $('stage').focus({preventScroll: true}); });
+      $('filmstrip').append(button);
     });
     deck.sections.forEach((s, i) => {
       const b = document.createElement('button'); b.dataset.section = s.label;
@@ -268,13 +358,14 @@
   }
   async function toggleFullscreen() {
     if (document.body.classList.contains('presenting')) { exitPresentation(); return; }
-    closeDialogs(); document.body.classList.add('presenting');
+    stopHold(); closeDialogs(); document.body.classList.add('presenting');
     $('stage').focus({ preventScroll: true });
     try { if (document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen(); }
     catch (_) { /* The distraction-free layout also works without the Fullscreen API. */ }
     wake(); notify('Clicker or arrow keys to advance · Esc to exit');
   }
   function exitPresentation() {
+    stopHold();
     document.body.classList.remove('presenting', 'pointer-idle');
     if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
   }
@@ -286,29 +377,17 @@
   $('home').onclick = () => go(1);
   $('prevButton').onclick = () => advance(-1);
   $('nextButton').onclick = () => advance(1);
-  $('overviewButton').onclick = () => overview();
-  $('slideInfo').onclick = () => overview();
   $('chaptersButton').onclick = () => showDialog('chapters');
   $('helpButton').onclick = () => showDialog('help');
   $('fullscreenButton').onclick = toggleFullscreen;
   $('exitPresent').onclick = exitPresentation;
-  $('slideSearch').addEventListener('input', () => { clearTimeout(searchTimeout); searchTimeout = setTimeout(renderGrid, 80); });
-  $('slideGrid').addEventListener('keydown', e => {
-    const cards = [...$('slideGrid').querySelectorAll('.slide-card')];
-    const index = cards.indexOf(e.target.closest('.slide-card'));
-    if (index < 0) return;
-    const cols = getComputedStyle($('slideGrid')).gridTemplateColumns.split(' ').length;
-    let next = index;
-    if (e.key === 'ArrowRight') next++;
-    else if (e.key === 'ArrowLeft') next--;
-    else if (e.key === 'ArrowDown') next += cols;
-    else if (e.key === 'ArrowUp') next -= cols;
-    else if (e.key === 'Home') next = 0;
-    else if (e.key === 'End') next = cards.length - 1;
-    else return;
+  $('filmstrip').addEventListener('wheel', e => {
+    if (e.ctrlKey || Math.abs(e.deltaX) >= Math.abs(e.deltaY)) return;
+    const rail = $('filmstrip');
+    if (rail.scrollWidth <= rail.clientWidth) return;
     e.preventDefault();
-    cards[Math.max(0, Math.min(cards.length - 1, next))].focus();
-  });
+    rail.scrollLeft += e.deltaY * (e.deltaMode === 1 ? 18 : e.deltaMode === 2 ? rail.clientWidth : 1);
+  }, {passive: false});
   document.querySelectorAll('.close-dialog').forEach(b => b.onclick = () => b.closest('dialog').close());
   document.querySelectorAll('dialog').forEach(d => d.addEventListener('click', e => { if (e.target === d) { const r = d.getBoundingClientRect(); if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) d.close(); } }));
   $('stage').addEventListener('click', e => {
@@ -317,7 +396,7 @@
     advance(e.shiftKey ? -1 : 1);
   });
   $('stage').addEventListener('pointermove', e => {
-    if (e.pointerType === 'touch' || document.body.classList.contains('is-blank') || document.querySelector('dialog[open]')) { hideLaser(); return; }
+    if (browsing || e.pointerType === 'touch' || document.body.classList.contains('is-blank') || document.querySelector('dialog[open]')) { hideLaser(); return; }
     const r = $('stage').getBoundingClientRect();
     $('laser').style.left = `${e.clientX - r.left}px`; $('laser').style.top = `${e.clientY - r.top}px`; $('laser').style.display = 'block';
   });
@@ -335,13 +414,18 @@
     touchStart = null;
   }, { passive: true });
   $('stage').addEventListener('touchcancel', () => { touchStart = null; }, { passive: true });
-  window.addEventListener('blur', hideLaser);
-  document.addEventListener('visibilitychange', hideLaser);
+  window.addEventListener('blur', () => { stopHold(); hideLaser(); });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { stopHold(); clearTimeout(clockTimer); }
+    else updateClock();
+    hideLaser();
+  });
   document.addEventListener('pointermove', wake, { passive: true });
   document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement) exitPresentation(); });
   window.addEventListener('hashchange', () => go(hashPage(), { instant: true }));
   reducedMotion.addEventListener('change', () => {
     if (!reducedMotion.matches) return;
+    stopHold();
     updateProgress(page, true);
     if (animation) { animation.cancel(); animation = null; }
     $('slideImage').src = path(page);
@@ -351,30 +435,34 @@
   document.addEventListener('keydown', e => {
     const key = e.key.toLowerCase();
     if (key === 'escape' && document.querySelector('dialog[open]')) { e.preventDefault(); closeDialogs(); return; }
-    if ((e.metaKey || e.ctrlKey) && key === 'k') { e.preventDefault(); if (!e.repeat) overview(true); return; }
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (document.querySelector('dialog[open]')) return;
     if (e.target.closest('input,textarea,select,[contenteditable]:not([contenteditable="false"])')) return;
     // Preserve normal activation of controls outside presentation mode. Clicker
     // navigation keys still work when a toolbar control happens to have focus.
     if ([' ', 'enter'].includes(key) && e.target.closest('button,a') && !document.body.classList.contains('presenting')) return;
-    const handled = ['arrowright','arrowleft','arrowdown','arrowup','pagedown','pageup',' ','enter','home','end','o','f','b','.','?','escape'];
+    const handled = ['arrowright','arrowleft','arrowdown','arrowup','pagedown','pageup',' ','enter','home','end','f','b','.','?','escape'];
     if (!handled.includes(key)) return;
     e.preventDefault();
-    // Most clickers emit keyboard events. A held button should reveal one step,
-    // rather than race through the deck via the operating system's key repeat.
+    // Own the hold cadence; OS key repeats must not race through reveals.
     if (e.repeat) return;
     hideLaser();
-    if (['arrowright','arrowdown','pagedown',' ','enter'].includes(key)) advance(e.shiftKey && key === ' ' ? -1 : 1, e.shiftKey && ![' ', 'enter'].includes(key));
-    else if (['arrowleft','arrowup','pageup'].includes(key)) advance(-1, e.shiftKey);
+    if (['arrowright','arrowdown','pagedown','arrowleft','arrowup','pageup'].includes(key)) {
+      const direction = ['arrowright','arrowdown','pagedown'].includes(key) ? 1 : -1;
+      startHold(key, direction, e.shiftKey);
+    }
+    else if ([' ', 'enter'].includes(key)) { stopHold(); advance(e.shiftKey && key === ' ' ? -1 : 1); }
     else if (key === 'home') go(1);
     else if (key === 'end') go(deck.totalPages);
-    else if (key === 'o') overview();
     else if (key === 'f') toggleFullscreen();
     else if (key === 'b' || key === '.') toggleBlank();
     else if (key === '?') showDialog('help');
     else if (key === 'escape') { exitPresentation(); toggleBlank(false); }
   });
+  document.addEventListener('keyup', e => {
+    if (heldKey?.key === e.key.toLowerCase()) stopHold();
+  });
   makeNavigation();
+  updateClock();
   go(hashPage(), { instant: true });
 })();
