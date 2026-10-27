@@ -11,13 +11,16 @@
     link,
     section: document.getElementById(link.getAttribute('href').slice(1))
   }));
+  const getSectionOffset = () => navbar.querySelector('.navbar-brand').getBoundingClientRect().height + 10;
+  // Safari can round the final scroll position at fractional page zoom levels.
+  const sectionBoundaryTolerance = 4;
 
   // Section starts keep highlighting predictable across long sections and gaps.
   const refreshSectionHighlight = () => {
-    const offset = navbar.querySelector('.navbar-brand').getBoundingClientRect().height + 10;
+    const offset = getSectionOffset();
     let activeLink = null;
     navigationSections.forEach(({ link, section }) => {
-      if (section.getBoundingClientRect().top <= offset + 1) activeLink = link;
+      if (section.getBoundingClientRect().top <= offset + sectionBoundaryTolerance) activeLink = link;
     });
     if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
       activeLink = navigationSections[navigationSections.length - 1].link;
@@ -312,9 +315,11 @@
   };
   const scrollToSection = (target, smooth = true) => {
     // Use the closed, compact navbar height, including when the mobile menu is open.
-    const brandHeight = navbar.querySelector('.navbar-brand').getBoundingClientRect().height;
-    const offset = target.id === 'page-top' ? 0 : brandHeight + 10;
-    const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - offset);
+    const offset = getSectionOffset();
+    // Land just inside the section rather than directly on its highlight boundary.
+    const top = target.id === 'page-top' ? 0 : Math.max(0, Math.ceil(
+      target.getBoundingClientRect().top + window.scrollY - offset + sectionBoundaryTolerance
+    ));
     window.addEventListener('scroll', refreshAfterNavigation, { passive: true });
     window.scrollTo({ top, behavior: smooth && !reduceMotion.matches ? 'smooth' : 'instant' });
     target.setAttribute('tabindex', '-1');
